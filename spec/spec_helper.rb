@@ -1,7 +1,4 @@
 require "factory_girl_rails"
-require "coveralls"
-require "mocha"
-Coveralls.wear!
 
 RSpec.configure do |config|
 
