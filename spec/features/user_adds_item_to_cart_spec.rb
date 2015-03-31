@@ -6,7 +6,7 @@ RSpec.feature "A user" do
       create(:item)
       visit "/menu"
       click_button("Add To Cart")
-      click_on "View Cart"
+      click_on "Cart"
       within("#item_title") do
         expect(page).to have_content "Sushi"
       end
@@ -16,7 +16,7 @@ RSpec.feature "A user" do
       create(:item)
       visit "/menu"
       click_button("Add To Cart")
-      click_on "View Cart"
+      click_on "Cart"
       within("#item_quantity") do
         expect(page).to have_content 1
       end
@@ -26,7 +26,7 @@ RSpec.feature "A user" do
       create(:item)
       visit "/menu"
       click_button("Add To Cart")
-      click_on "View Cart"
+      click_on "Cart"
       within("#item_price") do
         expect(page).to have_content "$11.00"
       end
@@ -38,13 +38,13 @@ RSpec.feature "A user" do
       create(:item)
       visit "/menu"
       click_button("Add To Cart")
-      click_on "View Cart"
+      click_on "Cart"
       within("#item_quantity") do
         expect(page).to have_content 1
       end
       visit "/menu"
       click_button("Add To Cart")
-      click_on "View Cart"
+      click_on "Cart"
       within("#item_quantity") do
         expect(page).to have_content 2
       end
@@ -55,7 +55,7 @@ RSpec.feature "A user" do
         create(:item)
         visit "/menu"
         click_button("Add To Cart")
-        click_on "View Cart"
+        click_on "Cart"
         click_link_or_button("Remove From Cart")
         expect(page).to_not have_content "Sushi"
       end
@@ -66,7 +66,7 @@ RSpec.feature "A user" do
         create(:item)
         visit "/menu"
         click_button("Add To Cart")
-        click_on "View Cart"
+        click_on "Cart"
         within("#item_quantity") do
           expect(page).to have_content 1
         end
@@ -80,7 +80,7 @@ RSpec.feature "A user" do
         create(:item)
         visit "/menu"
         click_button("Add To Cart")
-        click_on "View Cart"
+        click_on "Cart"
         within("#item_quantity") do
           expect(page).to have_content 1
         end
@@ -98,7 +98,7 @@ RSpec.feature "A user" do
         create(:item)
         visit "/menu"
         click_button("Add To Cart")
-        click_on "View Cart"
+        click_on "Cart"
         within("#item_quantity") do
           expect(page).to have_content 1
         end
@@ -113,7 +113,7 @@ RSpec.feature "A user" do
         create(:item)
         visit "/menu"
         click_button("Add To Cart")
-        click_on "View Cart"
+        click_on "Cart"
         within("#item_quantity") do
           expect(page).to have_content 1
         end
