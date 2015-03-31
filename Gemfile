@@ -29,7 +29,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
-gem 'unicorn'
+#gem 'unicorn'
 
 gem 'paperclip'
 
@@ -42,10 +42,7 @@ gem "twitter-bootstrap-rails"
 
 group :development, :test do
 
-  gem 'coveralls', require: false
-
   gem 'factory_girl_rails'
-  gem 'mocha'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   # gem 'byebug'
@@ -62,7 +59,7 @@ group :development, :test do
 end
 
 group :development do
-  
+
 gem 'spring'
 
 end
