@@ -1,5 +1,13 @@
 class UsersController < ApplicationController
-  before_filter :authorize
+  before_filter :authorize, only: [:show]
+
+  def new
+    @user = User.new
+  end
+
+  def create
+    redirect_to lender_path(@user)
+  end
 
   def show
     @user = current_user

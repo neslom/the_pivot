@@ -21,6 +21,13 @@ Rails.application.routes.draw do
   get "/logout", to: 'sessions#destroy'
   delete "/logout", to: 'sessions#destroy'
 
+  #get 'signup', to: 'users#new'
+  #post 'signup', to: 'users#create'
+
+  resources :lenders
+
+  resources :borrowers
+
   resources :users, only: [:show]
 
   namespace 'admin' do
