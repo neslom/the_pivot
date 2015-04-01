@@ -1,0 +1,13 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal">x</button>
+  <h3>Login to Keevahh</h3>
+</div>
+<div class="modal-body">
+<%= bootstrap_form_for(:session, url: login_path) do |f| %>
+  <%= f.email_field :email %>
+  <%= f.password_field :password %>
+<div class="modal-footer">
+  <%= f.submit "Log In" %>
+  </div>
+<% end %>
+</div>
