@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
       end
     else
       flash[:notice] = "Sensei says: 'Invalid Login: try again'"
-      render :new
+      redirect_to root_path
     end
   end
 
