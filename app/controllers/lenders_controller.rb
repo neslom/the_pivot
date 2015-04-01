@@ -6,6 +6,7 @@ class LendersController < ApplicationController
   def create
     user = User.new(lender_params)
     if user.save
+      session[:user_id] = user.id
       flash[:notice] = "You've been saved"
       redirect_to lender_path(user)
     else
