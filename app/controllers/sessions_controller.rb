@@ -7,10 +7,14 @@ class SessionsController < ApplicationController
   def create
     @user = User.find_by(email: params[:session][:email])
     if @user && @user.authenticate(params[:session][:password])
-      if @user.user?
+      if @user.lender?
         session[:user_id] = @user.id
         flash[:notice] = "Sensei says: 'Welcome to the dojo'"
-        redirect_to root_path
+        redirect_to lender_path(@user)
+      elsif @user.borrower?
+        session[:user_id] = @user.id
+        flash[:notice] = "Sensei says: 'Welcome to the dojo'"
+        redirect_to borrower_path(@user)
       elsif @user.admin?
         session[:user_id] = @user.id
         flash[:notice] = "Admin logged in."
