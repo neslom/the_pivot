@@ -1,3 +1,8 @@
+<form>
+  Search Requests:
+  <input type="search" name="googlesearch">
+</form>
+
 <% if flash[:notice] %>
   <div class="notice"><%= flash[:notice] %></div>
 <% end %>
@@ -5,3 +10,4 @@
 <div id='items'>
   <%= render @items %>
 </div>
+
