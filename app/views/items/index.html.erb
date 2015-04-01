@@ -1,8 +1,9 @@
+<h1>Loan Requests</h1>
 <select class="col-xs-3">
-<option value="volvo">Category 1</option>
-<option value="saab">Category 2</option>
-<option value="mercedes">Category 3</option>
-<option value="audi">Category 6</option>
+  <option value="volvo">Category 1</option>
+  <option value="saab">Category 2</option>
+  <option value="mercedes">Category 3</option>
+  <option value="audi">Category 6</option>
 </select>
 
 <form class="search-bar col-xs 3">
@@ -15,16 +16,20 @@
 <% end %>
 
 <div class="container">
-
-
-
-      <% 9.times do %>
-        <div class="panel panel-default col-sm-6 col-md-4 col-lg-4">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScGoV_pVGV1TwOF-v6fcRBqn7wg7Z2AEyJQnl6zSEur9x8zLs3">
-          <h3><%= link_to "Farming Thing"%></h3>
-          <p>Farmers work hard and deserve your money. Help us please!</p>
+  <% 3.times do %>
+    <div class="row">
+      <% 3.times do %>
+        <div class="col-sm-6 col-md-4 col-lg-4">
+          <div class="thumbnail">
+            <img src="http://www.kiva.org/img/w632/1847429.jpg" alt="...">
+            <div class="caption">
+              <h3>Thumbnail label</h3>
+              <p>Farmers work hard and deserve your money. Help us please!</p>
+              <p><a href="#" class="btn btn-primary" role="button">About</a> <a href="#" class="btn btn-default" role="button">Add to Cart</a></p>
+            </div>
+          </div>
         </div>
       <% end %>
-
-
+    </div>
+  <% end %>
 </div>
