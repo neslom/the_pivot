@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -13,7 +13,7 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav navbar-left">
         <li><a href="#">Lend<span class="sr-only">(current)</span></a></li>
         <li><%= link_to "Cart", cart_path %></li>
       </ul>
@@ -22,11 +22,25 @@
           <% if current_user %>
             <%= link_to "Log out", logout_path, method: :delete, class: 'btn btn-link btn-lg active'%>
           <% else %>
-            <%= link_to "Log in", login_path, class: 'btn btn-link btn-lg active' %>
+          <button type="button" class="btn btn-button btn-lg active" data-toggle="modal" data-target="#loginModal">
+            Login
+          </button>
           <% end %>
         </li>
-        <li><a href="#">Sign Up</a></li>
+        <li>
+      DROP
+        </li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+
+<!-- Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <%= render "sessions/new" %>
+    </div>
+  </div>
+</div>
+
