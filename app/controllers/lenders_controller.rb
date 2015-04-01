@@ -1,9 +1,26 @@
 class LendersController < ApplicationController
   def new
-    @user = User.new
+    @user = User.new(role: 0)
   end
 
   def create
-    @user.create(role: 0)
+    user = User.new(lender_params)
+    if user.save
+      flash[:notice] = "You've been saved"
+      redirect_to lender_path(user)
+    else
+      flash[:error] = "Something went wrong. Please try again"
+      render :new
+    end
+  end
+
+  def show
+
+  end
+
+  private
+
+  def lender_params
+    params.require(:user).permit(:name, :email, :password)
   end
 end
