@@ -4,7 +4,7 @@ class BorrowersController < ApplicationController
   end
 
   def create
-    user = User.new(borrower_params.merge(role: 1))
+    user = User.new(borrower_params.merge(role: "borrower"))
     if user.save
       session[:user_id] = user.id
       flash[:notice] = "You've been saved"

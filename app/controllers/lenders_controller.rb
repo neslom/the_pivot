@@ -1,10 +1,10 @@
 class LendersController < ApplicationController
   def new
-    @user = User.new(role: 0)
+    @user = User.new
   end
 
   def create
-    user = User.new(lender_params)
+    user = User.new(lender_params.merge(role: "lender"))
     if user.save
       session[:user_id] = user.id
       flash[:notice] = "You've been saved"
