@@ -19,13 +19,22 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-          <% if current_user %>
-            <%= link_to "Log out", logout_path, method: :delete, class: 'btn btn-link btn-lg active'%>
-          <% else %>
-            <%= link_to "Log in", login_path, class: 'btn btn-link btn-lg active' %>
-          <% end %>
+        <% if current_user %>
+          <%= link_to "Log out", logout_path, method: :delete, class: 'btn btn-link btn-lg active'%>
+      <% else %>
+          <%= link_to "Log in", login_path, class: 'btn btn-link btn-lg active' %>
+      <% end %>
         </li>
-        <li><a href="#">Sign Up</a></li>
+        <div class="dropdown">
+          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+            Sign Up
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+            <li role="presentation"><%= link_to "As Lender", new_lender_path %> </li>
+            <li role="presentation"><%= link_to "As Borrower", new_borrower_path %> </li>
+          </ul>
+        </div>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
