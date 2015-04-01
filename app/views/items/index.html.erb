@@ -1,7 +1,35 @@
+<h1>Loan Requests</h1>
+<select class="col-xs-3">
+  <option value="volvo">Category 1</option>
+  <option value="saab">Category 2</option>
+  <option value="mercedes">Category 3</option>
+  <option value="audi">Category 6</option>
+</select>
+
+<form class="search-bar col-xs 3">
+  Search Requests:
+  <input type="search" name="search">
+</form>
+
 <% if flash[:notice] %>
   <div class="notice"><%= flash[:notice] %></div>
 <% end %>
 
-<div id='items'>
-  <%= render @items %>
+<div class="container">
+  <% 3.times do %>
+    <div class="row">
+      <% 3.times do %>
+        <div class="col-sm-6 col-md-4 col-lg-4">
+          <div class="thumbnail">
+            <img src="http://www.kiva.org/img/w632/1847429.jpg" alt="...">
+            <div class="caption">
+              <h3>Thumbnail label</h3>
+              <p>Farmers work hard and deserve your money. Help us please!</p>
+              <p><a href="#" class="btn btn-primary" role="button">About</a> <a href="#" class="btn btn-default" role="button">Add to Cart</a></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
