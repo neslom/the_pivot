@@ -2,10 +2,12 @@
   <div class="notice"><%= flash[:notice] %></div>
 <% end %>
 
-<div class="container">
+<div class="page-header">
+  <h1><%= current_user.name %>'s Projects</h1>
+</div>
 
+<div class="container">
   <div class="row">
-    <h1 class="col-md-8"><%= current_user.name %>'s Projects</h1>
 
     <%= link_to "Create", '#', class: "col-md-4 btn btn-primary" %>
   </div>
