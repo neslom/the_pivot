@@ -28,8 +28,8 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Sign Up <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li role="presentation"><%= link_to "As Lender", new_lender_path %> </li>
-            <li role="presentation"><%= link_to "As Borrower", new_borrower_path %> </li>
+            <li role="active"><a href="#" data-toggle="modal" data-target="#lenderSignUpModal"> As Lender <span class="sr-only">(current)</span></a></li>
+            <li role="active"><a href="#" data-toggle="modal" data-target="#borrowerSignUpModal"> As Borrower<span class="sr-only">(current)</span></a></li>
           </ul>
         </li>
       </ul>
@@ -37,11 +37,29 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-<!-- Modal -->
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
     <%= render "sessions/new" %>
+    </div>
+  </div>
+</div>
+
+<!-- Lender Signup Modal -->
+<div class="modal fade" id="lenderSignUpModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <%= render "lenders/new" %>
+    </div>
+  </div>
+</div>
+
+<!-- Borrower Signup Modal -->
+<div class="modal fade" id="borrowerSignUpModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <%= render "borrowers/new" %>
     </div>
   </div>
 </div>
