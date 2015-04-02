@@ -1,9 +1,28 @@
+$light-gray: #f7f7f7;
+
 body {
   padding-top: 50px;
 }
 
 .bg-light-gray {
-    background-color: #f7f7f7;
+  background-color: $light-gray;
+}
+
+
+.page-header {
+  text-align: center;
+}
+
+.thumbnail {
+  background-color: $light-gray !important;
+}
+
+.thumbnail-label {
+  text-align: center;
+}
+
+.progress {
+  background-color: white !important;
 }
 
 section h2.section-heading {

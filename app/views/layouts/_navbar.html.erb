@@ -8,13 +8,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Keevahh</a>
+      <%= link_to "Keevahh", root_path, class: "navbar-brand" %>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="#">Lend<span class="sr-only">(current)</span></a></li>
+        <li><%= link_to "Lend", browse_path %></li>
         <li><%= link_to "Cart", cart_path %></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
