@@ -2,4 +2,17 @@
   <h1><%= current_user.name %>'s Projects</h1>
 </div>
 
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 pull-left">
+      <%= link_to "Create Loan Request", "#", class: "btn btn-info" %>
+    </div>
+
+    <%= render "layouts/search" %>
+
+  </div>
+</div>
+
+<br>
+
 <%= render "layouts/borrower_thumbnail" %>
