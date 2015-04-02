@@ -2,7 +2,8 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  get "/index", to: "items#index"
+  get "/browse", to: "items#index"
+
   resources :items, only: [:show, :index]
 
   resources :categories do
