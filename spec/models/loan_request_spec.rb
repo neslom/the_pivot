@@ -31,7 +31,7 @@ RSpec.describe LoanRequest, type: :model do
       expect(loan_request).to_not be_valid
     end
 
-    it "is invalid without a amount" do
+    it "is invalid without an amount" do
       loan_request.amount = ""
       expect(loan_request).to_not be_valid
     end
@@ -60,6 +60,7 @@ RSpec.describe LoanRequest, type: :model do
       loan_request.categories.create(title: "Agriculture", description: "Farm animals and an eventual meal")
       expect(loan_request.categories.first.title).to eq("Agriculture")
     end
+
 
   end
 
