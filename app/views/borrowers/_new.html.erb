@@ -4,11 +4,10 @@
 </div>
 <div class="modal-body">
 <%= bootstrap_form_for(:user, url: borrowers_path) do |f| %>
-  <%= f.email_field :name %>
+  <%= f.text_field :name %>
   <%= f.email_field :email %>
-  <%= f.password_field :password, label: "Password" %>
+  <%= f.password_field :password, label: "Password", help: "Must be at least 8 characters long" %>
   <%= f.password_field :password_confirmation, label: "Confirm Password" %>
-
 <div class="modal-footer">
   <%= f.submit "Create Account" %>
   </div>
