@@ -1,7 +1,9 @@
 require "rails_helper"
 
 RSpec.describe Order, type: :model do
+
   context "invalid attributes" do
+
     it "is invalid without any attributes" do
       order = Order.create
       expect(order).to_not be_valid
@@ -17,9 +19,14 @@ RSpec.describe Order, type: :model do
       expect(order).to_not be_valid
     end
 
-    it "is given a status of ordered by default" do
-      order = Order.create(user_id: 1, cart_items: "{'9'=>1}")
-      expect(order.status).to eq("ordered")
+    context "with valid attributes" do
+
+
+      it "is given a status of ordered by default" do
+        order = Order.create(user_id: 1, cart_items: "{'9'=>1}")
+        expect(order.status).to eq("ordered")
+      end
+
     end
   end
 end

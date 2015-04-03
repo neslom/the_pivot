@@ -1,8 +1,9 @@
 require "rails_helper"
 
 RSpec.describe Cart, type: :model do
-  context "an item is added to the cart" do
-    it "with valid attributes" do
+
+  context "with valid attributes" do
+    it "an item is added to the cart" do
       item = create(:item)
       cart = Cart.new(nil)
       cart.add_item(item)
