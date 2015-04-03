@@ -16,8 +16,9 @@ RSpec.describe Category, type: :model do
     end
 
     it "cannot have duplicate names" do
-      category = Category.create(title: "new_cat", description: "hello")
-      expect { Category.create!(title: "new_cat", description: "hello") }.to raise_error(ActiveRecord::RecordInvalid)
+      Category.create(title: "new_cat", description: "hello")
+      expect { Category.create!(title: "new_cat", description: "hello") }
+      .to raise_error(ActiveRecord::RecordInvalid)
     end
 
   end
@@ -28,7 +29,6 @@ RSpec.describe Category, type: :model do
       category = Category.new(title: "new_cat", description: "cat")
       expect(category).to be_valid
     end
-
 
     it "has a collection of loan requests" do
       category = Category.create(title: "new_cat", description: "cat")
