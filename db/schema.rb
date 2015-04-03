@@ -44,12 +44,12 @@ ActiveRecord::Schema.define(version: 20150403012943) do
   end
 
   create_table "loan_requests_categories", force: :cascade do |t|
-    t.integer "loan_requests_id"
-    t.integer "categories_id"
+    t.integer "loan_request_id"
+    t.integer "category_id"
   end
 
-  add_index "loan_requests_categories", ["categories_id"], name: "index_loan_requests_categories_on_categories_id", using: :btree
-  add_index "loan_requests_categories", ["loan_requests_id"], name: "index_loan_requests_categories_on_loan_requests_id", using: :btree
+  add_index "loan_requests_categories", ["category_id"], name: "index_loan_requests_categories_on_category_id", using: :btree
+  add_index "loan_requests_categories", ["loan_request_id"], name: "index_loan_requests_categories_on_loan_request_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
