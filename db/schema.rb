@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150402232213) do
+ActiveRecord::Schema.define(version: 20150403000905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,10 +22,15 @@ ActiveRecord::Schema.define(version: 20150402232213) do
     t.text   "description"
   end
 
-  create_table "items", force: :cascade do |t|
+  create_table "items_categories", force: :cascade do |t|
+    t.integer "item_id"
+    t.integer "category_id"
+  end
+
+  create_table "loan_requests", force: :cascade do |t|
     t.text     "title"
     t.text     "description"
-    t.integer  "price"
+    t.integer  "amount"
     t.integer  "status",               default: 0
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
@@ -33,11 +38,9 @@ ActiveRecord::Schema.define(version: 20150402232213) do
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
-  end
-
-  create_table "items_categories", force: :cascade do |t|
-    t.integer "item_id"
-    t.integer "category_id"
+    t.date     "requested_by_date"
+    t.date     "repayment_begin_date"
+    t.text     "repayment_rate"
   end
 
   create_table "orders", force: :cascade do |t|
