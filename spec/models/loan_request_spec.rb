@@ -1,9 +1,6 @@
 require "rails_helper"
 
 RSpec.describe LoanRequest, type: :model do
-  #A loan request has a title, description, categories,
-  #photos, borrowing amount, requested-by date,
-  #a repayments-begin date, and a repayment rate
 
   let(:loan_request) {
     LoanRequest.new(title: "Farm Tools",
@@ -15,7 +12,6 @@ RSpec.describe LoanRequest, type: :model do
   }
 
   context "with invalid attributes" do
-
     it "is invalid without any attributes" do
       loan_request = LoanRequest.new
       expect(loan_request).to_not be_valid
@@ -50,18 +46,14 @@ RSpec.describe LoanRequest, type: :model do
       loan_request.repayment_rate = ""
       expect(loan_request).to_not be_valid
     end
-
   end
 
   context "valid attributes" do
-
     it "belongs to a category" do
       loan_request.save
       loan_request.categories.create(title: "Agriculture", description: "Farm animals and an eventual meal")
       expect(loan_request.categories.first.title).to eq("Agriculture")
     end
-
-
   end
 
 end

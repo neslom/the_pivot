@@ -2,9 +2,7 @@ require "rails_helper"
 
 RSpec.describe Category, type: :model do
 
-
   context "invalid attributes" do
-
     it "is invalid without a title" do
       category = Category.create(description: "new_cat")
       expect(category).to_not be_valid
@@ -17,14 +15,12 @@ RSpec.describe Category, type: :model do
 
     it "cannot have duplicate names" do
       Category.create(title: "new_cat", description: "hello")
-      expect { Category.create!(title: "new_cat", description: "hello") }
-      .to raise_error(ActiveRecord::RecordInvalid)
+      expect { Category.create!(title: "new_cat", description: "hello") }.
+        to raise_error(ActiveRecord::RecordInvalid)
     end
-
   end
 
   context "valid attributes" do
-
     it "is valid" do
       category = Category.new(title: "new_cat", description: "cat")
       expect(category).to be_valid
