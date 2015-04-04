@@ -1,33 +1,33 @@
 require "rails_helper"
 
-RSpec.feature "a valid admin" do
-  let(:admin) { User.create(email: "example@example.com", password: "password", full_name: "example", display_name: "example admin", role: 1) }
+RSpec.feature "borrower creates loan request" do
+  let(:borrower) { User.create(name: "Richard", email: "richard@example.com", password: "password", role: "borrower") }
 
-  def add_new_item(title, description, price)
+  def create_loan_request(title, description, amount, rate)
+    click_link_or_button 'Create Loan Request'
+
     fill_in 'Title', with: title
     fill_in 'Description', with: description
-    fill_in 'Price', with: price
-    find(:css, "[value='1']").set(true)
-    click_button 'Create Item'
+    fill_in 'Amount', with: amount
+    select '06/01/2015', from: 'Requested By'
+    select '09/01/2015', from: 'Repayment Begin'
+    click_link_or_button 'Select'
+    select "#{rate}", from: 'Repayment Rate'
+
+    click_link_or_button "Submit"
   end
 
-  def admin_log_in
-    admin
-    visit "/login"
-    fill_in("session[email]", with: admin.email)
-    fill_in("session[password]", with: admin.password)
-    click_link_or_button "Login"
-  end
+    scenario "creates loan request" do
+      login_as(borrower)
 
-  context "can view the admin dashboard" do
-    scenario "clicks on manage items" do
-      admin_log_in
-      create(:item)
-      click_link_or_button "Manage Items"
-      expect(page).to have_content("Sushi")
+      #save_and_open_page
+      expect(current_path).to eq(borrower_path(borrower))
+      create_loan_request("Farm Tools", "Help me buy some tools", "100", "Monthly")
+
+      expect(page).to have_content("Loan Requested Created")
     end
 
-    scenario "can add an item" do
+    xscenario "can add an item" do
       admin_log_in
       Category.create(title: "Sushi", description: "Sushi")
       click_link_or_button "Manage Items"
@@ -35,10 +35,9 @@ RSpec.feature "a valid admin" do
       add_new_item "Sushi Roll", "A Roll Of Sushi", 8.45
       expect(page).to have_content("Sushi Roll")
     end
-  end
 
   context "can modify an item's attributes" do
-    scenario "makes an item retired" do
+    xscenario "makes an item retired" do
       admin_log_in
       create(:item)
       click_link_or_button "Manage Items"
