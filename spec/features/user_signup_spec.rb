@@ -28,18 +28,17 @@ RSpec.feature "User Signup" do
 
   context "as a borrower" do
 
-    xscenario "can sign up with valid information" do
+    scenario "can sign up with valid information" do
       expect(User.count).to eq(0)
-
       visit "/"
-      click_link_or_button("Sign Up")
-      click_link_or_button("As Borrower")
-
-      fill_in("user[name]", with: "Sally")
-      fill_in("user[email]", with: "sally@example.com")
-      fill_in("user[password]", with: "password")
-      fill_in("user[password_confirmation]", with: "password")
-      click_link_or_button("Create my account")
+      click_link_or_button("Sign Up As Borrower")
+      within("#borrowerSignUpModal") do
+        fill_in("user[name]", with: "Sally")
+        fill_in("user[email]", with: "sally@example.com")
+        fill_in("user[password]", with: "password")
+        fill_in("user[password_confirmation]", with: "password")
+        click_link_or_button("Create Account")
+      end
 
       expect(User.count).to eq(1)
 
@@ -49,5 +48,18 @@ RSpec.feature "User Signup" do
       expect(current_path).to eq(borrower_path(user))
     end
 
+    scenario "can not sign up without password confirmation" do
+      expect {
+      visit "/"
+      click_link_or_button("Sign Up As Borrower")
+      within("#borrowerSignUpModal") do
+        fill_in("user[name]", with: "Sally")
+        fill_in("user[email]", with: "sally@example.com")
+        fill_in("user[password]", with: "password")
+        click_link_or_button("Create Account")
+      end
+      }.to_not change{User.count}
+
+    end
   end
 end
