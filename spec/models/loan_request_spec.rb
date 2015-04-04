@@ -67,7 +67,7 @@ RSpec.describe LoanRequest, type: :model do
                                 repayment_rate: "Monthly")
 
       expect(user.loan_requests.count).to eq(1)
-
+      expect(LoanRequest.first.user_id).to eq(1)
     end
   end
 
