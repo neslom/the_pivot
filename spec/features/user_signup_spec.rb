@@ -4,18 +4,17 @@ RSpec.feature "User Signup" do
 
   context "as a lender" do
 
-    xscenario "can sign up with valid information" do
+    scenario "can sign up with valid information" do
       expect(User.count).to eq(0)
-
       visit "/"
-      click_link_or_button("Sign Up")
-      click_link_or_button("As Lender")
-
-      fill_in("user[name]", with: "Richard")
-      fill_in("user[email]", with: "richard@example.com")
-      fill_in("user[password]", with: "password")
-      fill_in("user[password_confirmation]", with: "password")
-      click_link_or_button("Create my account")
+      click_link_or_button("Sign Up As Lender")
+      within("#lenderSignUpModal") do
+        fill_in("user[name]", with: "Richard")
+        fill_in("user[email]", with: "richard@example.com")
+        fill_in("user[password]", with: "password")
+        fill_in("user[password_confirmation]", with: "password")
+        click_link_or_button("Create Account")
+      end
 
       expect(User.count).to eq(1)
 
