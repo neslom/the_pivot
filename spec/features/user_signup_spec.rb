@@ -1,21 +1,21 @@
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.describe "User Signup" do
+RSpec.feature "User Signup" do
 
   context "as a lender" do
 
-    it "clicks Signup link and is taken to signup form" do
-      visit '/'
+    scenario "clicks Signup link and is taken to signup form" do
+      visit "/"
       click_link_or_button("Sign Up")
       click_link_or_button("As Lender")
 
       expect(current_path).to eq(new_lender_path)
     end
 
-    it "can sign up with valid information" do
+    scenario "can sign up with valid information" do
       expect(User.count).to eq(0)
 
-      visit '/'
+      visit "/"
       click_link_or_button("Sign Up")
       click_link_or_button("As Lender")
 
@@ -37,10 +37,10 @@ RSpec.describe "User Signup" do
 
   context "as a borrower" do
 
-    it "can sign up with valid information" do
+    scenario "can sign up with valid information" do
       expect(User.count).to eq(0)
 
-      visit '/'
+      visit "/"
       click_link_or_button("Sign Up")
       click_link_or_button("As Borrower")
 
