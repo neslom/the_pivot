@@ -3,13 +3,13 @@
   <h3>Create a new Loan Request</h3>
 </div>
 <div class="modal-body">
-  <%= bootstrap_form_for(:loan_request, url: new_loan_request_path) do |f| %>
+  <%= bootstrap_form_for(:loan_request, url: loan_requests_path) do |f| %>
     <%= f.text_field :title %>
     <%= f.text_area :description %>
-    <%= f.text_field :amount, prepend: "$", append: ".00" %>
     <%= f.date_field :requested_by %>
     <%= f.date_field :repayment_begin %>
     <%= f.select :repayment_rate, [["Monthly", 1], ["Weekly", 2]], { label: "Repayment rate" }, { class: "selectpicker" } %>
+    <%= f.text_field :amount, prepend: "$", append: ".00" %>
   <div class="modal-footer">
     <%= f.submit "Submit" %>
   </div>
