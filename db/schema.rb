@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150404210117) do
+ActiveRecord::Schema.define(version: 20150404214603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,7 +36,10 @@ ActiveRecord::Schema.define(version: 20150404210117) do
     t.date     "requested_by_date"
     t.date     "repayment_begin_date"
     t.text     "repayment_rate"
+    t.integer  "user_id"
   end
+
+  add_index "loan_requests", ["user_id"], name: "index_loan_requests_on_user_id", using: :btree
 
   create_table "loan_requests_categories", force: :cascade do |t|
     t.integer "loan_request_id"
@@ -61,4 +64,5 @@ ActiveRecord::Schema.define(version: 20150404210117) do
     t.integer "role",            default: 0
   end
 
+  add_foreign_key "loan_requests", "users"
 end

@@ -12,5 +12,6 @@ class LoanRequest < ActiveRecord::Base
   has_many :orders
   has_many :loan_requests_categories
   has_many :categories, through: :loan_requests_categories
+  belongs_to :user
   enum status: %w(active retired)
 end

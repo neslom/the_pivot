@@ -4,4 +4,5 @@ class User < ActiveRecord::Base
   validates :password, :name, :email, presence: true
   enum role: %w(lender borrower admin)
   has_many :orders
+  has_many :loan_requests
 end
