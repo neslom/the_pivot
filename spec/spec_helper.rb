@@ -1,4 +1,6 @@
 require "factory_girl_rails"
+require "simplecov"
+SimpleCov.start "rails"
 
 Dir[File.dirname(__FILE__) + "/support/**/*.rb"].each {|f| require f }
 
