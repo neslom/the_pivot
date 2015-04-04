@@ -1,4 +1,5 @@
 $light-gray: #f7f7f7;
+$white: #fff
 
 body {
   padding-top: 50px;
@@ -64,7 +65,7 @@ section h3.section-subheading {
 
 .team-member img {
   margin: 0 auto;
-  border: 7px solid #fff;
+  border: 7px solid $white;
 }
 
 .team-member h4 {
@@ -89,7 +90,7 @@ ul.social-buttons li a {
   font-size: 20px;
   line-height: 40px;
   outline: 0;
-  color: #fff;
+  color: $white;
   background-color: #222;
   -webkit-transition: all .3s;
   -moz-transition: all .3s;
@@ -138,14 +139,14 @@ body {
 
 .btn-dark {
   border-radius: 0;
-  color: #fff;
+  color: $white;
   background-color: rgba(0,0,0,0.4);
 }
 
 .btn-dark:hover,
 .btn-dark:focus,
 .btn-dark:active {
-  color: #fff;
+  color: $white;
   background-color: rgba(0,0,0,0.7);
 }
 
