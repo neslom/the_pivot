@@ -4,15 +4,7 @@ RSpec.feature "User Signup" do
 
   context "as a lender" do
 
-    scenario "clicks Signup link and is taken to signup form" do
-      visit "/"
-      click_link_or_button("Sign Up")
-      click_link_or_button("As Lender")
-
-      expect(current_path).to eq(new_lender_path)
-    end
-
-    scenario "can sign up with valid information" do
+    xscenario "can sign up with valid information" do
       expect(User.count).to eq(0)
 
       visit "/"
@@ -37,7 +29,7 @@ RSpec.feature "User Signup" do
 
   context "as a borrower" do
 
-    scenario "can sign up with valid information" do
+    xscenario "can sign up with valid information" do
       expect(User.count).to eq(0)
 
       visit "/"
