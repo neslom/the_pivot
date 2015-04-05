@@ -21,12 +21,10 @@ RSpec.describe Order, type: :model do
 
     context "with valid attributes" do
 
-
       it "is given a status of ordered by default" do
         order = Order.create(user_id: 1, cart_items: "{'9'=>1}")
         expect(order.status).to eq("ordered")
       end
-
     end
   end
 end

@@ -11,7 +11,7 @@ RSpec.feature "a valid admin" do
     click_link_or_button "Login"
   end
 
-  context "views the admin categories dashboard" do
+  xcontext "views the admin categories dashboard" do
     scenario "can see all of the categories" do
       cat1 = Category.create(title: "Food", description: "food_description")
       cat2 = Category.create(title: "Drinks", description: "drink_description")
