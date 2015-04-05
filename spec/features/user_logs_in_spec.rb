@@ -55,21 +55,21 @@ RSpec.describe "User logs in" do
     end
 
     scenario "cannot see log in button" do
-      visit '/'
-      fill_in('session[email]', with: borrower.email)
-      fill_in('session[password]', with: borrower.password)
-      click_link_or_button 'Log In'
+      visit "/"
+      fill_in("session[email]", with: borrower.email)
+      fill_in("session[password]", with: borrower.password)
+      click_link_or_button "Log In"
 
-      expect(page).to_not have_content('Log In')
-      expect(page).to have_content('Log out')
+      expect(page).to_not have_content("Log In")
+      expect(page).to have_content("Log out")
     end
 
     scenario "can log out" do
-      visit '/'
-      fill_in('session[email]', with: borrower.email)
-      fill_in('session[password]', with: borrower.password)
-      click_link_or_button 'Log In'
-      click_link_or_button 'Log out'
+      visit "/"
+      fill_in("session[email]", with: borrower.email)
+      fill_in("session[password]", with: borrower.password)
+      click_link_or_button "Log In"
+      click_link_or_button "Log out"
 
       expect(current_path).to eq(root_path)
       expect(@current_user).to eq(nil)
