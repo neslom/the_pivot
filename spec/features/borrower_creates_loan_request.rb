@@ -8,11 +8,11 @@ RSpec.feature "borrower creates loan request" do
                    }
 
   def create_loan_request(title, description, amount)
-    click_link_or_button 'Create Loan Request'
+    click_link_or_button "Create Loan Request"
 
-    fill_in 'Title', with: title
-    fill_in 'Description', with: description
-    fill_in 'Amount', with: amount
+    fill_in "Title", with: title
+    fill_in "Description", with: description
+    fill_in "Amount", with: amount
     find("#loan_request_requested_by_date").set("06/01/2015")
     find("#loan_request_repayment_begin_date").set("06/01/2015")
 
