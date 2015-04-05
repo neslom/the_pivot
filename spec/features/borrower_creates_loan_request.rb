@@ -1,9 +1,13 @@
 require "rails_helper"
 
 RSpec.feature "borrower creates loan request" do
-  let(:borrower) { User.create(name: "Richard", email: "richard@example.com", password: "password", role: "borrower") }
+  let(:borrower) { User.create(name: "Richard",
+                               email: "richard@example.com",
+                               password: "password",
+                               role: "borrower")
+                   }
 
-  def create_loan_request(title, description, amount, rate)
+  def create_loan_request(title, description, amount)
     click_link_or_button 'Create Loan Request'
 
     fill_in 'Title', with: title
@@ -20,7 +24,7 @@ RSpec.feature "borrower creates loan request" do
 
     expect(current_path).to eq(borrower_path(borrower))
 
-    create_loan_request("Farm Tools", "Help me buy some tools", "100", "Monthly")
+    create_loan_request("Farm Tools", "Help me buy some tools", "100")
 
     expect(current_path).to eq(borrower_path(borrower))
     expect(page).to have_content("Loan Request Created")
@@ -28,6 +32,5 @@ RSpec.feature "borrower creates loan request" do
   end
 
   xscenario "cannot create a loan request with invalid info" do
-
   end
 end

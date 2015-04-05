@@ -30,5 +30,4 @@ class BorrowersController < ApplicationController
   def set_borrower
     @borrower = User.find(params[:id])
   end
-
 end

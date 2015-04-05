@@ -19,9 +19,11 @@ class LoanRequestsController < ApplicationController
   private
 
   def loan_request_params
-    params.require(:loan_request).permit(:title, :description, :requested_by_date,
+    params.require(:loan_request).permit(:title,
+                                         :description,
+                                         :requested_by_date,
                                          :repayment_begin_date,
-                                         :repayment_rate, :amount)
+                                         :repayment_rate,
+                                         :amount)
   end
-
 end
