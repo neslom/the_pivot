@@ -44,7 +44,6 @@ RSpec.feature "only authorized borrower can create or edit loan requests" do
   context "authenticated borrower" do
     scenario "visits another borrower's page and does not see create or edit links" do
       set_current_user(borrower_1)
-
       visit borrower_path(borrower_2)
       loan_request = borrower_2.loan_requests.first
 
@@ -52,11 +51,13 @@ RSpec.feature "only authorized borrower can create or edit loan requests" do
       expect(page).to have_link("About", href: loan_request_path(loan_request))
     end
 
-    xscenario "visits own page and sees create and edit links" do
+    scenario "visits own page and sees create and edit links" do
       set_current_user(borrower_1)
-      visit borrower_path(borrower_2)
+      visit borrower_path(borrower_1)
+      loan_request = borrower_1.loan_requests.first
 
-      expect(page).to_not have_link("Create Loan Request")
+      expect(page).to have_link("Create Loan Request")
+      expect(page).to have_link("Edit", href: edit_loan_request_path(loan_request))
     end
 
   end
