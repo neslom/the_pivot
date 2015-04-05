@@ -16,7 +16,7 @@ class BorrowersController < ApplicationController
   end
 
   def show
-
+    @loan_requests = LoanRequest.where(user_id: params[:id])
   end
 
   private
@@ -24,4 +24,5 @@ class BorrowersController < ApplicationController
   def borrower_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
+
 end

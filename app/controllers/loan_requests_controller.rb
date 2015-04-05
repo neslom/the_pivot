@@ -1,6 +1,7 @@
 class LoanRequestsController < ApplicationController
   def index
-    @loan_requests = LoanRequest.all
+    #@loan_requests = LoanRequest.all
+    render "borrowers/show"
   end
 
   def create
