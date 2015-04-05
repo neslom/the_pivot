@@ -30,4 +30,10 @@ class BorrowersController < ApplicationController
   def set_borrower
     @borrower = User.find(params[:id])
   end
+
+  def current_borrower?
+    current_user && current_user.id == params[:id].to_i
+  end
+
+  helper_method :current_borrower?
 end
