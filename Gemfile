@@ -20,7 +20,6 @@ gem "less-rails"
 gem "twitter-bootstrap-rails"
 
 group :development, :test do
-  gem "factory_girl_rails"
   gem "pry-rails"
   gem "awesome_print"
   gem "web-console", "~> 2.0"

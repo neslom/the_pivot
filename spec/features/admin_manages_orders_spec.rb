@@ -21,8 +21,7 @@ RSpec.feature "a valid admin" do
 
     scenario "can view an individual order" do
       admin_log_in
-      item = create(:item)
-      # binding.pry
+      # item = create(:item)
       Order.create(user_id: admin.id, cart_items: { "#{item.id}" => 4 })
       click_link_or_button "Manage Orders"
       click_link_or_button "View Order Details"
@@ -31,7 +30,7 @@ RSpec.feature "a valid admin" do
 
     scenario "can change the status of an order to paid" do
       admin_log_in
-      create(:item, id: 4)
+      # create(:item, id: 4)
       Order.create(user_id: admin.id, cart_items: { "4" => 12 })
       click_link_or_button "Manage Orders"
       click_link_or_button "View Order Details"
@@ -42,7 +41,7 @@ RSpec.feature "a valid admin" do
 
     scenario "can change the status of an order to cancelled" do
       admin_log_in
-      create(:item, id: 4)
+      # create(:item, id: 4)
       Order.create(user_id: admin.id, cart_items: { "4" => 12 })
       click_link_or_button "Manage Orders"
       click_link_or_button "View Order Details"
@@ -53,7 +52,7 @@ RSpec.feature "a valid admin" do
 
     scenario "can change the status of an order to complete" do
       admin_log_in
-      create(:item, id: 4)
+      # create(:item, id: 4)
       Order.create(user_id: admin.id, cart_items: { "4" =>12 })
       click_link_or_button "Manage Orders"
       click_link_or_button "View Order Details"

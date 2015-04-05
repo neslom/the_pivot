@@ -12,7 +12,7 @@ RSpec.describe "User views past orders" do
       fill_in("session[email]", with: user.email)
       fill_in("session[password]", with: user.password)
       click_link_or_button "Login"
-      create :item
+      # create :item
       visit "/menu"
       click_button "Add To Cart"
       click_on "View Cart"
@@ -45,7 +45,7 @@ RSpec.describe "User views past orders" do
       fill_in("session[email]", with: user.email)
       fill_in("session[password]", with: user.password)
       click_link_or_button "Login"
-      create :item
+      # create :item
       visit "/menu"
       click_button "Add To Cart"
       click_on "View Cart"
