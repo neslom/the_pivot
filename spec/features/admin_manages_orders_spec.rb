@@ -11,7 +11,7 @@ RSpec.feature "a valid admin" do
     click_link_or_button "Login"
   end
 
-  context "views the admin dashboard" do
+  xcontext "views the admin dashboard" do
     scenario "clicks on manage orders" do
       admin_log_in
       Order.create(user_id: 1, cart_items: { "1" => 1 })
