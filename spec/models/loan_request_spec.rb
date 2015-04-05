@@ -6,8 +6,8 @@ RSpec.describe LoanRequest, type: :model do
     LoanRequest.new(title: "Farm Tools",
                     description: "help out with the farm tools",
                     amount: "$100.00",
-                    requested_by_date: "06/01/2015",
-                    repayment_begin_date: "12/01/2015",
+                    requested_by_date: "2015-06-01",
+                    repayment_begin_date: "2015-12-01",
                     repayment_rate: "Monthly")
   }
 
@@ -53,6 +53,21 @@ RSpec.describe LoanRequest, type: :model do
       loan_request.save
       loan_request.categories.create(title: "Agriculture", description: "Farm animals and an eventual meal")
       expect(loan_request.categories.first.title).to eq("Agriculture")
+    end
+
+    it "belongs to a user" do
+      user = User.create(name: "Josh", email: "josh@example.com", password: "password", role: "borrower")
+      expect(user.loan_requests.count).to eq(0)
+
+      user.loan_requests.create(title: "Farm Tools",
+                                description: "help out with the farm tools",
+                                amount: "$100.00",
+                                requested_by_date: "2015-06-01",
+                                repayment_begin_date: "2015-12-01",
+                                repayment_rate: "Monthly")
+
+      expect(user.loan_requests.count).to eq(1)
+      expect(LoanRequest.first.user_id).to eq(1)
     end
   end
 

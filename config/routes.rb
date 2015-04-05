@@ -2,9 +2,9 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  get "/browse", to: "items#index"
+  get "/browse", to: "loan_requests#index"
 
-  resources :items, only: [:show, :index]
+  resources :loan_requests
 
   resources :categories do
     resources :items, only: [:show, :index]

@@ -1,11 +1,11 @@
 <div class="page-header">
-  <h1><%= current_user.name %>'s Projects</h1>
+  <h1><%= @borrower.name %>'s Projects</h1>
 </div>
 
 <div class="container">
   <div class="row">
     <div class="col-md-3 pull-left">
-      <%= link_to "Create Loan Request", "#", class: "btn btn-info" %>
+      <a href="#" class="btn btn-info" role="button" data-toggle="modal" data-target="#loanRequestModal">Create Loan Request</a>
     </div>
 
     <%= render "shared/search" %>
@@ -16,3 +16,12 @@
 <br>
 
 <%= render "shared/borrower_thumbnail" %>
+
+<!-- Create Loan Request Modal -->
+<div class="modal fade" id="loanRequestModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <%= render "new_loan_request" %>
+    </div>
+  </div>
+</div>
