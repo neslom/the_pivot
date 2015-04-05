@@ -1,7 +1,6 @@
 class LoanRequestsController < ApplicationController
   def index
     @loan_requests = LoanRequest.all
-    render "borrowers/show" if params[:id]
   end
 
   def create
@@ -11,7 +10,7 @@ class LoanRequestsController < ApplicationController
       flash[:notice] = "Loan Request Created"
       redirect_to(:back)
     else
-      flash[:error] = "Failure"
+      flash[:error] = loan_request.errors.full_messages.to_sentence
       redirect_to(:back)
     end
   end
@@ -26,4 +25,5 @@ class LoanRequestsController < ApplicationController
                                          :repayment_rate,
                                          :amount)
   end
+
 end

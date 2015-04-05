@@ -31,6 +31,11 @@ RSpec.feature "borrower creates loan request" do
     expect(page).to have_link("About", href: loan_request_path(LoanRequest.first))
   end
 
-  xscenario "cannot create a loan request with invalid info" do
+  scenario "cannot create a loan request with invalid info" do
+    login_as(borrower)
+    create_loan_request("", "Help", "")
+
+    expect(current_path).to eq(borrower_path(borrower))
+    expect(page).to have_content("Title can't be blank and Amount can't be blank")
   end
 end
