@@ -40,8 +40,6 @@ RSpec.feature "User Signup" do
         end
       end.to change{ User.count }.from(0).to(1)
 
-      expect(User.count).to eq(1)
-
       user = User.first
       expect(user.name).to eq("Sally")
       expect(user.role).to eq("borrower")
