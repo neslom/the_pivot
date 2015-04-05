@@ -11,7 +11,7 @@ class LoanRequestsController < ApplicationController
       flash[:notice] = "Loan Request Created"
       redirect_to(:back)
     else
-      flash[:error] = "Failure"
+      flash[:error] = loan_request.errors.full_messages.to_sentence
       redirect_to(:back)
     end
   end
