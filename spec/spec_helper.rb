@@ -1,4 +1,3 @@
-require "factory_girl_rails"
 require "simplecov"
 SimpleCov.start "rails"
 
@@ -16,8 +15,6 @@ RSpec.configure do |config|
       example.run
     end
   end
-
-  config.include FactoryGirl::Syntax::Methods
 
 
   config.expect_with :rspec do |expectations|
