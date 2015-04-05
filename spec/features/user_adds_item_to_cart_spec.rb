@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.feature "A user" do
   context "adds item to cart" do
     scenario "and sees the item title" do
-      create(:item)
+      # create(:item)
       visit "/menu"
       click_button("Add To Cart")
       click_on "Cart"
@@ -13,7 +13,7 @@ RSpec.feature "A user" do
     end
 
     scenario "and sees the item quantity" do
-      create(:item)
+      # create(:item)
       visit "/menu"
       click_button("Add To Cart")
       click_on "Cart"
@@ -23,7 +23,7 @@ RSpec.feature "A user" do
     end
 
     scenario "and sees the item price" do
-      create(:item)
+      # create(:item)
       visit "/menu"
       click_button("Add To Cart")
       click_on "Cart"
@@ -35,7 +35,7 @@ RSpec.feature "A user" do
 
   context "adds existing item to the cart" do
     scenario "and the item quantity is increased" do
-      create(:item)
+      # create(:item)
       visit "/menu"
       click_button("Add To Cart")
       click_on "Cart"
@@ -52,7 +52,7 @@ RSpec.feature "A user" do
 
     context "removes item from cart" do
       scenario "and the item is removed" do
-        create(:item)
+        # create(:item)
         visit "/menu"
         click_button("Add To Cart")
         click_on "Cart"
@@ -63,7 +63,7 @@ RSpec.feature "A user" do
 
     context "can change quantity of item in cart" do
       scenario "the item's quantity can be increased by one" do
-        create(:item)
+        # create(:item)
         visit "/menu"
         click_button("Add To Cart")
         click_on "Cart"
@@ -77,7 +77,7 @@ RSpec.feature "A user" do
       end
 
       scenario "the item's quantity can be decreased by one" do
-        create(:item)
+        # create(:item)
         visit "/menu"
         click_button("Add To Cart")
         click_on "Cart"
@@ -95,7 +95,7 @@ RSpec.feature "A user" do
       end
 
       scenario "the item will be deleted if the quantity is decreased to 0" do
-        create(:item)
+        # create(:item)
         visit "/menu"
         click_button("Add To Cart")
         click_on "Cart"
@@ -110,7 +110,7 @@ RSpec.feature "A user" do
 
     context "can not submit order without being logged in" do
       scenario "with items in the cart" do
-        create(:item)
+        # create(:item)
         visit "/menu"
         click_button("Add To Cart")
         click_on "Cart"

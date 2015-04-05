@@ -35,7 +35,7 @@ RSpec.describe "User logs in" do
                          email: "example@example.com",
                          password: "password",
                          display_name: "example name")
-      create(:item)
+      # create(:item)
       visit "/menu"
       within("#items") do
         click_link_or_button "Add To Cart"
