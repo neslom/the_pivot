@@ -1,7 +1,7 @@
 class LoanRequestsController < ApplicationController
   def index
-    #@loan_requests = LoanRequest.all
-    render "borrowers/show"
+    @loan_requests = LoanRequest.all
+    render "borrowers/show" if params[:id]
   end
 
   def create

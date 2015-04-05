@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1><%= current_user.name %>'s Projects</h1>
+  <h1><%= @borrower.name %>'s Projects</h1>
 </div>
 
 <div class="container">
@@ -19,9 +19,9 @@
 
 <!-- Create Loan Request Modal -->
 <div class="modal fade" id="loanRequestModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <%= render "new_loan_request" %>
-      </div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <%= render "new_loan_request" %>
     </div>
+  </div>
 </div>

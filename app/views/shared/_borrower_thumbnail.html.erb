@@ -9,9 +9,10 @@
             <h3><%= loan_request.title %></h3>
           </div>
           <p><%= loan_request.description %></p>
-          <p><%= link_to "About", loan_request_path(loan_request), class: "btn btn-default" %>
-        <a href="#" class="btn btn-info pull-right" role="button">Edit</a></p>
-
+          <p>
+            <%= link_to "About", loan_request_path(loan_request), class: "btn btn-default" %>
+            <%= link_to "Edit", "#", class: "btn btn-info pull-right" %>
+          </p>
           <%= render "shared/progress_bar" %>
 
         </div>

@@ -1,4 +1,6 @@
 class BorrowersController < ApplicationController
+  before_action :set_borrower, only: [:show]
+
   def new
     @user = User.new
   end
@@ -23,6 +25,10 @@ class BorrowersController < ApplicationController
 
   def borrower_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def set_borrower
+    @borrower = User.find(params[:id])
   end
 
 end

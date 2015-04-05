@@ -1,17 +1,18 @@
 <div class="container">
-  <% 3.times do %>
-    <div class="row">
-    <% 3.times do %>
+  <div class="row">
+    <% @loan_requests.each do |loan_request| %>
       <div class="col-sm-6 col-md-4 col-lg-4">
       <div class="thumbnail">
         <img src="http://www.kiva.org/img/w632/1847429.jpg" alt="...">
         <div class="caption">
           <div class="thumbnail-label">
-            <h3>Thumbnail label</h3>
+            <h3><%= loan_request.title %></h3>
           </div>
-          <p>Farmers work hard and deserve your money. Help us please!</p>
-          <p><a href="#" class="btn btn-default" role="button">About</a>
-          <a href="#" class="btn btn-info pull-right" role="button">Add to Cart</a></p>
+          <p><%= loan_request.description %></p>
+          <p>
+            <%= link_to "About", loan_request_path(loan_request), class: "btn btn-default" %>
+            <%= link_to "Add to Cart", "#", class: "btn btn-info pull-right" %>
+          </p>
 
           <%= render "shared/progress_bar" %>
 
@@ -20,5 +21,4 @@
     </div>
   <% end %>
   </div>
-<% end %>
 </div>
