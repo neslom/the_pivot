@@ -1,0 +1,11 @@
+<h3>Edit <%= @loan_request.title %></h3>
+<%= bootstrap_form_for(@loan_request) do |f| %>
+  <%= f.text_field :title %>
+  <%= f.text_area :description %>
+  <%= f.date_field :requested_by_date %>
+  <%= f.date_field :repayment_begin_date %>
+  <%= f.select :repayment_rate, [["Monthly", 1], ["Weekly", 2]], { label: "Repayment rate" }, { class: "selectpicker" } %>
+  <%= f.text_field :amount, prepend: "$", append: ".00" %>
+  <%= f.submit "Submit" %>
+<% end %>
+

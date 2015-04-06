@@ -1,5 +1,5 @@
 class LoanRequestsController < ApplicationController
-  before_action :set_loan_request, only: [:edit, :update]
+  before_action :set_loan_request, only: [:edit, :update, :show]
 
   def index
     @loan_requests = LoanRequest.all
@@ -20,11 +20,16 @@ class LoanRequestsController < ApplicationController
   def edit
   end
 
+  def show
+  end
+
   def update
     if @loan_request.update(loan_request_params)
-      flash[:notice] = "Loan request updated"
+      flash[:notice] = "Loan Request Updated"
+      redirect_to loan_request_path(@loan_request)
     else
       flash[:error] = "Update failed"
+      render :edit
     end
   end
 
