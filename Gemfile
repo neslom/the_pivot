@@ -18,6 +18,7 @@ gem "font-awesome-rails"
 gem "therubyracer"
 gem "less-rails"
 gem "twitter-bootstrap-rails"
+gem "responders"
 
 group :development, :test do
   gem "pry-rails"

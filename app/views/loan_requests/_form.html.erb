@@ -1,0 +1,9 @@
+<div class="modal-body">
+  <%= bootstrap_form_for @loan_request, remote: true do |f| %>
+    <%= f.text_field :title %>
+    <%= f.text_field :amount %>
+    <div class="modal-footer">
+      <%= f.submit "Submit" %>
+    </div>
+<% end %>
+</div>

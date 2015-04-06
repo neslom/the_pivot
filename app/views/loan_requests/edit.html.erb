@@ -1,11 +1,17 @@
-<h3>Edit <%= @loan_request.title %></h3>
-<%= bootstrap_form_for(@loan_request) do |f| %>
-  <%= f.text_field :title %>
-  <%= f.text_area :description %>
-  <%= f.date_field :requested_by_date %>
-  <%= f.date_field :repayment_begin_date %>
-  <%= f.select :repayment_rate, [["Monthly", "monthly"], ["Weekly", "weekly"]], { label: "Repayment rate" }, { class: "selectpicker" } %>
-  <%= f.text_field :amount, prepend: "$", append: ".00" %>
-  <%= f.submit "Submit" %>
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal">x</button>
+  <h3>Edit a new Loan Request</h3>
+</div>
+<div class="modal-body">
+  <%= bootstrap_form_for(@loan_request, remote: true) do |f| %>
+    <%= f.text_field :title %>
+    <%= f.text_area :description %>
+    <%= f.date_field :requested_by_date %>
+    <%= f.date_field :repayment_begin_date %>
+    <%= f.select :repayment_rate, [["Monthly", "monthly"], ["Weekly", "weekly"]], {}, { class: "selectpicker" } %>
+    <%= f.text_field :amount, prepend: "$", append: ".00" %>
+  <div class="modal-footer">
+    <%= f.submit "Submit" %>
+  </div>
 <% end %>
-
+</div>
