@@ -28,7 +28,7 @@ class LoanRequestsController < ApplicationController
       flash[:notice] = "Loan Request Updated"
       redirect_to loan_request_path(@loan_request)
     else
-      flash[:error] = "Update failed"
+      flash[:error] = @loan_request.errors.full_messages.to_sentence
       render :edit
     end
   end

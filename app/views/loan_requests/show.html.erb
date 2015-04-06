@@ -26,7 +26,7 @@
       <li>Requested by <%= @loan_request.requested_by %></li>
       <li>Begins Repayment on <%= @loan_request.repayment_begin %></li>
       <li>Repayment rate: <%= @loan_request.repayment_rate.capitalize %></li>
-        <li>Adipiscing Elit</li>
+      <li>Categories: <%= @loan_request.categories.each { |cat| cat } %></li>
       </ul>
     </div>
 

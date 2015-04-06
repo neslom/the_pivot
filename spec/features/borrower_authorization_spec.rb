@@ -53,19 +53,19 @@ RSpec.feature "only authorized borrower can create or edit loan requests" do
   end
 
   context "authorized borrower" do
+    let(:loan_request) { borrower_1.loan_requests.first }
+
     before(:each) do
       set_current_user(borrower_1)
       visit borrower_path(borrower_1)
     end
 
     scenario "visits own page and sees create and edit links" do
-      loan_request = borrower_1.loan_requests.first
       expect(page).to have_link("Create Loan Request")
       expect(page).to have_link("Edit", href: edit_loan_request_path(loan_request))
     end
 
     scenario "edits a loan request" do
-      loan_request = borrower_1.loan_requests.first
       click_link_or_button("Edit")
 
       expect(current_path).to eq(edit_loan_request_path(loan_request))
@@ -75,6 +75,15 @@ RSpec.feature "only authorized borrower can create or edit loan requests" do
 
       expect(current_path).to eq(loan_request_path(loan_request))
       expect(page).to have_content("Loan Request Updated")
+    end
+
+    scenario "fills in form improperly and sees relevant error message" do
+      click_link_or_button("Edit")
+      fill_in("loan_request[title]", with: "")
+      click_link_or_button("Submit")
+
+      expect(current_path).to eq(loan_request_path(loan_request))
+      expect(page).to have_content("Title can't be blank")
     end
   end
 end
