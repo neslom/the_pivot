@@ -19,14 +19,14 @@ RSpec.feature "only authorized borrower can create or edit loan requests" do
                                     amount: "$100.00",
                                     requested_by_date: "2015-06-01",
                                     repayment_begin_date: "2015-12-01",
-                                    repayment_rate: "Monthly")
+                                    repayment_rate: "monthly")
 
     borrower_2.loan_requests.create(title: "Laundry Machine",
                                     description: "help out with the laundry",
                                     amount: "$100.00",
                                     requested_by_date: "2015-06-01",
                                     repayment_begin_date: "2015-12-01",
-                                    repayment_rate: "Weekly")
+                                    repayment_rate: "weekly")
   end
 
   context "unauthenticated user" do

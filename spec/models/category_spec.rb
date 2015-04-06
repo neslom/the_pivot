@@ -33,14 +33,14 @@ RSpec.describe Category, type: :model do
                                     amount: "$100.00",
                                     requested_by_date: "06/01/2015",
                                     repayment_begin_date: "12/01/2015",
-                                    repayment_rate: "Monthly")
+                                    repayment_rate: "monthly")
 
       category.loan_requests.create(title: "Parm Tools",
                                     description: "help out with the farm tools",
                                     amount: "$100.00",
                                     requested_by_date: "06/01/2015",
                                     repayment_begin_date: "12/01/2015",
-                                    repayment_rate: "Monthly")
+                                    repayment_rate: "monthly")
 
       expect(category.loan_requests.count).to eq(2)
     end

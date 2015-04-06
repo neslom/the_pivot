@@ -8,7 +8,7 @@ RSpec.describe LoanRequest, type: :model do
                     amount: "$100.00",
                     requested_by_date: "2015-06-01",
                     repayment_begin_date: "2015-12-01",
-                    repayment_rate: "Monthly")
+                    repayment_rate: "monthly")
   }
 
   context "with invalid attributes" do
@@ -64,7 +64,7 @@ RSpec.describe LoanRequest, type: :model do
                                 amount: "$100.00",
                                 requested_by_date: "2015-06-01",
                                 repayment_begin_date: "2015-12-01",
-                                repayment_rate: "Monthly")
+                                repayment_rate: "monthly")
 
       expect(user.loan_requests.count).to eq(1)
       expect(LoanRequest.first.user_id).to eq(user.id)
