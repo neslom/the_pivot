@@ -1,4 +1,6 @@
 class LoanRequestsController < ApplicationController
+  before_action :set_loan_request, only: [:edit, :update]
+
   def index
     @loan_requests = LoanRequest.all
   end
@@ -15,6 +17,17 @@ class LoanRequestsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @loan_request.update(loan_request_params)
+      flash[:notice] = "Loan request updated"
+    else
+      flash[:error] = "Update failed"
+    end
+  end
+
   private
 
   def loan_request_params
@@ -26,4 +39,7 @@ class LoanRequestsController < ApplicationController
                                          :amount)
   end
 
+  def set_loan_request
+    @loan_request = LoanRequest.find(params[:id])
+  end
 end
