@@ -1,8 +1,16 @@
 $light-gray: #f7f7f7;
 $white: #fff;
 
+* {
+  border-radius: 0 !important;
+}
+
 body {
   padding-top: 50px;
+}
+
+header div h2 {
+  font-size: 40px;
 }
 
 .overlay {
@@ -138,17 +146,28 @@ body {
 
 /* Custom Button Styles */
 
-.btn-dark {
-  border-radius: 0;
-  color: $white;
-  background-color: rgba(0,0,0,0.4);
+.btn-xlarge {
+  padding: 18px 28px;
+  font-size: 22px;
+  line-height: normal;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
 }
 
-.btn-dark:hover,
-.btn-dark:focus,
-.btn-dark:active {
+.btn-ghost {
   color: $white;
-  background-color: rgba(0,0,0,0.7);
+  background-color: rgba(0,0,0,0);
+  border: 1px solid $white;
+  font-weight: bold;
+}
+
+.btn-ghost:hover,
+.btn-ghost:focus,
+.btn-ghost:active {
+  color: #C4EAF5;
+  border: 1px solid #C4EAF5;
+  text-decoration: none;
 }
 
 .btn-light {
@@ -161,7 +180,7 @@ body {
 .btn-light:focus,
 .btn-light:active {
   color: #333;
-  background-color: rgba(255,255,255,0.8);
+  background-color: rgba(255,255,255,0);
 }
 
 /* Custom Horizontal Rule */
