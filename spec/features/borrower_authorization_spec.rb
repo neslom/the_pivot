@@ -53,8 +53,6 @@ RSpec.feature "only authorized borrower can create or edit loan requests" do
   end
 
   context "authorized borrower" do
-    #let!(:loan_request) { borrower_1.loan_requests.first }
-
     before(:each) do
       set_current_user(borrower_1)
       visit borrower_path(borrower_1)
