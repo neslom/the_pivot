@@ -1,5 +1,5 @@
-$primaryColor: #fff;
-$hoverColor: #fed136;
+$primary_color: #fff;
+$hover_color: #fed136;
 $muted: #777;
 
 
@@ -25,7 +25,7 @@ header div h2 {
 }
 
 .bg-light-gray {
-  background-color: $primaryColor;
+  background-color: $primary_color;
 }
 
 
@@ -34,7 +34,7 @@ header div h2 {
 }
 
 .thumbnail {
-  background-color: $primaryColor !important;
+  background-color: $primary_color !important;
 }
 
 .thumbnail-label {
@@ -42,7 +42,7 @@ header div h2 {
 }
 
 .progress {
-  background-color: $primaryColor !important;
+  background-color: $primary_color !important;
 }
 
 section h2.section-heading {
@@ -71,7 +71,7 @@ section h3.section-subheading {
 
 .team-member img {
   margin: 0 auto;
-  border: 7px solid $primaryColor;
+  border: 7px solid $primary_color;
   width: 175px;
 }
 
@@ -97,7 +97,7 @@ ul.social-buttons li a {
   font-size: 20px;
   line-height: 40px;
   outline: 0;
-  color: $primaryColor;
+  color: $primary_color;
   background-color: #222;
   -webkit-transition: all .3s;
   -moz-transition: all .3s;
@@ -107,7 +107,7 @@ ul.social-buttons li a {
 ul.social-buttons li a:hover,
 ul.social-buttons li a:focus,
 ul.social-buttons li a:active {
-  background-color: $hoverColor;
+  background-color: $hover_color;
 }
 
 p.large {
@@ -129,7 +129,7 @@ body {
   display: table-cell;
   text-align: center;
   vertical-align: middle;
-  color: $primaryColor;
+  color: $primary_color;
   padding-top: 100px;
 
 }
@@ -154,9 +154,9 @@ body {
 }
 
 .btn-ghost {
-  color: $primaryColor !important;
+  color: $primary_color !important;
   background-color: rgba(0,0,0,0) !important;
-  border: 1px solid $primaryColor !important;
+  border: 1px solid $primary_color !important;
   font-weight: bold;
   border-radius: 0 !important;
 }
@@ -164,8 +164,8 @@ body {
 .btn-ghost:hover,
 .btn-ghost:focus,
 .btn-ghost:active {
-  color: $hoverColor !important;
-  border: 1px solid $hoverColor !important;
+  color: $hover_color !important;
+  border: 1px solid $hover_color !important;
   text-decoration: none;
 }
 
