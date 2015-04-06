@@ -1,9 +1,7 @@
-$light-gray: #f7f7f7;
-$white: #fff;
+$primaryColor: #fff;
+$hoverColor: #fed136;
+$muted: #777;
 
-* {
-  border-radius: 0 !important;
-}
 
 body {
   padding-top: 50px;
@@ -27,7 +25,7 @@ header div h2 {
 }
 
 .bg-light-gray {
-  background-color: $light-gray;
+  background-color: $primaryColor;
 }
 
 
@@ -36,7 +34,7 @@ header div h2 {
 }
 
 .thumbnail {
-  background-color: $light-gray !important;
+  background-color: $primaryColor !important;
 }
 
 .thumbnail-label {
@@ -44,7 +42,7 @@ header div h2 {
 }
 
 .progress {
-  background-color: white !important;
+  background-color: $primaryColor !important;
 }
 
 section h2.section-heading {
@@ -63,7 +61,7 @@ section h3.section-subheading {
 }
 
 .text-muted {
-  color: #777;
+  color: $muted;
 }
 
 .team-member {
@@ -73,7 +71,7 @@ section h3.section-subheading {
 
 .team-member img {
   margin: 0 auto;
-  border: 7px solid $white;
+  border: 7px solid $primaryColor;
   width: 175px;
 }
 
@@ -99,7 +97,7 @@ ul.social-buttons li a {
   font-size: 20px;
   line-height: 40px;
   outline: 0;
-  color: $white;
+  color: $primaryColor;
   background-color: #222;
   -webkit-transition: all .3s;
   -moz-transition: all .3s;
@@ -109,7 +107,7 @@ ul.social-buttons li a {
 ul.social-buttons li a:hover,
 ul.social-buttons li a:focus,
 ul.social-buttons li a:active {
-  background-color: #fed136;
+  background-color: $hoverColor;
 }
 
 p.large {
@@ -131,7 +129,7 @@ body {
   display: table-cell;
   text-align: center;
   vertical-align: middle;
-  color: white;
+  color: $primaryColor;
   padding-top: 100px;
 
 }
@@ -141,7 +139,7 @@ body {
   padding: 0;
   font-size: 4.5em;
   font-weight: 700;
-  color: gray;
+  color: $muted;
 }
 
 /* Custom Button Styles */
@@ -156,31 +154,25 @@ body {
 }
 
 .btn-ghost {
-  color: $white;
-  background-color: rgba(0,0,0,0);
-  border: 1px solid $white;
+  color: $primaryColor !important;
+  background-color: rgba(0,0,0,0) !important;
+  border: 1px solid $primaryColor !important;
   font-weight: bold;
+  border-radius: 0 !important;
 }
 
 .btn-ghost:hover,
 .btn-ghost:focus,
 .btn-ghost:active {
-  color: #C4EAF5;
-  border: 1px solid #C4EAF5;
+  color: $hoverColor !important;
+  border: 1px solid $hoverColor !important;
   text-decoration: none;
 }
 
 .btn-light {
   border-radius: 0;
-  color: #333;
-  background-color: rgb(255,255,255);
-}
-
-.btn-light:hover,
-.btn-light:focus,
-.btn-light:active {
-  color: #333;
-  background-color: rgba(255,255,255,0);
+  color: $muted;
+  background-color: rgba(0,0,0,0);
 }
 
 /* Custom Horizontal Rule */
