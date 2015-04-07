@@ -71,7 +71,7 @@ class Seed
                                                 amount: amount,
                                                 status: status,
                                                 requested_by_date: request_by,
-                                                repayment_rate: "never",
+                                                repayment_rate: "weekly",
                                                 repayment_begin_date: repayment_begin_date)
         puts "created loan request #{request.title} for #{borrower.name}"
         puts "There are now #{LoanRequest.all.count} requests"
