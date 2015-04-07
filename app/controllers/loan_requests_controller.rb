@@ -24,23 +24,13 @@ class LoanRequestsController < ApplicationController
   def show
   end
 
-  #def update
-    #if @loan_request.update(loan_request_params)
-      #flash[:notice] = "Loan Request Updated"
-      #redirect_to loan_request_path(@loan_request)
-    #else
-      #flash[:error] = @loan_request.errors.full_messages.to_sentence
-      #render :edit
-    #end
-  #end
-
   def update
     respond_to do |format|
       if @loan_request.update(loan_request_params)
         format.html { redirect_to loan_request_path(@loan_request), notice: 'Loan Request Updated' }
         format.json { render :show, status: :ok, location: @loan_request }
       else
-        format.html { render :edit , notice: "@loan_request.errors.full_messages.to_sentence" }
+        format.html { render "loan_requests/_edit", notice: "#{@loan_request.errors.full_messages.to_sentence}" }
         format.json { render json: @loan_request.errors, status: :unprocessable_entity }
       end
     end
