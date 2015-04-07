@@ -53,7 +53,7 @@ RSpec.feature "only authorized borrower can create or edit loan requests" do
   end
 
   context "authorized borrower" do
-    let(:loan_request) { borrower_1.loan_requests.first }
+    let!(:loan_request) { borrower_1.loan_requests.first }
 
     before(:each) do
       set_current_user(borrower_1)
@@ -65,16 +65,14 @@ RSpec.feature "only authorized borrower can create or edit loan requests" do
       expect(page).to have_link("Edit", href: edit_loan_request_path(loan_request))
     end
 
-    xscenario "edits a loan request" do
+    xscenario "edits a loan request", js: true do
       click_link_or_button("Edit")
-
-      expect(current_path).to eq(edit_loan_request_path(loan_request))
 
       fill_in("loan_request[title]", with: "New Title")
       click_link_or_button("Submit")
+      click_link_or_button("Submit")
 
       expect(current_path).to eq(loan_request_path(loan_request))
-      expect(page).to have_content("Loan Request Updated")
     end
 
     xscenario "fills in form improperly and sees relevant error message" do
