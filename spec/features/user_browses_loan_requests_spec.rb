@@ -1,22 +1,37 @@
 require "rails_helper"
 
-RSpec.feature "user browses items" do
-  let(:create_item) { LoanRequest.create( ) }
+RSpec.feature "unauthenticated user browses loan requests" do
+  let (:user) { User.create(email: "jorge@example.com",
+                            password: "pass",
+                            name: "jorge")
+  }
+  let(:create_item) { LoanRequest.create(title: "Farm Tools",
+                                         description: "help out with the farm tools",
+                                         amount: "$100.00",
+                                         requested_by_date: "2015-06-01",
+                                         repayment_begin_date: "2015-12-01",
+                                         repayment_rate: "monthly",
+                                         user_id: user.id)
+  }
+  scenario "can view the loan requests" do
+    create_item
+    visit "/browse"
+    expect(current_path).to eq(browse_path)
+    expect(page).to have_content("Farm Tools")
+  end
 
-  context "unauthenticated user" do
-    xscenario "can browse the items" do
-      # create(:item)
-      visit "/menu"
-      expect(current_path).to eq(menu_path)
-      expect(page).to have_content("Sushi")
-    end
+  scenario "can view an individual item" do
+    create_item
+    visit "/browse"
+    click_link_or_button "About"
+    expect(page).to have_content("Farm Tools")
+  end
 
-    xscenario "can view an individual item" do
-      # create(:item)
-      visit "/menu"
-      click_link_or_button "Sushi"
-      expect(page).to have_content("$11.00")
-      expect(page).to_not have_content("status")
-    end
+  scenario "can add an item to the cart" do
+    create_item
+    visit "browse"
+    click_link_or_button "Add to Cart"
+    visit "/cart"
+    expect(page).to have_content("Farm Tools")
   end
 end

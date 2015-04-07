@@ -8,7 +8,7 @@
     <%= f.text_area :description %>
     <%= f.date_field :requested_by_date %>
     <%= f.date_field :repayment_begin_date %>
-    <%= f.select :repayment_rate, [["Monthly", 1], ["Weekly", 2]], { label: "Repayment rate" }, { class: "selectpicker" } %>
+    <%= f.select :repayment_rate, [["Monthly", "monthly"], ["Weekly", "weekly"]], {}, { class: "selectpicker" } %>
     <%= f.text_field :amount, prepend: "$", append: ".00" %>
   <div class="modal-footer">
     <%= f.submit "Submit" %>

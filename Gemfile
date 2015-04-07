@@ -19,6 +19,7 @@ gem "therubyracer"
 gem "less-rails"
 gem "twitter-bootstrap-rails"
 gem "faker"
+gem "responders"
 
 group :development, :test do
   gem "pry-rails"
@@ -28,14 +29,15 @@ group :development, :test do
   gem "capybara"
   gem "launchy"
   gem "database_cleaner"
+  gem "selenium-webdriver"
 end
 
 group :development do
-gem "spring"
-gem "better_errors"
-gem "binding_of_caller"
+  gem "spring"
+  gem "better_errors"
+  gem "binding_of_caller"
 end
 
 group :test do
-gem "simplecov", :require => false
+  gem "simplecov", :require => false
 end
