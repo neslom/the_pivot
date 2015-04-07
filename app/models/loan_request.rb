@@ -21,11 +21,11 @@ class LoanRequest < ActiveRecord::Base
   end
 
   def requested_by
-    self.requested_by_date.strftime("%B %y, %Y")
+    self.requested_by_date.strftime("%B %d, %Y")
   end
 
   def repayment_begin
-    self.repayment_begin_date.strftime("%B %y, %Y")
+    self.repayment_begin_date.strftime("%B %d, %Y")
   end
 
 end

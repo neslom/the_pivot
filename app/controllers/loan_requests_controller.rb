@@ -1,5 +1,5 @@
 class LoanRequestsController < ApplicationController
-  respond_to :html, :js, :json
+  #respond_to :html, :js, :json
 
   before_action :set_loan_request, only: [:update, :show]
 
