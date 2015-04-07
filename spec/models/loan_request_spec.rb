@@ -5,10 +5,11 @@ RSpec.describe LoanRequest, type: :model do
   let(:loan_request) {
     LoanRequest.new(title: "Farm Tools",
                     description: "help out with the farm tools",
-                    amount: "$100.00",
+                    amount: "100",
                     requested_by_date: "2015-06-01",
                     repayment_begin_date: "2015-12-01",
-                    repayment_rate: "monthly")
+                    repayment_rate: "monthly",
+                    contributed: "30")
   }
 
   context "with invalid attributes" do
@@ -46,6 +47,11 @@ RSpec.describe LoanRequest, type: :model do
       loan_request.repayment_rate = ""
       expect(loan_request).to_not be_valid
     end
+
+    it "is invalid without a contributed field" do
+      loan_request.contributed = ""
+      expect(loan_request).to_not be_valid
+    end
   end
 
   context "valid attributes" do
@@ -61,14 +67,20 @@ RSpec.describe LoanRequest, type: :model do
 
       user.loan_requests.create(title: "Farm Tools",
                                 description: "help out with the farm tools",
-                                amount: "$100.00",
+                                amount: "100",
                                 requested_by_date: "2015-06-01",
                                 repayment_begin_date: "2015-12-01",
-                                repayment_rate: "monthly")
+                                repayment_rate: "monthly",
+                                contributed: "30")
 
       expect(user.loan_requests.count).to eq(1)
       expect(LoanRequest.first.user_id).to eq(user.id)
     end
   end
 
+  it "displays remaining funding amount" do
+    loan_request.save
+
+    expect(loan_request.funding_remaining).to eq(70)
+  end
 end
