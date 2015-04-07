@@ -1,6 +1,6 @@
 class CartController < ApplicationController
   def create
-    @current_cart.add_item(params[:loan_reqest_id])
+    @current_cart.add_item(params[:loan_request], params[:amount])
     session[:cart] = @current_cart.cart_items
     redirect_to cart_path
   end
