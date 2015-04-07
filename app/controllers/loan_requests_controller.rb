@@ -1,6 +1,4 @@
 class LoanRequestsController < ApplicationController
-  #respond_to :html, :js, :json
-
   before_action :set_loan_request, only: [:update, :show]
 
   def index
@@ -36,8 +34,6 @@ class LoanRequestsController < ApplicationController
     #end
   #end
 
-  # PATCH/PUT /phone_numbers/1
-  # PATCH/PUT /phone_numbers/1.json
   def update
     respond_to do |format|
       if @loan_request.update(loan_request_params)
