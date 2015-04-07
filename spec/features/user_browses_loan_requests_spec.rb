@@ -7,7 +7,7 @@ RSpec.feature "unauthenticated user browses loan requests" do
                                          requested_by_date: "2015-06-01",
                                          repayment_begin_date: "2015-12-01",
                                          repayment_rate: "Monthly")
-                    }
+  }
   scenario "can view the loan requests" do
     create_item
     visit "/browse"
