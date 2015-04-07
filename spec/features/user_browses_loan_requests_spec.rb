@@ -1,12 +1,17 @@
 require "rails_helper"
 
 RSpec.feature "unauthenticated user browses loan requests" do
+  let (:user) { User.create(email: "jorge@example.com",
+                            password: "pass",
+                            name: "jorge")
+  }
   let(:create_item) { LoanRequest.create(title: "Farm Tools",
                                          description: "help out with the farm tools",
                                          amount: "$100.00",
                                          requested_by_date: "2015-06-01",
                                          repayment_begin_date: "2015-12-01",
-                                         repayment_rate: "monthly")
+                                         repayment_rate: "monthly",
+                                         user_id: user.id)
   }
   scenario "can view the loan requests" do
     create_item
@@ -15,11 +20,12 @@ RSpec.feature "unauthenticated user browses loan requests" do
     expect(page).to have_content("Farm Tools")
   end
 
-  xscenario "can view an individual item" do
+  scenario "can view an individual item" do
     create_item
     visit "/browse"
     click_link_or_button "About"
-    # loan request show page
+    expect(page).to have_content("Farm Tools")
+    expect(page).to have_content("Amount Request: $100.00")
   end
 
   xscenario "can add an item to the cart" do
