@@ -73,6 +73,8 @@ GEM
     docile (1.1.5)
     erubis (2.7.0)
     execjs (2.4.0)
+    faker (1.4.3)
+      i18n (~> 0.5)
     font-awesome-rails (4.3.0.0)
       railties (>= 3.2, < 5.0)
     globalid (0.3.3)
@@ -240,6 +242,7 @@ DEPENDENCIES
   capybara
   coffee-rails (~> 4.1.0)
   database_cleaner
+  faker
   font-awesome-rails
   jbuilder (~> 2.0)
   jquery-rails
