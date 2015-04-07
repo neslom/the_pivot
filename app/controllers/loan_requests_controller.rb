@@ -1,4 +1,6 @@
 class LoanRequestsController < ApplicationController
+  before_action :set_loan_request, only: [:update, :show]
+
   def index
     @loan_requests = LoanRequest.all
   end
@@ -15,6 +17,25 @@ class LoanRequestsController < ApplicationController
     end
   end
 
+  def edit
+    @loan_request = LoanRequest.find(params[:id])
+  end
+
+  def show
+  end
+
+  def update
+    respond_to do |format|
+      if @loan_request.update(loan_request_params)
+        format.html { redirect_to loan_request_path(@loan_request), notice: 'Loan Request Updated' }
+        format.json { render :show, status: :ok, location: @loan_request }
+      else
+        format.html { render "loan_requests/_edit", notice: "#{@loan_request.errors.full_messages.to_sentence}" }
+        format.json { render json: @loan_request.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
 
   def loan_request_params
@@ -26,4 +47,7 @@ class LoanRequestsController < ApplicationController
                                          :amount)
   end
 
+  def set_loan_request
+    @loan_request = LoanRequest.find(params[:id])
+  end
 end

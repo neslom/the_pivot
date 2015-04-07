@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150404214603) do
+ActiveRecord::Schema.define(version: 20150406022056) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20150404214603) do
     t.datetime "picture_updated_at"
     t.date     "requested_by_date"
     t.date     "repayment_begin_date"
-    t.text     "repayment_rate"
+    t.integer  "repayment_rate",       default: 0
     t.integer  "user_id"
   end
 

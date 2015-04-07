@@ -14,4 +14,18 @@ class LoanRequest < ActiveRecord::Base
   has_many :categories, through: :loan_requests_categories
   belongs_to :user
   enum status: %w(active retired)
+  enum repayment_rate: %w(monthly weekly)
+
+  def owner
+    self.user.name
+  end
+
+  def requested_by
+    self.requested_by_date.strftime("%B %d, %Y")
+  end
+
+  def repayment_begin
+    self.repayment_begin_date.strftime("%B %d, %Y")
+  end
+
 end
