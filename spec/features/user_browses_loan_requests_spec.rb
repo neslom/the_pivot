@@ -25,10 +25,9 @@ RSpec.feature "unauthenticated user browses loan requests" do
     visit "/browse"
     click_link_or_button "About"
     expect(page).to have_content("Farm Tools")
-    expect(page).to have_content("Amount Request: $100.00")
   end
 
-  xscenario "can add an item to the cart" do
+  scenario "can add an item to the cart" do
     create_item
     visit "browse"
     click_link_or_button "Add to Cart"
