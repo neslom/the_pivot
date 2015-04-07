@@ -1,12 +1,12 @@
 require "rails_helper"
 
 RSpec.feature "unauthenticated user browses loan requests" do
-  let(:create_item) { LoanRequest.create(title: "Farm Tools",
-                                      description: "help out with the farm tools",
-                                      amount: "$100.00",
-                                      requested_by_date: "2015-06-01",
-                                      repayment_begin_date: "2015-12-01",
-                                      repayment_rate: "Monthly")
+  let(:create_item) do LoanRequest.create(title: "Farm Tools",
+                                         description: "help out with the farm tools",
+                                         amount: "$100.00",
+                                         requested_by_date: "2015-06-01",
+                                         repayment_begin_date: "2015-12-01",
+                                         repayment_rate: "Monthly")
                     }
     scenario "can view the loan requests" do
       create_item
