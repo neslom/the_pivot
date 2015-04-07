@@ -34,4 +34,14 @@ RSpec.feature "unauthenticated user browses loan requests" do
     visit "/cart"
     expect(page).to have_content("Farm Tools")
   end
+
+  scenario "can not submit order without logging in" do
+    create_item
+    visit "browse"
+    click_link_or_button "Contribute $25"
+    visit "/cart"
+    click_link_or_button "Transfer Funds"
+    expect(page).to have_content("Please Log In to Finalize Contribution")
+    expect(current_path).to eq(cart_path)
+  end
 end
