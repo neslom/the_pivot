@@ -2,7 +2,7 @@
 
 <div class="modal-body">
   <%= bootstrap_form_for @loan_request, remote: true do |f| %>
-    <%= f.text_field :title %>
+  <%= f.text_field :title %>
   <%= f.text_area :description %>
   <%= f.date_field :requested_by_date %>
   <%= f.date_field :repayment_begin_date %>

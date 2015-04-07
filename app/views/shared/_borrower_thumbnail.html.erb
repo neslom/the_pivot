@@ -11,9 +11,8 @@
           <p><%= loan_request.description %></p>
           <p>
           <%= link_to "About", loan_request_path(loan_request), class: "btn btn-default" %>
-          <%= link_to "Edit", edit_loan_request_path(loan_request), remote: true, id: "edit-button" %>
+          <%= link_to "Edit", edit_loan_request_path(loan_request), remote: true, class: "btn btn-info pull-right" %>
           </p>
-
 
           <%= render "shared/progress_bar" %>
 
