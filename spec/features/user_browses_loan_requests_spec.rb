@@ -21,5 +21,12 @@ RSpec.feature "unauthenticated user browses loan requests" do
       click_link_or_button "About"
       # loan request show page
     end
-  end
+
+    scenario "can add an item to the cart" do
+      create_item
+      visit "browse"
+      click_link_or_button "Add to Cart"
+      visit "/cart"
+      expect(page).to have_content("Farm Tools")
+    end
 end
