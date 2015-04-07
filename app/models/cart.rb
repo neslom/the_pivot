@@ -5,15 +5,15 @@ class Cart
     @cart_items = cart_items || Hash.new
   end
 
-  def add_item(item_id)
-    @cart_items[item_id] ||= 0
-    @cart_items[item_id] += 1
+  def add_item(loan_request_id, amount)
+    @cart_items[loan_request_id] ||= 0
+    @cart_items[loan_request_id] += amount.to_i
   end
 
-  def cart_items_and_quantity
-    items = Hash.new
-    cart_items.select { |item_id, quantity| items[Item.find(item_id)] = quantity }
-    items
+  def cart_items_and_amount
+    loan_request = Hash.new
+    cart_items.select { |loan_request_id, amount| loan_request[LoanRequest.find(loan_request_id)] = amount }
+    loan_request
   end
 
   def delete_item(item_id)
