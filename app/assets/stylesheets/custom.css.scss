@@ -1,8 +1,14 @@
-$light-gray: #f7f7f7;
-$white: #fff;
+$primary-color: #fff;
+$hover-color: #fed136;
+$muted: #777;
+
 
 body {
   padding-top: 50px;
+}
+
+header div h2 {
+  font-size: 40px;
 }
 
 .overlay {
@@ -19,7 +25,7 @@ body {
 }
 
 .bg-light-gray {
-  background-color: $light-gray;
+  background-color: $primary-color;
 }
 
 
@@ -28,7 +34,7 @@ body {
 }
 
 .thumbnail {
-  background-color: $light-gray !important;
+  background-color: $primary-color !important;
 }
 
 .thumbnail-label {
@@ -36,7 +42,7 @@ body {
 }
 
 .progress {
-  background-color: white !important;
+  background-color: $primary-color !important;
 }
 
 section h2.section-heading {
@@ -55,7 +61,7 @@ section h3.section-subheading {
 }
 
 .text-muted {
-  color: #777;
+  color: $muted;
 }
 
 .team-member {
@@ -65,7 +71,7 @@ section h3.section-subheading {
 
 .team-member img {
   margin: 0 auto;
-  border: 7px solid $white;
+  border: 7px solid $primary-color;
   width: 175px;
 }
 
@@ -91,7 +97,7 @@ ul.social-buttons li a {
   font-size: 20px;
   line-height: 40px;
   outline: 0;
-  color: $white;
+  color: $primary-color;
   background-color: #222;
   -webkit-transition: all .3s;
   -moz-transition: all .3s;
@@ -101,7 +107,7 @@ ul.social-buttons li a {
 ul.social-buttons li a:hover,
 ul.social-buttons li a:focus,
 ul.social-buttons li a:active {
-  background-color: #fed136;
+  background-color: $hover-color;
 }
 
 p.large {
@@ -123,7 +129,7 @@ body {
   display: table-cell;
   text-align: center;
   vertical-align: middle;
-  color: white;
+  color: $primary-color;
   padding-top: 100px;
 
 }
@@ -133,35 +139,40 @@ body {
   padding: 0;
   font-size: 4.5em;
   font-weight: 700;
-  color: gray;
+  color: $muted;
 }
 
 /* Custom Button Styles */
 
-.btn-dark {
-  border-radius: 0;
-  color: $white;
-  background-color: rgba(0,0,0,0.4);
+.btn-xlarge {
+  padding: 18px 28px;
+  font-size: 22px;
+  line-height: normal;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
 }
 
-.btn-dark:hover,
-.btn-dark:focus,
-.btn-dark:active {
-  color: $white;
-  background-color: rgba(0,0,0,0.7);
+.btn-ghost {
+  color: $primary-color !important;
+  background-color: rgba(0,0,0,0) !important;
+  border: 1px solid $primary-color !important;
+  font-weight: bold;
+  border-radius: 0 !important;
+}
+
+.btn-ghost:hover,
+.btn-ghost:focus,
+.btn-ghost:active {
+  color: $hover-color !important;
+  border: 1px solid $hover-color !important;
+  text-decoration: none;
 }
 
 .btn-light {
   border-radius: 0;
-  color: #333;
-  background-color: rgb(255,255,255);
-}
-
-.btn-light:hover,
-.btn-light:focus,
-.btn-light:active {
-  color: #333;
-  background-color: rgba(255,255,255,0.8);
+  color: $muted;
+  background-color: rgba(0,0,0,0);
 }
 
 /* Custom Horizontal Rule */
@@ -177,7 +188,7 @@ hr.small {
   position: relative;
   width: 100%;
   height: 100%;
-  background: image-url('landing_page.jpg') no-repeat center center scroll;
+  background: image-url('landing-page.jpg') no-repeat center center scroll;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
