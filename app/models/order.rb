@@ -12,9 +12,15 @@ class Order < ActiveRecord::Base
   end
 
   def cart_item_and_quantity
-    @items = Hash.new
-    cart_items.select { |item_id, quantity| @items[Item.find(item_id)] = quantity }
-    @items
+    loan_requests = Hash.new
+    cart_items.select { |loan_id, amount| loan_requests[LoanRequest.find(loan_id)] = amount }
+    loan_requests
+  end
+
+  def update_contributed
+    cart_item_and_quantity.each do |loan_request, contribution|
+      loan_request.update_attributes(contributed: loan_request.contributed += contribution.to_i)
+    end
   end
 
   def total_price
