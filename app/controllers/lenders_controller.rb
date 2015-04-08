@@ -10,8 +10,8 @@ class LendersController < ApplicationController
       flash[:notice] = "You've been saved"
       redirect_to lender_path(user)
     else
-      flash[:error] = "Something went wrong. Please try again"
-      render :new
+      flash[:error] = user.errors.full_messages.to_sentence
+      redirect_to root_path
     end
   end
 

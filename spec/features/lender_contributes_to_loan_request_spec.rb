@@ -23,10 +23,13 @@ RSpec.feature "lender contributes to loan request" do
                                            user_id: borrower.id)
   }
 
-  scenario "transfers funds successfully" do
+  before(:each) do
     visit "/"
     login_as(lender)
     visit browse_path
+  end
+
+  scenario "transfers funds successfully" do
     click_link_or_button("Contribute $25")
     visit cart_path
 
@@ -38,4 +41,7 @@ RSpec.feature "lender contributes to loan request" do
     expect(page).to_not have_content(loan_request.title)
   end
 
+  xscenario "cannot over-contribute to a project" do
+
+  end
 end

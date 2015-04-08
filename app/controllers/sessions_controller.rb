@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
         redirect_to '/admin'
       end
     else
-      flash[:notice] = @user.errors.full_messages.to_sentence
+      flash[:notice] = "Invalid Login"
       redirect_to root_path
     end
   end
