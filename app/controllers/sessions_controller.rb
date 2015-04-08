@@ -21,14 +21,14 @@ class SessionsController < ApplicationController
         redirect_to '/admin'
       end
     else
-      flash[:notice] = "Sensei says: 'Invalid Login: try again'"
+      flash[:notice] = "Invalid Login"
       redirect_to root_path
     end
   end
 
   def destroy
     session[:user_id] = nil
-    flash[:notice] = "Sensei says: 'sayonara'"
+    flash[:notice] = "See you next time!"
     redirect_to root_path
   end
 

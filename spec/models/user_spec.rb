@@ -26,8 +26,10 @@ RSpec.describe User, type: :model do
     expect(user.role).to eq("lender")
   end
 
-  it "is invalid with a duplicate email address" do
-    user2 = User.create(email: "example@example.com", password: "password", name: "example")
-    expect(user2).to_not be_valid
+  it "cannot be created with a duplicate email address" do
+    User.create(name: "Steve", email: "example@example.com", password: "password")
+    user = User.new(name: "Steve", email: "example@example.com", password: "password")
+
+    expect { user.save! }.to raise_error(/Email has already been taken/)
   end
 end
