@@ -16,7 +16,6 @@ class LendersController < ApplicationController
   end
 
   def show
-
   end
 
   private

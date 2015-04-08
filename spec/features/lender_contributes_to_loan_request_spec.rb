@@ -42,6 +42,12 @@ RSpec.feature "lender contributes to loan request" do
   end
 
   xscenario "cannot over-contribute to a project" do
+    expect(loan_request.contributed).to eq(50)
 
+    click_link_or_button("Contribute $25")
+    visit cart_path
+    click_link_or_button("Transfer Funds")
+
+    expect(loan_request.contributed).to eq(75)
   end
 end
