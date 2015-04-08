@@ -1,5 +1,6 @@
 class Seed
   def run
+    create_known_users
     create_borrowers(10)
     create_lenders(10)
     create_loan_requests_for_each_borrower(3)
@@ -14,13 +15,19 @@ class Seed
     User.where(role: 1)
   end
 
+  def create_known_users
+    User.create(name: "Jorge", email: "jorge@example.com", password: "password")
+    User.create(name: "Rachel", email: "rachel@example.com", password: "password")
+    User.create(name: "Josh", email: "josh@example.com", password: "password", role: 1)
+  end
+
   def create_lenders(quantity)
     quantity.times do
       name = Faker::Name.name
       email = Faker::Internet.email
-      user = User.create(name: name, 
-                         password: "password", 
-                         email: email, 
+      user = User.create(name: name,
+                         password: "password",
+                         email: email,
                          role: 0)
       puts "created user #{user.name}"
     end
@@ -30,9 +37,9 @@ class Seed
     quantity.times do
       name = Faker::Name.name
       email = Faker::Internet.email
-      user = User.create(name: name, 
-                         password: "password", 
-                         email: email, 
+      user = User.create(name: name,
+                         password: "password",
+                         email: email,
                          role: 1)
       puts "created user #{user.name}"
     end
@@ -61,16 +68,18 @@ class Seed
         title = Faker::Lorem.words(3).join(" ")
         description = Faker::Lorem.sentence
         status = [0, 1].sample
-        request_by = 
+        request_by =
           Faker::Time.between(7.days.ago, 3.days.ago)
-        repayment_begin_date = 
+        repayment_begin_date =
           Faker::Time.between(3.days.ago, Time.now)
-        amount = Faker::Number.number(4)
+        amount = "200"
+        contributed = "150"
         request = borrower.loan_requests.create(title: title,
                                                 description: description,
                                                 amount: amount,
                                                 status: status,
                                                 requested_by_date: request_by,
+                                                contributed: contributed,
                                                 repayment_rate: "weekly",
                                                 repayment_begin_date: repayment_begin_date)
         puts "created loan request #{request.title} for #{borrower.name}"

@@ -30,14 +30,16 @@ RSpec.describe Category, type: :model do
       category = Category.create(title: "new_cat", description: "cat")
       category.loan_requests.create(title: "Farm Tools",
                                     description: "help out with the farm tools",
-                                    amount: "$100.00",
+                                    amount: "100",
+                                    contributed: "50",
                                     requested_by_date: "06/01/2015",
                                     repayment_begin_date: "12/01/2015",
                                     repayment_rate: "monthly")
 
       category.loan_requests.create(title: "Parm Tools",
                                     description: "help out with the farm tools",
-                                    amount: "$100.00",
+                                    amount: "100",
+                                    contributed: "50",
                                     requested_by_date: "06/01/2015",
                                     repayment_begin_date: "12/01/2015",
                                     repayment_rate: "monthly")

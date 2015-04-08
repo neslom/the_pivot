@@ -12,9 +12,10 @@ RSpec.feature "unauthenticated user browses loan requests" do
   }
   let!(:loan_request) { LoanRequest.create(title: "Farm Tools",
                                            description: "help out with the farm tools",
-                                           amount: "$100.00",
+                                           amount: "100",
                                            requested_by_date: "2015-06-01",
                                            repayment_begin_date: "2015-12-01",
+                                           contributed: "50",
                                            repayment_rate: "monthly",
                                            user_id: user2.id)
   }
@@ -35,6 +36,12 @@ RSpec.feature "unauthenticated user browses loan requests" do
     expect(page).to have_content("#{loan_request.title} Added to Basket")
     visit "/cart"
     expect(page).to have_content(loan_request.title)
+  end
+
+  scenario "does not see Transfer Funds link if cart is empty" do
+    visit "/cart"
+    expect(page).to_not have_link("Transfer Funds")
+    expect(page).to have_content("Your basket is currently empty.")
   end
 
   scenario "can not submit order without logging in" do

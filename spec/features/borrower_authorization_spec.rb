@@ -16,14 +16,16 @@ RSpec.feature "only authorized borrower can create or edit loan requests" do
   before(:each) do
     borrower_1.loan_requests.create(title: "Farm Tools",
                                     description: "help out with the farm tools",
-                                    amount: "$100.00",
+                                    amount: "100",
+                                    contributed: "50",
                                     requested_by_date: "2015-06-01",
                                     repayment_begin_date: "2015-12-01",
                                     repayment_rate: "monthly")
 
     borrower_2.loan_requests.create(title: "Laundry Machine",
                                     description: "help out with the laundry",
-                                    amount: "$100.00",
+                                    amount: "100",
+                                    contributed: "50",
                                     requested_by_date: "2015-06-01",
                                     repayment_begin_date: "2015-12-01",
                                     repayment_rate: "weekly")
