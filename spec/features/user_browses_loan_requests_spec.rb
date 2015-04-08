@@ -50,5 +50,7 @@ RSpec.feature "unauthenticated user browses loan requests" do
     login_as(user)
     expect(page).to have_content("Welcome to Keevahh, #{user.name}!")
     expect(current_path).to eq(browse_path)
+    visit cart_path
+    expect(page).to have_content(loan_request.title)
   end
 end
