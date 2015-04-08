@@ -52,6 +52,12 @@ RSpec.describe LoanRequest, type: :model do
       loan_request.contributed = ""
       expect(loan_request).to_not be_valid
     end
+
+    xit "will not save if the amount contributed is more than the needed funding amount" do
+      loan_request.contributed = "150"
+
+      expect { loan_request.save! }.to raise_error(/cannot contribute/)
+    end
   end
 
   context "valid attributes" do
