@@ -38,6 +38,12 @@ RSpec.feature "unauthenticated user browses loan requests" do
     expect(page).to have_content(loan_request.title)
   end
 
+  scenario "does not see Transfer Funds link if cart is empty" do
+    visit "/cart"
+    expect(page).to_not have_link("Transfer Funds")
+    expect(page).to have_content("Your basket is currently empty.")
+  end
+
   scenario "can not submit order without logging in" do
     click_link_or_button "Contribute $25"
     visit "/cart"
