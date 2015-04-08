@@ -1,6 +1,4 @@
 def login_as(user)
-  # visit '/'
-
   click_link_or_button("Login")
 
   fill_in "session[email]", with: user.email
