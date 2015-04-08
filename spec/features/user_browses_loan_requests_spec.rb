@@ -5,7 +5,7 @@ RSpec.feature "unauthenticated user browses loan requests" do
                             password: "pass",
                             name: "jorge")
   }
-  let(:create_item) { LoanRequest.create(title: "Farm Tools",
+  let!(:loan_request) { LoanRequest.create(title: "Farm Tools",
                                          description: "help out with the farm tools",
                                          amount: "$100.00",
                                          requested_by_date: "2015-06-01",
@@ -13,31 +13,26 @@ RSpec.feature "unauthenticated user browses loan requests" do
                                          repayment_rate: "monthly",
                                          user_id: user.id)
   }
+  before(:each) { visit "/browse" }
+
   scenario "can view the loan requests" do
-    create_item
-    visit "/browse"
     expect(current_path).to eq(browse_path)
-    expect(page).to have_content("Farm Tools")
+    expect(page).to have_content(loan_request.title)
   end
 
   scenario "can view an individual item" do
-    create_item
-    visit "/browse"
     click_link_or_button "About"
-    expect(page).to have_content("Farm Tools")
+    expect(page).to have_content(loan_request.title)
   end
 
   scenario "can add an item to the cart" do
-    create_item
-    visit "browse"
     click_link_or_button "Contribute $25"
+    expect(page).to have_content("#{loan_request.title} Added to Basket")
     visit "/cart"
-    expect(page).to have_content("Farm Tools")
+    expect(page).to have_content(loan_request.title)
   end
 
   scenario "can not submit order without logging in" do
-    create_item
-    visit "browse"
     click_link_or_button "Contribute $25"
     visit "/cart"
     click_link_or_button "Transfer Funds"

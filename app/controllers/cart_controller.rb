@@ -2,6 +2,7 @@ class CartController < ApplicationController
   def create
     @current_cart.add_item(params[:loan_request], params[:amount])
     session[:cart] = @current_cart.cart_items
+    flash[:notice] = "#{LoanRequest.find(params[:loan_request]).title} Added to Basket"
     redirect_to cart_path
   end
 
