@@ -28,4 +28,9 @@ RSpec.describe User, type: :model do
     it "is given a role of lender by default" do
       expect(@user.role).to eq("lender")
     end
+
+    it "is invalid with a duplicate email address" do
+      user2 = User.create(email: "example@example.com", password: "password", name: "example")
+      expect(user2).to_not be_valid
+    end
 end
