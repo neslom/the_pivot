@@ -40,7 +40,8 @@ RSpec.describe "User logs in" do
       fill_in("session[email]", with: lender.email)
       fill_in("session[password]", with: lender.password)
       click_link_or_button "Log In"
-      expect(page).to have_content("#{lender.name}'s Portfolio")
+      expect(page).to have_content("Welcome to Keevahh, #{lender.name}!")
+      expect(current_path).to eq(root_path)
     end
   end
 

@@ -5,8 +5,8 @@ class OrdersController < ApplicationController
       flash[:notice] = "Order Submitted, Thank You!"
       redirect_to root_path
     else
-      flash[:notice] = "You must log in to checkout. Please login."
-      redirect_to login_path
+      flash[:notice] = "Please Log In to Finalize Contribution"
+      redirect_to cart_path
     end
   end
 
