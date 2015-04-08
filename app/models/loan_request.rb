@@ -2,7 +2,6 @@ class LoanRequest < ActiveRecord::Base
   validates :title, :description, :amount,
     :requested_by_date, :repayment_begin_date,
     :repayment_rate, :contributed, presence: true
-  before_save :fund_amount
   has_attached_file :picture,
     styles: { large: "960x960",
               medium: "300x300>",
