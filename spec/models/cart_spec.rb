@@ -32,6 +32,6 @@ RSpec.describe Cart, type: :model do
   it "can have loan requests added" do
     3.times { cart.add_item(loan_request.id, loan_request.amount) }
     2.times { cart.add_item(loan_request2.id, loan_request2.amount) }
-    expect(cart.cart_items).to eq({ 3 => 300, 4 => 1200 })
+    expect(cart.cart_items).to eq({ loan_request.id => 300, loan_request2.id => 1200 })
   end
 end
