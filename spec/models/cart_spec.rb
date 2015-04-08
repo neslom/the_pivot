@@ -11,17 +11,17 @@ RSpec.describe Cart, type: :model do
                                            contributed: "50",
                                            repayment_rate: "monthly",
                                            user_id: user.id)
-                      }
+  }
 
   let!(:loan_request2) { LoanRequest.create(title: "Farm Stuff",
-                                           description: "help out with the farm tools",
-                                           amount: "600",
-                                           requested_by_date: "2015-09-21",
-                                           repayment_begin_date: "2016-10-01",
-                                           contributed: "25",
-                                           repayment_rate: "monthly",
-                                           user_id: user.id)
-                        }
+                                            description: "help out with the farm tools",
+                                            amount: "600",
+                                            requested_by_date: "2015-09-21",
+                                            repayment_begin_date: "2016-10-01",
+                                            contributed: "25",
+                                            repayment_rate: "monthly",
+                                            user_id: user.id)
+    }
 
   let(:cart) { Cart.new(nil) }
 
