@@ -5,13 +5,18 @@ RSpec.feature "unauthenticated user browses loan requests" do
                             password: "pass",
                             name: "jorge")
   }
+  let (:user2) { User.create(email: "jeff@example.com",
+                            password: "pass",
+                            name: "jeff",
+                            role: 1)
+  }
   let!(:loan_request) { LoanRequest.create(title: "Farm Tools",
                                          description: "help out with the farm tools",
                                          amount: "$100.00",
                                          requested_by_date: "2015-06-01",
                                          repayment_begin_date: "2015-12-01",
                                          repayment_rate: "monthly",
-                                         user_id: user.id)
+                                         user_id: user2.id)
   }
   before(:each) { visit "/browse" }
 
@@ -38,5 +43,12 @@ RSpec.feature "unauthenticated user browses loan requests" do
     click_link_or_button "Transfer Funds"
     expect(page).to have_content("Please Log In to Finalize Contribution")
     expect(current_path).to eq(cart_path)
+  end
+
+  scenario "loan requests stay in cart after log in" do
+    click_link_or_button "Contribute $25"
+    login_as(user)
+    expect(page).to have_content("Welcome to Keevahh, #{user.name}!")
+    expect(current_path).to eq(browse_path)
   end
 end

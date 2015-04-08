@@ -9,11 +9,11 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:session][:password])
       if @user.lender?
         session[:user_id] = @user.id
-        flash[:notice] = "Sensei says: 'Welcome to the dojo'"
-        redirect_to lender_path(@user)
+        flash[:notice] = "Welcome to Keevahh, #{@user.name}!"
+        redirect_to(:back)
       elsif @user.borrower?
         session[:user_id] = @user.id
-        flash[:notice] = "Sensei says: 'Welcome to the dojo'"
+        flash[:notice] = "Welcome to Keevahh, #{@user.name}!"
         redirect_to borrower_path(@user)
       elsif @user.admin?
         session[:user_id] = @user.id
