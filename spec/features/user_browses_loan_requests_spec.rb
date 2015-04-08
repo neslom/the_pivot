@@ -6,17 +6,17 @@ RSpec.feature "unauthenticated user browses loan requests" do
                             name: "jorge")
   }
   let (:user2) { User.create(email: "jeff@example.com",
-                            password: "pass",
-                            name: "jeff",
-                            role: 1)
+                             password: "pass",
+                             name: "jeff",
+                             role: 1)
   }
   let!(:loan_request) { LoanRequest.create(title: "Farm Tools",
-                                         description: "help out with the farm tools",
-                                         amount: "$100.00",
-                                         requested_by_date: "2015-06-01",
-                                         repayment_begin_date: "2015-12-01",
-                                         repayment_rate: "monthly",
-                                         user_id: user2.id)
+                                           description: "help out with the farm tools",
+                                           amount: "$100.00",
+                                           requested_by_date: "2015-06-01",
+                                           repayment_begin_date: "2015-12-01",
+                                           repayment_rate: "monthly",
+                                           user_id: user2.id)
   }
   before(:each) { visit "/browse" }
 
