@@ -1,5 +1,6 @@
 class Seed
   def run
+    create_known_users
     create_borrowers(10)
     create_lenders(10)
     create_loan_requests_for_each_borrower(3)
@@ -12,6 +13,12 @@ class Seed
 
   def borrowers
     User.where(role: 1)
+  end
+
+  def create_known_users
+    User.create(name: "Jorge", email: "jorge@example.com", password: "password")
+    User.create(name: "Rachel", email: "rachel@example.com", password: "password")
+    User.create(name: "Josh", email: "josh@example.com", password: "password", role: 1)
   end
 
   def create_lenders(quantity)
