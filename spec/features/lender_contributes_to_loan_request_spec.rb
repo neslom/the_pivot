@@ -33,5 +33,9 @@ RSpec.feature "lender contributes to loan request" do
     click_link_or_button("Transfer Funds")
     expect(current_path).to eq(lender_path(lender))
     expect(page).to have_content("Thank you for your contribution, #{lender.name}!")
+
+    visit cart_path
+    expect(page).to_not have_content(loan_request.title)
   end
+
 end
