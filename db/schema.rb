@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20150408221721) do
     t.date     "repayment_begin_date"
     t.integer  "repayment_rate",       default: 0
     t.integer  "user_id"
-    t.integer  "contributed",          default: 0
+    t.integer  "contributed"
   end
 
   add_index "loan_requests", ["user_id"], name: "index_loan_requests_on_user_id", using: :btree
