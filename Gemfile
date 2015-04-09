@@ -20,6 +20,7 @@ gem "less-rails"
 gem "twitter-bootstrap-rails"
 gem "faker"
 gem "responders"
+gem "bootstrap-sass"
 
 group :development, :test do
   gem "pry-rails"
