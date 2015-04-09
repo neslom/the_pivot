@@ -19,7 +19,7 @@ RSpec.feature "unauthenticated user browses loan requests" do
                                            repayment_rate: "monthly",
                                            user_id: user2.id)
   }
-  before(:each) { visit "/browse" }
+  before(:each) { visit browse_path }
 
   scenario "can view the loan requests" do
     expect(current_path).to eq(browse_path)
@@ -34,19 +34,19 @@ RSpec.feature "unauthenticated user browses loan requests" do
   scenario "can add an item to the cart" do
     click_link_or_button "Contribute $25"
     expect(page).to have_content("#{loan_request.title} Added to Basket")
-    visit "/cart"
+    visit cart_path
     expect(page).to have_content(loan_request.title)
   end
 
   scenario "does not see Transfer Funds link if cart is empty" do
-    visit "/cart"
+    visit cart_path
     expect(page).to_not have_link("Transfer Funds")
-    expect(page).to have_content("Your basket is currently empty.")
+    expect(page).to have_content("Your Basket is Empty")
   end
 
   scenario "can not submit order without logging in" do
     click_link_or_button "Contribute $25"
-    visit "/cart"
+    visit cart_path
     click_link_or_button "Transfer Funds"
     expect(page).to have_content("Please Log In to Finalize Contribution")
     expect(current_path).to eq(cart_path)
@@ -59,5 +59,13 @@ RSpec.feature "unauthenticated user browses loan requests" do
     expect(current_path).to eq(browse_path)
     visit cart_path
     expect(page).to have_content(loan_request.title)
+  end
+
+  scenario "loan request can be removed from cart" do
+    click_link_or_button "Contribute $25"
+    visit cart_path
+    expect(page).to have_content(loan_request.title)
+    click_link_or_button "Remove from Basket"
+    expect(page).to_not have_content(loan_request.title)
   end
 end
