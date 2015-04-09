@@ -47,15 +47,9 @@ RSpec.feature "lender contributes to loan request" do
     expect(page).to have_content("$75.00")
   end
 
-  xscenario "sees loan request contribution on portfolio page" do
-    expect(loan_request.contributed).to eq(50)
-
-    click_link_or_button("Contribute $25")
-    visit cart_path
-    click_link_or_button("Transfer Funds")
-
-    expect(loan_request.contributed).to eq(75)
-    [borrower.title, "25"].each do |x|
+  scenario "sees loan request contribution on portfolio page" do
+    expect(current_path).to eq(lender_path(lender))
+    [loan_request.title, loan_request.repayment_rate, "25"].each do |x|
       expect(page).to have_content(x)
     end
   end

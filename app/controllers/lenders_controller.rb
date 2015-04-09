@@ -1,4 +1,6 @@
 class LendersController < ApplicationController
+  before_action :set_lender, only: [:show]
+
   def new
     @user = User.new
   end
@@ -16,6 +18,9 @@ class LendersController < ApplicationController
   end
 
   def show
+    unless current_lender?
+      redirect_to root_path, notice: "Access denied"
+    end
   end
 
   private
@@ -23,4 +28,14 @@ class LendersController < ApplicationController
   def lender_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
+
+  def set_lender
+    @lender = User.find(params[:id])
+  end
+
+  def current_lender?
+    current_user && current_user.id == params[:id].to_i
+  end
+
+  helper_method :current_lender?
 end
