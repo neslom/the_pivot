@@ -1,7 +1,8 @@
 class OrdersController < ApplicationController
   def create
     if current_user && current_user.lender?
-      Order.create(cart_items: params[:cart], user_id: current_user.id)
+      order = Order.create(cart_items: params[:cart], user_id: current_user.id)
+      order.update_contributed(current_user)
       flash[:notice] = "Thank you for your contribution, #{current_user.name}!"
       session[:cart] = {}
       redirect_to lender_path(current_user)

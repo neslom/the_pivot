@@ -53,7 +53,7 @@ RSpec.feature "borrower manages loan request" do
 
     loan_request = borrower.loan_requests.first
     expect(current_path).to eq(loan_request_path(loan_request))
-    expect(page).to have_content("$#{loan_request.contributed}")
+    expect(page).to have_content("$0.00")
 
     Order.create(user_id: lender.id, cart_items: { borrower.id => "25" })
 
