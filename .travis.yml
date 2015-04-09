@@ -9,12 +9,11 @@ script:
 - bundle exec rspec spec/
 before_script:
 - psql -c 'create database my_app_test' -U postgres
-bundler_args: "--binstubs=./bundler_stubs"
 deploy:
   provider: heroku
   api_key:
     secure: RX9H30R//985unaRjhkDE+USmDxuxqhuumw3TD6Qv52+XYjaMvOCM12Dnry42BbOMtzUBhrpQFmkgjq2RO4NEee/jCX+Giral4+7U7N+SjCv38mKyAHfdnqlC1oZnsd3MiGgpaSC96utA+faXB9t+dYcCDADb5Rk9ACotC2xnwo=
-  skip_cleanup: true
+  run: "rake db:migrate"
   app: protected-lowlands-2991
   on:
     repo: neslom/the_pivot
