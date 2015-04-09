@@ -6,6 +6,7 @@ Rails.application.configure do
   config.assets.compile = true
 
 
+
   config.cache_classes = true
 
   config.eager_load = true

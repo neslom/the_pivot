@@ -81,5 +81,3 @@ test:
 production:
   <<: *default
   database: the_pivot_production
-  username: the_pivot
-  password: <%= ENV['THE_PIVOT_DATABASE_PASSWORD'] %>
