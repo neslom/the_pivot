@@ -2,8 +2,7 @@
     <!-- Default panel contents -->
     <div class="panel-heading"><h3><%= @lender.name %>'s Portfolio</h3></div>
     <div class="panel-body">
-      <h4>Amount Donated: $100.00</h4>
-      <h4>Amount Returned: $0.00</h4>
+      <h4>Amount Donated: <%= number_to_currency(@lender.amount_contributed) %></h4>
     </div>
 <table class="table table-bordered">
   <div class="table-responsive">

@@ -49,7 +49,7 @@ RSpec.feature "lender contributes to loan request" do
 
   scenario "sees loan request contribution on portfolio page" do
     expect(current_path).to eq(lender_path(lender))
-    [loan_request.title, loan_request.repayment_rate, "25"].each do |x|
+    [loan_request.title, loan_request.repayment_rate, "$25.00"].each do |x|
       expect(page).to have_content(x)
     end
   end
