@@ -30,10 +30,6 @@ class LoanRequest < ActiveRecord::Base
     self.repayment_begin_date.strftime("%B %d, %Y")
   end
 
-  def newest_contribution
-    self.updated_at.strftime("%B %d, %Y")
-  end
-
   def funding_remaining
     amount - contributed
   end
