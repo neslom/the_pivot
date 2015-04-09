@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   def create
-    if current_user
+    if current_user && current_user.lender?
       Order.create(cart_items: params[:cart], user_id: current_user.id)
       flash[:notice] = "Thank you for your contribution, #{current_user.name}!"
       session[:cart] = {}
