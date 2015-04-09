@@ -28,6 +28,7 @@
         <li>Repayment rate: <%= @loan_request.repayment_rate.capitalize %></li>
         <li>Categories: <%= @loan_request.categories.each { |cat| cat } %></li>
         <li>Loan Amount: <%= number_to_currency(@loan_request.amount) %></li>
+        <li>Loan Contribution: <%= number_to_currency(@loan_request.contributed) %></li>
       </ul>
       <br>
       <button type="button" class="btn btn-success col-md-4">Lend</button>

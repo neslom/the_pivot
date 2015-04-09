@@ -10,6 +10,8 @@ class LoanRequest < ActiveRecord::Base
   validates_attachment_content_type :picture,
                                      content_type: /\Aimage\/.*\Z/
   has_many :orders
+  has_many :loan_requests_contributors
+  has_many :users, through: :loan_requests_contributors
   has_many :loan_requests_categories
   has_many :categories, through: :loan_requests_categories
   belongs_to :user

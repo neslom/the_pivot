@@ -41,7 +41,7 @@ RSpec.feature "lender contributes to loan request" do
     expect(page).to_not have_content(loan_request.title)
   end
 
-  xscenario "cannot over-contribute to a project" do
+  xscenario "sees loan request contribution on portfolio page" do
     expect(loan_request.contributed).to eq(50)
 
     click_link_or_button("Contribute $25")
@@ -49,5 +49,8 @@ RSpec.feature "lender contributes to loan request" do
     click_link_or_button("Transfer Funds")
 
     expect(loan_request.contributed).to eq(75)
+    [borrower.title, "25"].each do |x|
+      expect(page).to have_content(x)
+    end
   end
 end

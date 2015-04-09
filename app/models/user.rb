@@ -6,4 +6,6 @@ class User < ActiveRecord::Base
   enum role: %w(lender borrower admin)
   has_many :orders
   has_many :loan_requests
+  has_many :loan_requests_contributors
+  has_many :projects, through: :loan_requests_contributors, source: "loan_request"
 end
