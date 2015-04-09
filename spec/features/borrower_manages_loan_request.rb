@@ -5,13 +5,13 @@ RSpec.feature "borrower manages loan request" do
                                email: "richard@example.com",
                                password: "password",
                                role: "borrower")
-                   }
+  }
 
   let(:lender) { User.create(name: "Rachel",
-                               email: "rachel@example.com",
-                               password: "password",
-                               role: "lender")
-                   }
+                             email: "rachel@example.com",
+                             password: "password",
+                             role: "lender")
+  }
 
   def create_loan_request(title, description, amount)
     click_link_or_button "Create Loan Request"

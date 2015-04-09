@@ -28,9 +28,6 @@ class Order < ActiveRecord::Base
   def associate_user_with_loan_request(user_id, loan_request, contribution)
     LoanRequestsContributor.lender_contribution(user_id, loan_request).
       first_or_create.increment!(:contribution, contribution.to_i)
-    #LoanRequestsContributor.where(user_id: user_id,
-                                  #loan_request_id: loan_request.id).
-                                    #first_or_create.increment!(:contribution, contribution.to_i)
   end
 
   def total_price
