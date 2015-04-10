@@ -29,8 +29,4 @@ class Order < ActiveRecord::Base
     LoanRequestsContributor.lender_contribution(user_id, loan_request).
       first_or_create.increment!(:contribution, contribution.to_i)
   end
-
-  def total_price
-    @items.map { |item, _quantity| item.price }.inject(:+)
-  end
 end

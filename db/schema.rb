@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150409185451) do
+ActiveRecord::Schema.define(version: 20150410014841) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20150409185451) do
     t.date     "repayment_begin_date"
     t.integer  "repayment_rate",       default: 0
     t.integer  "user_id"
-    t.integer  "contributed"
+    t.integer  "contributed",          default: 0
   end
 
   add_index "loan_requests", ["user_id"], name: "index_loan_requests_on_user_id", using: :btree
