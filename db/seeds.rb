@@ -46,11 +46,14 @@ class Seed
   end
 
   def create_categories(quantity)
-    quantity.times do
-      title = Faker::Lorem.words(2).join(" ")
-      description = Faker::Lorem.sentence
-      category = Category.create(title: title, description: description)
-      puts "created category #{category.title}"
+    #quantity.times do
+      #title = Faker::Lorem.words(2).join(" ")
+      #description = Faker::Lorem.sentence
+      #category = Category.create(title: title, description: description)
+      #puts "created category #{category.title}"
+    #end
+    ["agriculture", "community", "education"].each do |cat|
+      Category.create(title: cat, description: cat + " stuff")
     end
     put_requests_in_categories
   end
