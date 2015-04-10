@@ -15,7 +15,11 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><%= link_to "Lend", browse_path %></li>
-        <li><%= link_to "Cart", cart_path %></li>
+        <% if !@current_cart.cart_items.empty? %>
+        <li role="presentation"><a href="/cart">Basket: <span class="badge"><%= @current_cart.cart_items.count %></span></a></li>
+        <% else %>
+            <li role="presentation" data-toggle="tooltip" data-placement="bottom" title="You don't have any bookings yet."><a href="/cart">Basket <span class="badge">0</span></a></li>
+        <% end %>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
