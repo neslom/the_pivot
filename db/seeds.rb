@@ -4,7 +4,7 @@ class Seed
     create_borrowers(10)
     create_lenders(10)
     create_loan_requests_for_each_borrower(3)
-    create_categories(7)
+    create_categories
   end
 
   def lenders
@@ -45,13 +45,7 @@ class Seed
     end
   end
 
-  def create_categories(quantity)
-    #quantity.times do
-      #title = Faker::Lorem.words(2).join(" ")
-      #description = Faker::Lorem.sentence
-      #category = Category.create(title: title, description: description)
-      #puts "created category #{category.title}"
-    #end
+  def create_categories
     ["agriculture", "community", "education"].each do |cat|
       Category.create(title: cat, description: cat + " stuff")
     end
