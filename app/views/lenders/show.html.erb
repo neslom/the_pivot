@@ -1,9 +1,8 @@
 <div class="panel panel-success">
     <!-- Default panel contents -->
-    <div class="panel-heading"><h3><%= current_user.name %>'s Portfolio</h3></div>
+    <div class="panel-heading"><h3><%= @lender.name %>'s Portfolio</h3></div>
     <div class="panel-body">
-      <h4>Amount Donated: $100.00</h4>
-      <h4>Amount Returned: $0.00</h4>
+      <h4>Amount Donated: <%= number_to_currency(@lender.total_contributed) %></h4>
     </div>
 <table class="table table-bordered">
   <div class="table-responsive">
@@ -11,7 +10,7 @@
       <thead>
         <tr>
           <th>Date Donated</th>
-          <th>Name</th>
+          <th>Title</th>
           <th>Category</th>
           <th>Amount Donated</th>
           <th>Repayment Begin Date</th>
@@ -19,30 +18,16 @@
         </tr>
       </thead>
       <tbody>
+        <% @lender.projects.each do |project| %>
       <tr>
-        <td>3/1/15</td>
-        <td>Ophelia Peterson</td>
+        <td><%= @lender.contributed_to(@lender.id, project).first.newest_contribution %></td>
+        <td><%= project.title %></td>
         <td>Agriculture</td>
-        <td>$25.00</td>
-        <td>6/1/15</td>
-        <td>Monthly</td>
+        <td><%= @lender.contributed_to(@lender.id, project).first.contribution %></td>
+        <td><%= project.repayment_begin %></td>
+        <td><%= project.repayment_rate.capitalize %></td>
       </tr>
-      <tr>
-        <td>2/1/15</td>
-        <td>Parker Group</td>
-        <td>Shelter</td>
-        <td>$40.00</td>
-        <td>5/1/15</td>
-        <td>Monthly</td>
-      </tr>
-      <tr>
-        <td>1/1/15</td>
-        <td>Rambo</td>
-        <td>Women</td>
-        <td>$35.00</td>
-        <td>4/1/15</td>
-        <td>Monthly</td>
-      </tr>
+      <% end %>
       </tbody>
     </table>
   </div>

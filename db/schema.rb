@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150408221721) do
+ActiveRecord::Schema.define(version: 20150409185451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,9 +51,11 @@ ActiveRecord::Schema.define(version: 20150408221721) do
   add_index "loan_requests_categories", ["loan_request_id"], name: "index_loan_requests_categories_on_loan_request_id", using: :btree
 
   create_table "loan_requests_contributors", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "loan_request_id"
-    t.integer "contribution"
+    t.integer  "user_id"
+    t.integer  "loan_request_id"
+    t.integer  "contribution"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "loan_requests_contributors", ["loan_request_id"], name: "index_loan_requests_contributors_on_loan_request_id", using: :btree

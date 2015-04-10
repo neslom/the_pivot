@@ -8,4 +8,12 @@ class User < ActiveRecord::Base
   has_many :loan_requests
   has_many :loan_requests_contributors
   has_many :projects, through: :loan_requests_contributors, source: "loan_request"
+
+  def total_contributed
+    loan_requests_contributors.sum(:contribution)
+  end
+
+  def contributed_to(user_id, loan_request)
+    LoanRequestsContributor.lender_contribution(user_id, loan_request)
+  end
 end

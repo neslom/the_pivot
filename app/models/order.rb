@@ -17,8 +17,8 @@ class Order < ActiveRecord::Base
     loan_requests
   end
 
-  def update_contributed
-    user_id = self.user_id
+  def update_contributed(user)
+    user_id = user.id
     cart_item_and_quantity.each do |loan_request, contribution|
       associate_user_with_loan_request(user_id, loan_request, contribution)
       loan_request.update_attributes(contributed: loan_request.contributed += contribution.to_i)

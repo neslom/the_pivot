@@ -5,4 +5,8 @@ class LoanRequestsContributor < ActiveRecord::Base
   def self.lender_contribution(user_id, loan_request)
     where(user_id: user_id, loan_request_id: loan_request.id)
   end
+
+  def newest_contribution
+    self.updated_at.strftime("%B %d, %Y")
+  end
 end
