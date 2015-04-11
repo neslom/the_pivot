@@ -39,8 +39,9 @@ RSpec.feature "unauthenticated user browses loan requests" do
   end
 
   scenario "can see the navbar updated when the cart is updated" do
+    expect(page).to have_content("Basket 0")
     click_link_or_button "Contribute $25"
-    expect(page).to have_content("Basket: 1")
+    expect(page).to have_content("Basket 1")
   end
 
   scenario "does not see Transfer Funds link if cart is empty" do
