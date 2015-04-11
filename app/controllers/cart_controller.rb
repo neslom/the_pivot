@@ -16,7 +16,7 @@ class CartController < ApplicationController
       @current_cart.increase_loan_request_amount(params[:loan_request_id])
       redirect_to cart_path
     elsif params[:quantity] == "decrease"
-      @current_cart.decrease_item_quantity(params[:item_id])
+      @current_cart.decrease_loan_request_amount(params[:loan_request_id])
       redirect_to cart_path
     end
   end

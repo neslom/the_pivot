@@ -24,9 +24,9 @@ class Cart
     @cart_items[loan_request_id] += 25
   end
 
-  def decrease_item_quantity(item_id)
-    if @cart_items[item_id] > 1
-      @cart_items[item_id] -= 1
+  def decrease_loan_request_amount(loan_request_id)
+    if @cart_items[loan_request_id] > 25
+      @cart_items[loan_request_id] -= 25
     else
       @cart_items.delete(item_id)
     end
