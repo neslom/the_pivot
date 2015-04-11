@@ -23,20 +23,25 @@ RSpec.feature "lender portfolio page" do
                                            user_id: borrower.id)
   }
 
-  before(:each) { lender.projects << loan_request }
+  let(:category) { Category.create(title: "agricultuer", description: "agri stuff") }
 
-  scenario "page shows all info of a loan request that has been contributed to" do
+  before(:each) do
+    lender.projects << loan_request
+    @project = lender.projects.first
+    @project.categories << category
     visit "/"
     login_as(lender)
     visit lender_path(lender)
+  end
 
-    project = lender.projects.first
-    category = Category.create(title: "agricultuer", description: "agri stuff")
-    project.categories << category
-
-    [project.title, project.user.name, lender.contributed_to(project).newest_contribution,
+  scenario "page shows all info of a loan request that has been contributed to" do
+    [@project.title, @project.user.name, lender.contributed_to(@project).newest_contribution,
      lender.total_contributed].each do |x|
       expect(page).to have_content(x)
     end
+  end
+
+  scenario "lender clicks link of borrower name to go to the borrower loan request page" do
+
   end
 end

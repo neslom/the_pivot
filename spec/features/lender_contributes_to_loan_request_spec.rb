@@ -23,7 +23,10 @@ RSpec.feature "lender contributes to loan request" do
                                            user_id: borrower.id)
   }
 
+  let(:category) { Category.create(title: "agricultuer", description: "agri stuff") }
+
   before(:each) do
+    loan_request.categories << category
     visit "/"
     login_as(lender)
     visit browse_path
