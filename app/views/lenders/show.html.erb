@@ -20,10 +20,10 @@
       <tbody>
         <% @lender.projects.each do |project| %>
       <tr>
-        <td><%= @lender.contributed_to(@lender.id, project).first.newest_contribution %></td>
+        <td><%= @lender.contributed_to(project).first.newest_contribution %></td>
         <td><%= project.title %></td>
         <td>Agriculture</td>
-        <td><%= @lender.contributed_to(@lender.id, project).first.contribution %></td>
+        <td><%= @lender.contributed_to(project).first.contribution %></td>
         <td><%= project.repayment_begin %></td>
         <td><%= project.repayment_rate.capitalize %></td>
       </tr>
