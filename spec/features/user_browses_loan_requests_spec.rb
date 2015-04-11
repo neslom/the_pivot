@@ -73,4 +73,12 @@ RSpec.feature "unauthenticated user browses loan requests" do
     click_link_or_button "Remove from Basket"
     expect(page).to_not have_content(loan_request.title)
   end
+
+  scenario "loan request amount can be incremented or decremented by $25" do
+    click_link_or_button "Contribute $25"
+    visit cart_path
+    expect(page).to have_content("$25")
+    click_link_or_button "+$25"
+    expect(page).tp have_content("$50")
+  end
 end
