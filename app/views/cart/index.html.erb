@@ -22,7 +22,10 @@
         <td><%= loan_request.user.name.capitalize %></td>
         <td><%= loan_request.repayment_begin %></td>
         <td><%= loan_request.repayment_rate %></td>
-        <td><%= number_to_currency(amount, precision: 2) %></td>
+        <td><%= number_to_currency(amount, precision: 2) %>
+          <td> <%= button_to "+$25", {:controller => "cart", :action => "update", :loan_request_id => loan_request.id, :quantity => "increase" } , :method=>:put  %> </td>
+          <td> <%= button_to "-$25", {:controller => "cart", :action => "update", :loan_request_id => loan_request.id, :quantity => "decrease" } , :method=>:put  %> </td>
+        </td>
         <td><%= link_to "Remove from Basket", cart_path(loan_request), method: :delete %></td>
       </tr>
     <% end %>
