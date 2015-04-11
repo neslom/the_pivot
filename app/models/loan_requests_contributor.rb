@@ -6,7 +6,7 @@ class LoanRequestsContributor < ActiveRecord::Base
     where(user_id: user_id, loan_request_id: loan_request.id)
   end
 
-  def newest_contribution
-    self.updated_at.strftime("%B %d, %Y")
+  def self.newest_contribution
+    first.updated_at.strftime("%B %d, %Y")
   end
 end

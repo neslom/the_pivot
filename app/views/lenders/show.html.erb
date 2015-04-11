@@ -11,6 +11,7 @@
         <tr>
           <th>Date Donated</th>
           <th>Title</th>
+          <th>Borrower</th>
           <th>Category</th>
           <th>Amount Donated</th>
           <th>Repayment Begin Date</th>
@@ -20,8 +21,9 @@
       <tbody>
         <% @lender.projects.each do |project| %>
       <tr>
-        <td><%= @lender.contributed_to(project).first.newest_contribution %></td>
+        <td><%= @lender.contributed_to(project).newest_contribution %></td>
         <td><%= project.title %></td>
+        <td><%= project.user.name %></td>
         <td>Agriculture</td>
         <td><%= @lender.contributed_to(project).first.contribution %></td>
         <td><%= project.repayment_begin %></td>

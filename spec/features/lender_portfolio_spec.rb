@@ -31,8 +31,11 @@ RSpec.feature "lender portfolio page" do
     visit lender_path(lender)
 
     project = lender.projects.first
+    category = Category.create(title: "agricultuer", description: "agri stuff")
+    project.categories << category
 
-    [loan_request.title, lender.contributed_to(project).first.newest_contribution, lender.total_contributed].each do |x|
+    [project.title, project.user.name, lender.contributed_to(project).newest_contribution,
+     lender.total_contributed].each do |x|
       expect(page).to have_content(x)
     end
   end
