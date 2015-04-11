@@ -39,8 +39,9 @@ RSpec.feature "unauthenticated user browses loan requests" do
   end
 
   scenario "can see the navbar updated when the cart is updated" do
+    expect(page).to have_content("Basket 0")
     click_link_or_button "Contribute $25"
-    expect(page).to have_content("Basket: 1")
+    expect(page).to have_content("Basket 1")
   end
 
   scenario "does not see Transfer Funds link if cart is empty" do
@@ -70,7 +71,31 @@ RSpec.feature "unauthenticated user browses loan requests" do
     click_link_or_button "Contribute $25"
     visit cart_path
     expect(page).to have_content(loan_request.title)
-    click_link_or_button "Remove from Basket"
+    click_link_or_button ""
     expect(page).to_not have_content(loan_request.title)
+  end
+
+  scenario "loan request amount can be incremented or decremented by $25" do
+    click_link_or_button "Contribute $25"
+    visit cart_path
+    expect(page).to have_content("$25")
+    within(".add25") do
+      click_link_or_button "$25"
+    end
+    expect(page).to have_content("$50")
+    within(".sub25") do
+      click_link_or_button "$25"
+    end
+    expect(page).to have_content("$25")
+  end
+
+  scenario "loan request is removed if the amount is reduced to 0" do
+    click_link_or_button "Contribute $25"
+    visit cart_path
+    expect(page).to have_content("$25")
+    within(".sub25") do
+      click_link_or_button "$25"
+    end
+    expect(page).to have_content("Your Basket is Empty")
   end
 end
