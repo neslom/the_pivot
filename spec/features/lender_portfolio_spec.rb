@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.feature "lender contributes to loan request" do
+RSpec.feature "lender portfolio page" do
   let(:lender) { User.create(email: "example@example.com",
                              password: "password",
                              name: "richard",
@@ -26,34 +26,24 @@ RSpec.feature "lender contributes to loan request" do
   let(:category) { Category.create(title: "agricultuer", description: "agri stuff") }
 
   before(:each) do
-    loan_request.categories << category
+    lender.projects << loan_request
+    @project = lender.projects.first
+    @project.categories << category
     visit "/"
     login_as(lender)
-    visit browse_path
-    click_link_or_button("Contribute $25")
-    visit cart_path
-    click_link_or_button("Transfer Funds")
+    visit lender_path(lender)
   end
 
-  scenario "transfers funds successfully" do
-    expect(current_path).to eq(lender_path(lender))
-    expect(page).to have_content("Thank you for your contribution, #{lender.name}!")
-
-    visit cart_path
-    expect(page).to_not have_content(loan_request.title)
-  end
-
-  scenario "after funds are transferred the contribution is reflected on the borrower show page" do
-    visit borrower_path(borrower)
-    click_link_or_button("About")
-
-    expect(page).to have_content("$75.00")
-  end
-
-  scenario "sees loan request contribution on portfolio page" do
-    expect(current_path).to eq(lender_path(lender))
-    [loan_request.title, loan_request.repayment_rate.capitalize, "$25.00"].each do |x|
+  scenario "page shows all info of a loan request that has been contributed to" do
+    [@project.title, @project.user.name, lender.contributed_to(@project).newest_contribution,
+     lender.total_contributed].each do |x|
       expect(page).to have_content(x)
     end
+  end
+
+  scenario "lender clicks link of borrower name to go to the borrower loan request page" do
+    click_link_or_button "#{@project.user.name}"
+
+    expect(current_path).to eq(borrower_path(borrower))
   end
 end

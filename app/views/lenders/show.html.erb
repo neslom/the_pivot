@@ -1,31 +1,34 @@
 <div class="panel panel-success">
     <!-- Default panel contents -->
-    <div class="panel-heading"><h3><%= @lender.name %>'s Portfolio</h3></div>
+    <div class="panel-heading"><h1><%= @lender.name %>'s Portfolio</h1></div>
     <div class="panel-body">
-      <h4>Amount Donated: <%= number_to_currency(@lender.total_contributed) %></h4>
+      <h3>Total Donations</h3>
+      <h4><pre><%= number_to_currency(@lender.total_contributed) %></pre></h4>
     </div>
 <table class="table table-bordered">
   <div class="table-responsive">
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>Date Donated</th>
-          <th>Title</th>
-          <th>Category</th>
-          <th>Amount Donated</th>
-          <th>Repayment Begin Date</th>
-          <th>Repayment Rate</th>
+          <th class="text-center">Date Donated</th>
+          <th class="text-center">Title</th>
+          <th class="text-center">Borrower</th>
+          <th class="text-center">Category</th>
+          <th class="text-center">Amount Donated</th>
+          <th class="text-center">Repayment Begin Date</th>
+          <th class="text-center">Repayment Rate</th>
         </tr>
       </thead>
       <tbody>
         <% @lender.projects.each do |project| %>
       <tr>
-        <td><%= @lender.contributed_to(@lender.id, project).first.newest_contribution %></td>
-        <td><%= project.title %></td>
-        <td>Agriculture</td>
-        <td><%= @lender.contributed_to(@lender.id, project).first.contribution %></td>
-        <td><%= project.repayment_begin %></td>
-        <td><%= project.repayment_rate.capitalize %></td>
+        <td class="text-center"><%= @lender.contributed_to(project).newest_contribution %></td>
+        <td class="text-center"><%= project.title %></td>
+        <td class="text-center"><%= link_to "#{project.user.name}", borrower_path(project.user) %></td>
+        <td class="text-center"><%= project.categories.first.title.capitalize %></td>
+        <td class="text-center"><%= number_to_currency(@lender.contributed_to(project).first.contribution) %></td>
+        <td class="text-center"><%= project.repayment_begin %></td>
+        <td class="text-center"><%= project.repayment_rate.capitalize %></td>
       </tr>
       <% end %>
       </tbody>
