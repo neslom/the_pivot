@@ -42,6 +42,8 @@ RSpec.feature "lender portfolio page" do
   end
 
   scenario "lender clicks link of borrower name to go to the borrower loan request page" do
+    click_link_or_button "#{@project.user.name}"
 
+    expect(current_path).to eq(borrower_path(borrower))
   end
 end
