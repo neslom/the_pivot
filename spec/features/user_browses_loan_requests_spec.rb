@@ -80,5 +80,7 @@ RSpec.feature "unauthenticated user browses loan requests" do
     expect(page).to have_content("$25")
     click_link_or_button "+$25"
     expect(page).to have_content("$50")
+    click_link_or_button "-$25"
+    expect(page).to have_content("$25")
   end
 end
