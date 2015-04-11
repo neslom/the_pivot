@@ -71,7 +71,7 @@ RSpec.feature "unauthenticated user browses loan requests" do
     click_link_or_button "Contribute $25"
     visit cart_path
     expect(page).to have_content(loan_request.title)
-    click_link_or_button "Remove from Basket"
+    click_link_or_button ""
     expect(page).to_not have_content(loan_request.title)
   end
 
@@ -79,9 +79,13 @@ RSpec.feature "unauthenticated user browses loan requests" do
     click_link_or_button "Contribute $25"
     visit cart_path
     expect(page).to have_content("$25")
-    click_link_or_button "+$25"
+    within(".add25") do
+      click_link_or_button "$25"
+    end
     expect(page).to have_content("$50")
-    click_link_or_button "-$25"
+    within(".sub25") do
+      click_link_or_button "$25"
+    end
     expect(page).to have_content("$25")
   end
 
@@ -89,7 +93,9 @@ RSpec.feature "unauthenticated user browses loan requests" do
     click_link_or_button "Contribute $25"
     visit cart_path
     expect(page).to have_content("$25")
-    click_link_or_button "-$25"
+        within(".sub25") do
+      click_link_or_button "$25"
+    end
     expect(page).to have_content("Your Basket is Empty")
   end
 end
