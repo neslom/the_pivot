@@ -28,7 +28,7 @@ class Cart
     if @cart_items[loan_request_id] > 25
       @cart_items[loan_request_id] -= 25
     else
-      @cart_items.delete(item_id)
+      @cart_items.delete(loan_request_id)
     end
   end
 end
