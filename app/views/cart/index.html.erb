@@ -31,7 +31,7 @@
         <div class="sub25">
           <td><%= button_to "$25", {controller: "cart", action: "update", loan_request_id: loan_request.id, quantity: "decrease" } , method: "put", class: "btn-small btn-danger"  %></td>
         </div>
-        <td><%= link_to "", cart_path(loan_request), class: "fa fa-trash", method: "delete" %></td>
+        <td><%= link_to "", cart_path(loan_request), class: "glyphicon glyphicon-trash", method: "delete" %></td>
       </tr>
     <% end %>
   <% else %>
