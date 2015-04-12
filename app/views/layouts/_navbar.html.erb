@@ -14,7 +14,11 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
+        <% if current_borrower? %>
+          <li><%= link_to "Portfolio" %></li>
+        <% else %>
         <li><%= link_to "Lend", browse_path %></li>
+      <% end %>
         <% if !@current_cart.cart_items.empty? %>
         <li role="presentation"><a href="/cart">Basket <span class="badge"><%= @current_cart.cart_items.count %></span></a></li>
         <% else %>
