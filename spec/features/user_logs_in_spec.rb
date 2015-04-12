@@ -43,6 +43,18 @@ RSpec.describe "User logs in" do
       expect(page).to have_content("Welcome to Keevahh, #{lender.name}!")
       expect(current_path).to eq(root_path)
     end
+
+    scenario "can log out" do
+      visit root_path
+      click_link_or_button "Login"
+      fill_in("session[email]", with: lender.email)
+      fill_in("session[password]", with: lender.password)
+      click_link_or_button "Log In"
+      click_link_or_button "Log out"
+
+      expect(current_path).to eq(root_path)
+      expect(@current_user).to eq(nil)
+    end
   end
 
   context "as a valid borrower" do
