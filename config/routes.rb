@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   get "/browse", to: "loan_requests#index"
 
+  get "/portfolio", to: "lender_portfolio#show"
+
   resources :loan_requests
 
   resources :categories do
@@ -21,9 +23,6 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#create"
   get "/logout", to: 'sessions#destroy'
   delete "/logout", to: 'sessions#destroy'
-
-  #get 'signup', to: 'users#new'
-  #post 'signup', to: 'users#create'
 
   resources :lenders
 
