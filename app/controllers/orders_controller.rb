@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
       order = Order.create(cart_items: params[:cart], user_id: current_user.id)
 
       order.find_borrower.each do |loan_request|
-        BorrowerMailer.project_contributed_to(loan_request.user).deliver_now
+        BorrowerMailer.project_contributed_to(loan_request).deliver_now
       end
 
       order.update_contributed(current_user)
