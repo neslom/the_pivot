@@ -107,5 +107,4 @@ RSpec.feature "unauthenticated user browses loan requests" do
     click_link_or_button "Basket"
     expect(page).to have_content(loan_request.title)
   end
-
 end
