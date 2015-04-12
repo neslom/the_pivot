@@ -2,11 +2,7 @@ class OrdersController < ApplicationController
   def create
     if current_user && current_user.lender?
       order = Order.create(cart_items: params[:cart], user_id: current_user.id)
-
-      order.find_borrower.each do |loan_request|
-        BorrowerMailer.project_contributed_to(loan_request).deliver_now
-      end
-
+      order.send_contributed_to_email
       order.update_contributed(current_user)
       flash[:notice] = "Thank you for your contribution, #{current_user.name}!"
       session[:cart] = {}
