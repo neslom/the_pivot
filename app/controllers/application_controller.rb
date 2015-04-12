@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_borrower?
-    current_user && current_user.borrower? && current_user.id == params[:id].to_i
+    current_user && current_user.borrower?
   end
 
   helper_method :create_cart, :current_user, :current_borrower?
