@@ -35,4 +35,11 @@ class Order < ActiveRecord::Base
       User.find(loan_request.user_id)
     end
   end
+
+  def send_contributed_to_email
+    cart_item_and_quantity.each do |loan_request, _|
+      user = User.find(loan_request.user_id)
+      BorrowerMailer.project_contributed_to(user, loan_request.title).deliver_now
+    end
+  end
 end
