@@ -7,12 +7,50 @@ RSpec.feature "borrower dashboard" do
                                 role: 1)
   }
 
-  scenario "borrower clicks a link to view her portfolio" do
+  let(:lender) { User.create(email: "example@example.com",
+                             password: "password",
+                             name: "richard",
+                             role: 0)
+  }
+
+  let!(:loan_request) { LoanRequest.create(title: "Farm Tools",
+                                           description: "help out with the farm tools",
+                                           amount: "100",
+                                           requested_by_date: "2015-06-01",
+                                           repayment_begin_date: "2015-12-01",
+                                           repayment_rate: "monthly",
+                                           user_id: borrower.id)
+  }
+
+  let(:order) { Order.create(cart_items: { "#{borrower.id}" => "25" }, user_id: lender.id) }
+
+  let(:category) { Category.create(title: "agriculture", description: "agri stuff") }
+
+  before(:each) do
+    loan_request.categories << category
     visit "/"
     login_as(borrower)
+  end
 
+  scenario "borrower clicks a link to view her portfolio" do
     click_link_or_button("Portfolio")
     expect(current_path).to eq(portfolio_path)
     expect(page).to have_content("#{borrower.name}'s Portfolio")
+    expect(page).to_not have_link("Lend")
+  end
+
+  scenario "message is displayed if there are no projects with contributions" do
+    visit portfolio_path
+
+    expect(page).to have_content("You have no open projects with contributions")
+  end
+
+  scenario "portfolio page has information about projects that have been contributed to" do
+   order.update_contributed(lender)
+    visit portfolio_path
+
+    ["Total Funding Received"].each do |x|
+      expect(page).to have_content(x)
+    end
   end
 end

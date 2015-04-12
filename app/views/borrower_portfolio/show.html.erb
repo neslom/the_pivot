@@ -2,9 +2,12 @@
     <!-- Default panel contents -->
     <div class="panel-heading"><h1><%= @borrower.name %>'s Portfolio</h1></div>
     <div class="panel-body">
-      <h3>Total Donations</h3>
+      <h3>Total Funding Received</h3>
       <h4><pre><%= number_to_currency(@borrower.total_contributed) %></pre></h4>
     </div>
+    <% if @loan_requests.empty? %>
+      <h2>You have no open projects with contributions</h2>
+    <% else %>
 <table class="table table-bordered">
   <div class="table-responsive">
     <table class="table table-striped">
@@ -12,7 +15,7 @@
         <tr>
           <th class="text-center">Date Donated</th>
           <th class="text-center">Title</th>
-          <th class="text-center">Borrower</th>
+          <th class="text-center">Lender</th>
           <th class="text-center">Category</th>
           <th class="text-center">Amount Donated</th>
           <th class="text-center">Repayment Begin Date</th>
@@ -20,19 +23,20 @@
         </tr>
       </thead>
       <tbody>
-        <% @borrower.projects.each do |project| %>
+        <% @loan_requests.each do |loan_request| %>
       <tr>
-        <td class="text-center"><%= @borrower.contributed_to(project).newest_contribution %></td>
-        <td class="text-center"><%= project.title %></td>
-        <td class="text-center"><%= link_to "#{project.user.name}", borrower_path(project.user) %></td>
-        <td class="text-center"><%= project.categories.first.title.capitalize %></td>
-        <td class="text-center"><%= number_to_currency(@borrower.contributed_to(project).first.contribution) %></td>
-        <td class="text-center"><%= project.repayment_begin %></td>
-        <td class="text-center"><%= project.repayment_rate.capitalize %></td>
+        <td class="text-center">Date here</td>
+        <td class="text-center"><%= loan_request.title %></td>
+        <td class="text-center"><%= link_to "#{loan_request.user.name}", borrower_path(loan_request.user) %></td>
+        <td class="text-center"><%= loan_request.categories.first.title.capitalize %></td>
+        <td class="text-center">what</td>
+        <td class="text-center"><%= loan_request.repayment_begin %></td>
+        <td class="text-center"><%= loan_request.repayment_rate.capitalize %></td>
       </tr>
       <% end %>
       </tbody>
     </table>
   </div>
 </table>
+<% end %>
 </div>
