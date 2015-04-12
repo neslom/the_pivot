@@ -3,8 +3,8 @@ class OrdersController < ApplicationController
     if current_user && current_user.lender?
       order = Order.create(cart_items: params[:cart], user_id: current_user.id)
 
-      order.find_borrower.each do |user|
-        BorrowerMailer.project_contributed_to(user).deliver_now
+      order.find_borrower.each do |loan_request|
+        BorrowerMailer.project_contributed_to(loan_request.user).deliver_now
       end
 
       order.update_contributed(current_user)
