@@ -39,4 +39,8 @@ class LoanRequest < ActiveRecord::Base
       raise "cannot contribute more than the project's total funds"
     end
   end
+
+  def self.projects_with_contributions
+    where("contributed > ?", 0)
+  end
 end
