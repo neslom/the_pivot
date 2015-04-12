@@ -98,4 +98,14 @@ RSpec.feature "unauthenticated user browses loan requests" do
     end
     expect(page).to have_content("Your Basket is Empty")
   end
+
+  scenario "can lend to a loan request from individual show page" do
+    click_link_or_button "About"
+    expect(page).to have_content("Basket 0")
+    click_link_or_button "Contribute $25"
+    expect(page).to have_content("Basket 1")
+    click_link_or_button "Basket"
+    expect(page).to have_content(loan_request.title)
+  end
+
 end
