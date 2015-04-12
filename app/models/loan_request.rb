@@ -26,6 +26,10 @@ class LoanRequest < ActiveRecord::Base
     self.requested_by_date.strftime("%B %d, %Y")
   end
 
+  def updated_formatted
+    self.updated_at.strftime("%B %d, %Y")
+  end
+
   def repayment_begin
     self.repayment_begin_date.strftime("%B %d, %Y")
   end

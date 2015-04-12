@@ -13,7 +13,7 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th class="text-center">Date Donated</th>
+          <th class="text-center">Last Contribution</th>
           <th class="text-center">Title</th>
           <th class="text-center">Lender</th>
           <th class="text-center">Category</th>
@@ -25,7 +25,7 @@
       <tbody>
         <% @loan_requests.each do |loan_request| %>
       <tr>
-        <td class="text-center">Date here</td>
+        <td class="text-center"><%= loan_request.updated_formatted %></td>
         <td class="text-center"><%= loan_request.title %></td>
         <td class="text-center"><%= link_to "#{loan_request.user.name}", borrower_path(loan_request.user) %></td>
         <td class="text-center"><%= loan_request.categories.first.title.capitalize %></td>
