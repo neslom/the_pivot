@@ -7,11 +7,11 @@ RSpec.feature "borrower dashboard" do
                                 role: 1)
   }
 
-  scenario "borrower signs in and sees a link to her portfolio" do
+  scenario "borrower clicks a link to view her portfolio" do
     visit "/"
     login_as(borrower)
 
-    expect(current_path).to eq(borrower_path(borrower))
-    expect(page).to have_link("Portfolio")
+    click_link_or_button("Portfolio")
+    expect(current_path).to eq(portfolio_path)
   end
 end
