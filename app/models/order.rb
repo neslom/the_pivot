@@ -29,4 +29,10 @@ class Order < ActiveRecord::Base
     LoanRequestsContributor.lender_contribution(user_id, loan_request).
       first_or_create.increment!(:contribution, contribution.to_i)
   end
+
+  def find_borrower
+    cart_item_and_quantity.keys.each do |loan_request|
+      User.find(loan_request.user_id)
+    end
+  end
 end
