@@ -13,5 +13,6 @@ RSpec.feature "borrower dashboard" do
 
     click_link_or_button("Portfolio")
     expect(current_path).to eq(portfolio_path)
+    expect(page).to have_content("#{borrower.name}'s Portfolio")
   end
 end
