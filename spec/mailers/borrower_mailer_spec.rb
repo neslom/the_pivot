@@ -10,6 +10,5 @@ RSpec.describe BorrowerMailer, type: :mailer do
     expect(mail.to).to eq([user.email])
     expect(mail.from).to eq(["notifications@keevahh.com"])
     expect(mail.body.encoded).to include(user.name)
-    #expect(mail.body.encoded).to include(CGI::escape(user.email))
   end
 end
