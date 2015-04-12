@@ -12,8 +12,23 @@ RSpec.describe User, type: :model do
     expect(user).to_not be_valid
   end
 
+  it "is invalid with a password less than 8 characters" do
+    user.password = "123456"
+    expect(user).to_not be_valid
+  end
+
   it "is invalid without an email address" do
     user.email = nil
+    expect(user).to_not be_valid
+  end
+
+  it "is invalid without a period in email address" do
+    user.email = "jeff@com"
+    expect(user).to_not be_valid
+  end
+
+  it "is invalid without an @ in email address" do
+    user.email = "jeff.com"
     expect(user).to_not be_valid
   end
 

@@ -2,11 +2,11 @@ require "rails_helper"
 
 RSpec.feature "unauthenticated user browses loan requests" do
   let (:user) { User.create(email: "jorge@example.com",
-                            password: "pass",
+                            password: "password",
                             name: "jorge")
   }
   let (:user2) { User.create(email: "jeff@example.com",
-                             password: "pass",
+                             password: "password",
                              name: "jeff",
                              role: 1)
   }
