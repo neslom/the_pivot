@@ -8,7 +8,7 @@ RSpec.feature "lender contributes to loan request" do
   }
 
   let!(:borrower) { User.create(email: "jeff@example.com",
-                                password: "pass",
+                                password: "password",
                                 name: "jeff",
                                 role: 1)
   }
