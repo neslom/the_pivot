@@ -46,7 +46,7 @@ RSpec.feature "borrower dashboard" do
   end
 
   scenario "portfolio page has information about projects that have been contributed to" do
-   order.update_contributed(lender)
+    order.update_contributed(lender)
     visit portfolio_path
 
     ["Total Funding Received",
@@ -57,7 +57,11 @@ RSpec.feature "borrower dashboard" do
      loan_request.repayment_begin,
      loan_request.repayment_rate.capitalize,
      loan_request.list_project_contributors].each do |x|
-      expect(page).to have_content(x)
-    end
+       expect(page).to have_content(x)
+     end
+  end
+
+  scenario "the basket is not shown to a logged in borrower" do
+    expect(page).to_not have_link("Basket")
   end
 end

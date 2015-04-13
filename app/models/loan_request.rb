@@ -55,8 +55,6 @@ class LoanRequest < ActiveRecord::Base
   end
 
   def list_project_contributors
-    project_contributors.map do |user|
-      user.name
-    end.to_sentence
+    project_contributors.map(&:name).to_sentence
   end
 end
