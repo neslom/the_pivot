@@ -5,6 +5,7 @@ class Seed
     create_lenders(10)
     create_loan_requests_for_each_borrower(3)
     create_categories
+    create_orders(10)
   end
 
   def lenders
@@ -13,6 +14,10 @@ class Seed
 
   def borrowers
     User.where(role: 1)
+  end
+
+  def orders
+    Order.all
   end
 
   def create_known_users
@@ -29,7 +34,7 @@ class Seed
                          password: "password",
                          email: email,
                          role: 0)
-      puts "created user #{user.name}"
+      puts "created lender #{user.name}"
     end
   end
 
@@ -41,7 +46,7 @@ class Seed
                          password: "password",
                          email: email,
                          role: 1)
-      puts "created user #{user.name}"
+      puts "created borrower #{user.name}"
     end
   end
 
@@ -70,7 +75,7 @@ class Seed
         repayment_begin_date =
           Faker::Time.between(3.days.ago, Time.now)
         amount = "200"
-        contributed = "150"
+        contributed = "0"
         request = borrower.loan_requests.create(title: title,
                                                 description: description,
                                                 amount: amount,
@@ -80,7 +85,18 @@ class Seed
                                                 repayment_rate: "weekly",
                                                 repayment_begin_date: repayment_begin_date)
         puts "created loan request #{request.title} for #{borrower.name}"
-        puts "There are now #{LoanRequest.all.count} requests"
+        puts "There are now #{LoanRequest.count} requests"
+      end
+    end
+  end
+
+  def create_orders(quantity)
+    quantity.times do
+      borrowers.each do |borrower|
+        lender = User.where(role: 0).order("RANDOM()").take(1).first
+        order = Order.create(cart_items: { "#{borrower.id}" => "25" }, user_id: lender.id)
+        order.update_contributed(lender)
+        puts "Created Order for Borrower #{borrower.name} by Lender #{lender.name}"
       end
     end
   end
