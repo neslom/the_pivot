@@ -10,5 +10,9 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
-  helper_method :create_cart, :current_user
+  def current_borrower?
+    current_user && current_user.borrower?
+  end
+
+  helper_method :create_cart, :current_user, :current_borrower?
 end

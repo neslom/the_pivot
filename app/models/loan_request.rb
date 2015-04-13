@@ -26,6 +26,10 @@ class LoanRequest < ActiveRecord::Base
     self.requested_by_date.strftime("%B %d, %Y")
   end
 
+  def updated_formatted
+    self.updated_at.strftime("%B %d, %Y")
+  end
+
   def repayment_begin
     self.repayment_begin_date.strftime("%B %d, %Y")
   end
@@ -38,5 +42,19 @@ class LoanRequest < ActiveRecord::Base
     if funding_remaining < contributed
       raise "cannot contribute more than the project's total funds"
     end
+  end
+
+  def self.projects_with_contributions
+    where("contributed > ?", 0)
+  end
+
+  def project_contributors
+    LoanRequestsContributor.where(loan_request_id: self.id).pluck(:user_id).map do |user_id|
+      User.find(user_id)
+    end
+  end
+
+  def list_project_contributors
+    project_contributors.map(&:name).to_sentence
   end
 end

@@ -14,12 +14,16 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
+        <% if current_borrower? %>
+          <li><%= link_to "Portfolio", portfolio_path %></li>
+        <% else %>
         <li><%= link_to "Lend", browse_path %></li>
         <% if !@current_cart.cart_items.empty? %>
         <li role="presentation"><a href="/cart">Basket <span class="badge"><%= @current_cart.cart_items.count %></span></a></li>
         <% else %>
             <li role="presentation" data-toggle="tooltip" data-placement="bottom" title="You don't have any bookings yet."><a href="/cart">Basket <span class="badge">0</span></a></li>
         <% end %>
+      <% end %>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>

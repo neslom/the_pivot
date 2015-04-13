@@ -1,0 +1,42 @@
+<div class="panel panel-success">
+    <!-- Default panel contents -->
+    <div class="panel-heading"><h1><%= @borrower.name %>'s Portfolio</h1></div>
+    <div class="panel-body">
+      <h3>Total Funding Received</h3>
+      <h4><pre><%= number_to_currency(@borrower.total_contributions_received) %></pre></h4>
+    </div>
+    <% if @loan_requests.empty? %>
+      <h2>You have no open projects with contributions</h2>
+    <% else %>
+<table class="table table-bordered">
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th class="text-center">Last Contribution</th>
+          <th class="text-center">Title</th>
+          <th class="text-center">Lenders</th>
+          <th class="text-center">Category</th>
+          <th class="text-center">Amount Donated</th>
+          <th class="text-center">Repayment Begin Date</th>
+          <th class="text-center">Repayment Rate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @loan_requests.each do |loan_request| %>
+      <tr>
+        <td class="text-center"><%= loan_request.updated_formatted %></td>
+        <td class="text-center"><%= loan_request.title %></td>
+        <td class="text-center"><%= loan_request.list_project_contributors %></td>
+        <td class="text-center"><%= loan_request.categories.first.title.capitalize %></td>
+        <td class="text-center"><%= number_to_currency(loan_request.contributed) %></td>
+        <td class="text-center"><%= loan_request.repayment_begin %></td>
+        <td class="text-center"><%= loan_request.repayment_rate.capitalize %></td>
+      </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</table>
+<% end %>
+</div>
