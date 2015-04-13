@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   get "/browse", to: "loan_requests#index"
 
+  get "/portfolio", to: "borrower_portfolio#show"
+
   resources :loan_requests
 
   get "/cart", to: "cart#index"
