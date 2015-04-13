@@ -49,7 +49,14 @@ RSpec.feature "borrower dashboard" do
    order.update_contributed(lender)
     visit portfolio_path
 
-    ["Total Funding Received", loan_request.updated_formatted, loan_request.list_project_contributors].each do |x|
+    ["Total Funding Received",
+     loan_request.updated_formatted,
+     loan_request.title,
+     loan_request.categories.first.title.capitalize,
+     "$25.00",
+     loan_request.repayment_begin,
+     loan_request.repayment_rate.capitalize,
+     loan_request.list_project_contributors].each do |x|
       expect(page).to have_content(x)
     end
   end
