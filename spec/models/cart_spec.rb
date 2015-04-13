@@ -34,4 +34,11 @@ RSpec.describe Cart, type: :model do
     2.times { cart.add_item(loan_request2.id, loan_request2.amount) }
     expect(cart.cart_items).to eq({ loan_request.id => 300, loan_request2.id => 1200 })
   end
+
+  it "can delete a loan request" do
+    cart.add_item(loan_request.id, loan_request.amount)
+    expect(cart.cart_items.count).to eq(1)
+    cart.delete_loan_request(loan_request.id)
+    expect(cart.cart_items).to be_empty
+  end
 end

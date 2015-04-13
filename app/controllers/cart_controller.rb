@@ -7,7 +7,7 @@ class CartController < ApplicationController
   end
 
   def delete
-    @current_cart.delete_item(params[:format])
+    @current_cart.delete_loan_request(params[:format])
     redirect_to cart_path
   end
 

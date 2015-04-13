@@ -16,8 +16,8 @@ class Cart
     loan_request
   end
 
-  def delete_item(item_id)
-    @cart_items.delete(item_id)
+  def delete_loan_request(loan_request_id)
+    @cart_items.delete(loan_request_id)
   end
 
   def increase_loan_request_amount(loan_request_id)
