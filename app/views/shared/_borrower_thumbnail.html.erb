@@ -6,12 +6,12 @@
         <img src="http://www.kiva.org/img/w632/1847429.jpg" alt="...">
         <div class="caption">
           <div class="thumbnail-label">
-            <h3><%= loan_request.title %></h3>
+            <h3><%= truncate(loan_request.title, length: 20) %></h3>
           </div>
-          <p><%= loan_request.description %></p>
+          <p><%= truncate(loan_request.description, length: 30) %></p>
           <p>
-          <%= link_to "Details", loan_request_path(loan_request), class: "btn btn-default" %>
-          <%= link_to "Edit", edit_loan_request_path(loan_request), remote: true, class: "btn btn-info pull-right" %>
+            <%= link_to "Details", loan_request_path(loan_request), class: "btn btn-default" %>
+            <%= link_to "Edit", edit_loan_request_path(loan_request), remote: true, class: "btn btn-info pull-right" %>
           </p>
 
           <%= render "shared/progress_bar" %>
