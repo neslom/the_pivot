@@ -15,6 +15,10 @@ class User < ActiveRecord::Base
     loan_requests_contributors.sum(:contribution)
   end
 
+  def total_contributions_received
+    loan_requests.sum(:contributed)
+  end
+
   def contributed_to(loan_request)
     user_id = self.id
     LoanRequestsContributor.lender_contribution(user_id, loan_request)
