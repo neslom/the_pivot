@@ -47,4 +47,16 @@ class LoanRequest < ActiveRecord::Base
   def self.projects_with_contributions
     where("contributed > ?", 0)
   end
+
+  def project_contributors
+    LoanRequestsContributor.where(loan_request_id: self.id).pluck(:user_id).map do |user_id|
+      User.find(user_id)
+    end
+  end
+
+  def list_project_contributors
+    project_contributors.map do |user|
+      user.name
+    end.to_sentence
+  end
 end
