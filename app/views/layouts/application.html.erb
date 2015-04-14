@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<title>Keevahh</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
+  <head>
+    <title>Keevahh</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
 
-<body>
+  <body>
 
-<%= render 'layouts/navbar' %>
+    <div class="flash">
+      <%= render 'layouts/navbar' %>
+    </div>
 
 
-<%= flash_messages %>
+    <%= flash_messages %>
 
-<%= yield %>
+    <%= yield %>
 
-</body>
+  </body>
 
 </html>
