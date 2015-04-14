@@ -27,8 +27,11 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
+          <% if current_user && current_user.lender? %>
+           <li role="active"><%= link_to "Portfolio", portfolio_path %></li>
+          <% end %>
         <% if current_user %>
-          <%= link_to "Log out", logout_path, method: :delete%>
+          <li role="active"><%= link_to "Log out", logout_path, method: :delete %></li>
         <% else %>
           <li class="active"><a href="#" data-toggle="modal" data-target="#loginModal"> Login <span class="sr-only">(current)</span></a></li>
         <% end %>
@@ -40,8 +43,8 @@
               <li role="active"><a href="#" data-toggle="modal" data-target="#lenderSignUpModal"> Sign Up As Lender </a></li>
               <li role="active"><a href="#" data-toggle="modal" data-target="#borrowerSignUpModal"> Sign Up As Borrower </a></li>
             </ul>
-          </li>
         <% end %>
+          </li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
