@@ -28,17 +28,4 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end
 
-  def update
-    @order = Order.find(params[:id])
-    if params[:status] == "paid"
-      @order.paid!
-      redirect_to order_path
-    elsif params[:status] == "cancelled"
-      @order.cancelled!
-      redirect_to order_path
-    elsif params[:status] == "completed"
-      @order.completed!
-      redirect_to order_path
-    end
-  end
 end
