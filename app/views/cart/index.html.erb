@@ -47,4 +47,6 @@
 </table>
 </div>
 
-<%= button_to "Transfer Funds", orders_path(:cart => @current_cart.cart_items) %>
+<% if !@current_cart.cart_items.empty? %>
+  <%= button_to "Transfer Funds", orders_path(:cart => @current_cart.cart_items) %>
+<% end %>
