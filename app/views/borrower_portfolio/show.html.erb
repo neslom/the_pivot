@@ -15,11 +15,11 @@
         <tr>
           <th class="text-center">Last Contribution</th>
           <th class="text-center">Title</th>
-          <th class="text-center">Lenders</th>
           <th class="text-center">Category</th>
           <th class="text-center">Amount Donated</th>
           <th class="text-center">Repayment Begin Date</th>
           <th class="text-center">Repayment Rate</th>
+          <th class="text-center">Lend Back</th>
         </tr>
       </thead>
       <tbody>
@@ -27,11 +27,11 @@
       <tr>
         <td class="text-center"><%= loan_request.updated_formatted %></td>
         <td class="text-center"><%= loan_request.title %></td>
-        <td class="text-center"><%= loan_request.list_project_contributors %></td>
         <td class="text-center"><%= loan_request.categories.first.title.capitalize %></td>
         <td class="text-center"><%= number_to_currency(loan_request.contributed) %></td>
         <td class="text-center"><%= loan_request.repayment_begin %></td>
         <td class="text-center"><%= loan_request.repayment_rate.capitalize %></td>
+        <td class="text-center"><%= link_to "$$$", borrower_path(@borrower), method: :put %></td>
       </tr>
       <% end %>
       </tbody>
