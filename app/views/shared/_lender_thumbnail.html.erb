@@ -13,9 +13,12 @@
             <%= link_to "About", loan_request_path(loan_request), class: "btn btn-default" %>
             <%= link_to "Contribute $25", cart_path(loan_request: loan_request.id.to_i, amount: 25), method: 'post', class: "btn btn-info pull-right" %>
           </p>
-
-          <%= render "shared/progress_bar" %>
-
+          <br>
+            <div class="progress">
+              <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:<%="#{loan_request.progress_percentage}"%>%;">
+                <%="#{loan_request.progress_percentage}%"%>
+              </div>
+            </div>
         </div>
       </div>
     </div>

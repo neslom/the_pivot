@@ -57,4 +57,8 @@ class LoanRequest < ActiveRecord::Base
   def list_project_contributors
     project_contributors.map(&:name).to_sentence
   end
+
+  def progress_percentage
+    ((1.00 - (funding_remaining.to_f / amount.to_f)) * 100).to_i
+  end
 end
