@@ -38,7 +38,9 @@
         <li>Loan Contribution: <%= number_to_currency(@loan_request.contributed) %></li>
       </ul>
       <br>
+      <%  if !current_borrower? %>
       <%= link_to "Contribute $25", cart_path(loan_request: @loan_request.id.to_i, amount: 25), method: 'post', class: "btn btn-info" %>
+      <% end %>
     </div>
 
   </div>
