@@ -28,7 +28,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
           <% if current_user && current_user.lender? %>
-           <li role="active"><%= link_to "Portfolio", portfolio_path %></li>
+           <li role="active"><%= link_to "Portfolio", lender_path(current_user) %></li>
           <% end %>
         <% if current_user %>
           <li role="active"><%= link_to "Log out", logout_path, method: :delete %></li>
