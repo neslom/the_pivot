@@ -24,6 +24,7 @@ RSpec.feature "unauthenticated user browses loan requests" do
   scenario "can view the loan requests" do
     expect(current_path).to eq(browse_path)
     expect(page).to have_content(loan_request.title)
+    expect(page).to have_content(loan_request.progress_percentage)
   end
 
   scenario "can view an individual item" do
