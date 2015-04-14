@@ -21,6 +21,12 @@ class BorrowersController < ApplicationController
     @loan_requests = LoanRequest.where(user_id: params[:id])
   end
 
+  def update
+    @user = current_user
+
+    redirect_to(:back)
+  end
+
   private
 
   def borrower_params

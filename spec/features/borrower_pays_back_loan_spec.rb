@@ -33,10 +33,10 @@ RSpec.feature "borrower pays back loan" do
     login_as(borrower)
   end
 
-  scenario "visit portfolio and see link to pay back loan" do
+  xscenario "visit portfolio and see link to pay back loan" do
     visit portfolio_path
 
-    expect(page).to have_link("$$$", href: borrower_path(borrower))
+    click_link_or_button("$$$")
+    expect(current_path).to eq(borrower_path(borrower))
   end
-
 end
