@@ -26,4 +26,5 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show]
 
+  get "*path", to: "home#not_found"
 end
