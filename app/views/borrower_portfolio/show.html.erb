@@ -1,48 +1,54 @@
 <div class="panel panel-success">
-    <!-- Default panel contents -->
-    <div class="panel-heading"><h1><%= @borrower.name %>'s Portfolio</h1></div>
-    <div class="panel-body">
-      <h3>Total Funding Received</h3>
-      <h4><pre><%= number_to_currency(@borrower.total_contributions_received) %></pre></h4>
-    </div>
-    <% if @loan_requests.empty? %>
-      <h2>You have no open projects with contributions</h2>
-    <% else %>
-<table class="table table-bordered">
-  <div class="table-responsive">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th class="text-center">Last Contribution</th>
-          <th class="text-center">Title</th>
-          <th class="text-center">Category</th>
-          <th class="text-center">Amount Donated</th>
-          <th class="text-center">Repayment Begin Date</th>
-          <th class="text-center">Repayment Rate</th>
-          <th class="text-center">Make a Payment</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @loan_requests.each do |loan_request| %>
-      <tr>
-        <td class="text-center"><%= loan_request.updated_formatted %></td>
-        <td class="text-center"><%= loan_request.title %></td>
-        <td class="text-center"><%= loan_request.categories.first.title.capitalize %></td>
-        <td class="text-center"><%= number_to_currency(loan_request.contributed) %></td>
-        <td class="text-center"><%= loan_request.repayment_begin %></td>
-        <td class="text-center"><%= loan_request.repayment_rate.capitalize %></td>
-        <td class="text-center">
-          <%= form_tag payment_path(loan_request), method: :put do %>
-            <%= hidden_field_tag :borrower_id, @borrower.id %>
-            <%= number_field_tag :payment, loan_request.minimum_payment, in: loan_request.minimum_payment..loan_request.contributed %>
-          <%= submit_tag "Submit" %>
-        <% end %>
-      </td>
-      </tr>
-      <% end %>
-      </tbody>
-    </table>
+  <!-- Default panel contents -->
+  <div class="panel-heading"><h1><%= @borrower.name %>'s Portfolio</h1></div>
+  <div class="panel-body">
+    <h3>Total Funding Received</h3>
+    <h4><pre><%= number_to_currency(@borrower.total_contributions_received) %></pre></h4>
   </div>
-</table>
+  <% if @loan_requests.empty? %>
+    <h2>You have no open projects with contributions</h2>
+<% else %>
+    <table class="table table-bordered">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th class="text-center">Last Contribution</th>
+            <th class="text-center">Title</th>
+            <th class="text-center">Amount Donated</th>
+            <th class="text-center">Repayment Begin Date</th>
+            <th class="text-center">Repayment Rate</th>
+            <th class="text-center">Repayment Due Date</th>
+            <th class="text-center">Make a Payment</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @loan_requests.each do |loan_request| %>
+          <tr>
+          <td class="text-center"><%= loan_request.updated_formatted %></td>
+          <td class="text-center"><%= loan_request.title %></td>
+          <td class="text-center"><%= number_to_currency(loan_request.contributed) %></td>
+          <td class="text-center"><%= loan_request.repayment_begin %></td>
+          <td class="text-center"><%= loan_request.repayment_rate.capitalize %></td>
+          <td class="text-center"><%= loan_request.repayment_due_date %></td>
+          <div class="row">
+            <td class="text-center">
+              <%= form_tag payment_path(loan_request), method: :put do %>
+                <%= hidden_field_tag :borrower_id, @borrower.id %>
+              <div class="col-xs-6">
+                <%= number_field_tag :payment, loan_request.minimum_payment, in: loan_request.minimum_payment..loan_request.contributed, step: 10 %>
+              </div>
+              <div class="col-xs-3">
+                <%= submit_tag "Submit", class: "btn-small btn-info" %>
+              </div>
+            <% end %>
+            </td>
+          </div>
+        </tr>
+      <% end %>
+        </tbody>
+      </table>
+    </div>
+  </table>
 <% end %>
 </div>

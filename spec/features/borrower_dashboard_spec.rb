@@ -52,7 +52,7 @@ RSpec.feature "borrower dashboard" do
     ["Total Funding Received",
      loan_request.updated_formatted,
      loan_request.title,
-     loan_request.categories.first.title.capitalize,
+     loan_request.repayment_due_date,
      "$25.00",
      loan_request.repayment_begin,
      loan_request.repayment_rate.capitalize].each do |x|

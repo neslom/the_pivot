@@ -33,10 +33,17 @@ RSpec.feature "borrower pays back loan" do
     login_as(borrower)
   end
 
-  xscenario "visit portfolio and see link to pay back loan" do
+  scenario "visit portfolio and pay back a loan" do
     visit portfolio_path
 
-    click_link_or_button("$$$")
-    expect(current_path).to eq(borrower_path(borrower))
+    within("tbody") do
+      expect(page).to have_content("$75.00")
+    end
+
+    find_button("Submit").click
+
+    within(".flash") do
+      expect(page).to have_content("Your payment has been submitted")
+    end
   end
 end

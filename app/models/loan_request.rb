@@ -58,6 +58,10 @@ class LoanRequest < ActiveRecord::Base
     end
   end
 
+  def repayment_due_date
+    (repayment_begin_date + 12.weeks).strftime("%B %d, %Y")
+  end
+
   def pay!(amount, borrower)
     repayment = amount / project_contributors.size
     project_contributors.each do |lender|
