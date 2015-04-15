@@ -5,7 +5,7 @@ class Seed
     create_lenders(10)
     create_loan_requests_for_each_borrower(3)
     create_categories
-    create_orders(10)
+    create_orders
   end
 
   def lenders
@@ -90,13 +90,15 @@ class Seed
     end
   end
 
-  def create_orders(quantity)
-    quantity.times do
-      borrowers.each do |borrower|
+  def create_orders
+    loan_requests = LoanRequest.all
+    8.times do
+      loan_requests.each do |request|
+        donate = (3..25).to_a.sample.to_s
         lender = User.where(role: 0).order("RANDOM()").take(1).first
-        order = Order.create(cart_items: { "#{borrower.id}" => "25" }, user_id: lender.id)
+        order = Order.create(cart_items: { "#{request.id}" => donate }, user_id: lender.id)
         order.update_contributed(lender)
-        puts "Created Order for Borrower #{borrower.name} by Lender #{lender.name}"
+        puts "Created Order for Request #{request.title} by Lender #{lender.name}"
       end
     end
   end
