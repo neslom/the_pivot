@@ -61,4 +61,19 @@ class LoanRequest < ActiveRecord::Base
   def progress_percentage
     ((1.00 - (funding_remaining.to_f / amount.to_f)) * 100).to_i
   end
+
+  def minimum_payment
+    if repayment_rate == "weekly"
+      contributed / 12
+    else
+      contributed / 3
+    end
+  end
+
+  def pay!(amount, borrower)
+    repayment = amount / project_contributors.size
+    project_contributors.each do |lender|
+      lender.increment!(:purse, repayment)
+    end
+  end
 end

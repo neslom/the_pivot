@@ -25,5 +25,4 @@ class UsersController < ApplicationController
       redirect_to login_path, alert: "Sensei says: 'You are not authorized'"
     end
   end
-
 end

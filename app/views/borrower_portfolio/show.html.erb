@@ -19,7 +19,7 @@
           <th class="text-center">Amount Donated</th>
           <th class="text-center">Repayment Begin Date</th>
           <th class="text-center">Repayment Rate</th>
-          <th class="text-center">Lend Back</th>
+          <th class="text-center">Make a Payment</th>
         </tr>
       </thead>
       <tbody>
@@ -31,7 +31,13 @@
         <td class="text-center"><%= number_to_currency(loan_request.contributed) %></td>
         <td class="text-center"><%= loan_request.repayment_begin %></td>
         <td class="text-center"><%= loan_request.repayment_rate.capitalize %></td>
-        <td class="text-center"><%= link_to "$$$", borrower_path(@borrower), method: :put %></td>
+        <td class="text-center">
+          <%= form_tag payment_path(loan_request), method: :put do %>
+            <%= hidden_field_tag :borrower_id, @borrower.id %>
+            <%= number_field_tag :payment, loan_request.minimum_payment, in: loan_request.minimum_payment..loan_request.contributed %>
+          <%= submit_tag "Submit" %>
+        <% end %>
+      </td>
       </tr>
       <% end %>
       </tbody>
