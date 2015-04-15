@@ -95,4 +95,51 @@ RSpec.describe LoanRequest, type: :model do
       expect(loan_request.funding_remaining).to eq(70)
     end
   end
+
+  describe ".projects_with_contributions" do
+    it "returns only projects that have been contributed to" do
+      LoanRequest.create(title: "Parm Tools",
+                         description: "help out with the farm tools",
+                         amount: "100",
+                         requested_by_date: "2015-06-01",
+                         repayment_begin_date: "2015-12-01",
+                         repayment_rate: "monthly",
+                         contributed: "0")
+
+      LoanRequest.create(title: "sharp Tools",
+                         description: "help out with the farm tools",
+                         amount: "100",
+                         requested_by_date: "2015-06-01",
+                         repayment_begin_date: "2015-12-01",
+                         repayment_rate: "monthly",
+                         contributed: "30")
+
+      LoanRequest.create(title: "Farm Tools",
+                         description: "help out with the farm tools",
+                         amount: "100",
+                         requested_by_date: "2015-06-01",
+                         repayment_begin_date: "2015-12-01",
+                         repayment_rate: "monthly",
+                         contributed: "30")
+
+      expect(LoanRequest.projects_with_contributions.size).to eq(2)
+    end
+  end
+
+  describe "#minimum_payment" do
+    context "when repayment rate is monthly" do
+      it "divides contributed amount by 3 (3 months)" do
+        expect(loan_request.minimum_payment).to eq(30 / 3)
+      end
+    end
+
+    context "when repayment rate is weekly" do
+      it "divides contributed amount by 12 (3 months)" do
+        loan_request.repayment_rate = "weekly"
+        loan_request.save
+
+        expect(loan_request.minimum_payment).to eq(30 / 12)
+      end
+    end
+  end
 end

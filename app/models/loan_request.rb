@@ -42,12 +42,6 @@ class LoanRequest < ActiveRecord::Base
     where("contributed > ?", 0)
   end
 
-  def project_contributors
-    LoanRequestsContributor.where(loan_request_id: self.id).pluck(:user_id).map do |user_id|
-      User.find(user_id)
-    end
-  end
-
   def list_project_contributors
     project_contributors.map(&:name).to_sentence
   end
@@ -68,6 +62,12 @@ class LoanRequest < ActiveRecord::Base
     repayment = amount / project_contributors.size
     project_contributors.each do |lender|
       lender.increment!(:purse, repayment)
+    end
+  end
+
+  def project_contributors
+    LoanRequestsContributor.where(loan_request_id: self.id).pluck(:user_id).map do |user_id|
+      User.find(user_id)
     end
   end
 end
