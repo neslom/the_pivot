@@ -2,10 +2,10 @@ class Seed
   def run
     create_known_users
     create_borrowers(10)
-    create_lenders(10)
-    create_loan_requests_for_each_borrower(3)
+    create_lenders(100)
+    create_loan_requests_for_each_borrower(20)
     create_categories
-    create_orders(10)
+    create_orders
   end
 
   def lenders
@@ -67,8 +67,8 @@ class Seed
   def create_loan_requests_for_each_borrower(quantity)
     quantity.times do
       borrowers.each do |borrower|
-        title = Faker::Lorem.words(3).join(" ")
-        description = Faker::Lorem.sentence
+        title = Faker::Commerce.product_name
+        description = Faker::Company.catch_phrase
         status = [0, 1].sample
         request_by =
           Faker::Time.between(7.days.ago, 3.days.ago)
@@ -90,14 +90,17 @@ class Seed
     end
   end
 
-  def create_orders(quantity)
-    quantity.times do
-      borrowers.each do |borrower|
-        lender = User.where(role: 0).order("RANDOM()").take(1).first
-        order = Order.create(cart_items: { "#{borrower.id}" => "25" }, user_id: lender.id)
-        order.update_contributed(lender)
-        puts "Created Order for Borrower #{borrower.name} by Lender #{lender.name}"
-      end
+  def create_orders
+    loan_requests = LoanRequest.all
+    possible_donations = %w(25, 50, 75, 100, 125, 150, 175, 200)
+    loan_requests.each do |request|
+      donate = possible_donations.sample
+      lender = User.where(role: 0).order("RANDOM()").take(1).first
+      order = Order.create(cart_items:
+                           { "#{request.id}" => donate },
+                           user_id: lender.id)
+      order.update_contributed(lender)
+      puts "Created Order for Request #{request.title} by Lender #{lender.name}"
     end
   end
 end
