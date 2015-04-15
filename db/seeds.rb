@@ -92,14 +92,13 @@ class Seed
 
   def create_orders
     loan_requests = LoanRequest.all
-    8.times do
-      loan_requests.each do |request|
-        donate = (3..25).to_a.sample.to_s
-        lender = User.where(role: 0).order("RANDOM()").take(1).first
-        order = Order.create(cart_items: { "#{request.id}" => donate }, user_id: lender.id)
-        order.update_contributed(lender)
-        puts "Created Order for Request #{request.title} by Lender #{lender.name}"
-      end
+    possible_donations = %w(25, 50, 75, 100, 125, 150, 175, 200)
+    loan_requests.each do |request|
+      donate = possible_donations.sample
+      lender = User.where(role: 0).order("RANDOM()").take(1).first
+      order = Order.create(cart_items: { "#{request.id}" => donate }, user_id: lender.id)
+      order.update_contributed(lender)
+      puts "Created Order for Request #{request.title} by Lender #{lender.name}"
     end
   end
 end
