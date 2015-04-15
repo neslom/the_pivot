@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150410014841) do
+ActiveRecord::Schema.define(version: 20150414204818) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 20150410014841) do
     t.text    "email"
     t.text    "name"
     t.integer "role",            default: 0
+    t.integer "purse",           default: 0
   end
 
   add_foreign_key "loan_requests", "users"
