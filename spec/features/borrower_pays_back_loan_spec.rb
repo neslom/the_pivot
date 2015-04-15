@@ -43,7 +43,8 @@ RSpec.feature "borrower pays back loan" do
     find_button("Submit").click
 
     within(".flash") do
-      expect(page).to have_content("Your payment has been submitted")
+      expect(page).to have_content("Thank you for your payment")
     end
+    expect(current_path).to eq(portfolio_path)
   end
 end
