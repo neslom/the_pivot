@@ -2,6 +2,15 @@ class Order < ActiveRecord::Base
   validates :user_id, :cart_items, presence: true
   belongs_to :user
   enum status: %w(ordered paid cancelled completed)
+  validate :over_funded
+
+  def over_funded
+    find_loan_requests.each do |loan_request|
+      unless loan_request.contributed < loan_request.amount
+        errors.add("#{loan_request.title}", "only needs $#{loan_request.amount}. Please subtract $#{(loan_request.funding_remaining).abs} from your donation.")
+      end
+    end
+  end
 
   def created_at_formatted
     created_at.strftime("%A, %d %b %Y %l:%M %p")
@@ -15,6 +24,12 @@ class Order < ActiveRecord::Base
     loan_requests = Hash.new
     cart_items.select { |loan_id, amount| loan_requests[LoanRequest.find(loan_id)] = amount }
     loan_requests
+  end
+
+  def find_loan_requests
+    cart_item_and_quantity.keys.map do |loan_request|
+      LoanRequest.find(loan_request.id)
+    end
   end
 
   def update_contributed(user)

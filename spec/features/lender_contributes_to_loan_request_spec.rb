@@ -72,7 +72,9 @@ RSpec.feature "lender contributes to loan request" do
       end
       expect(page).to have_content("$125.00")
       click_link_or_button "Transfer Funds"
-      expect(page).to have_content("Your contribution could not be completed.")
+
+      expect(current_path).to eq(cart_path)
+      expect(page).to have_content("#{loan_request.title}", "only needs $#{loan_request.amount}. Please subtract $#{(loan_request.funding_remaining).abs} from your donation.")
     end
   end
 end
