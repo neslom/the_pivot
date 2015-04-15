@@ -4,6 +4,12 @@ RSpec.describe "User logs in" do
   let(:lender) { User.create(email: "example@example.com", password: "password", name: "richard", role: 0) }
   let(:borrower) { User.create(email: "example@example.com", password: "password", name: "sally", role: 1) }
 
+  scenario "redirects to root on 404 error" do
+    visit "/markus"
+    expect(current_path).to eq(root_path)
+    expect(page).to have_content("Page not found")
+  end
+
   context "with invalid log in credentials" do
 
     scenario "cannot log in without email or password" do
