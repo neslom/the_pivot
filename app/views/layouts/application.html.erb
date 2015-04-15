@@ -9,12 +9,12 @@
 
   <body>
 
+    <%= render 'layouts/navbar' %>
+
+
     <div class="flash">
-      <%= render 'layouts/navbar' %>
+      <%= flash_messages %>
     </div>
-
-
-    <%= flash_messages %>
 
     <%= yield %>
 
