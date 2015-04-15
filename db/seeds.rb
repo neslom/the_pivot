@@ -67,8 +67,8 @@ class Seed
   def create_loan_requests_for_each_borrower(quantity)
     quantity.times do
       borrowers.each do |borrower|
-        title = Faker::Lorem.words(3).join(" ")
-        description = Faker::Lorem.sentence
+        title = Faker::Commerce.product_name
+        description = Faker::Company.catch_phrase
         status = [0, 1].sample
         request_by =
           Faker::Time.between(7.days.ago, 3.days.ago)
