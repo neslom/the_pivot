@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   get "/portfolio", to: "borrower_portfolio#show"
 
+  resources :payment, only: [:update]
+
   resources :loan_requests
 
   get "/cart", to: "cart#index"
