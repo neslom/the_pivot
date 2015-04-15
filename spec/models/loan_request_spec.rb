@@ -89,4 +89,10 @@ RSpec.describe LoanRequest, type: :model do
 
     expect(loan_request.funding_remaining).to eq(70)
   end
+
+  describe "#funding_remaining" do
+    it "returns difference of loan request's amount and contributed" do
+      expect(loan_request.funding_remaining).to eq(70)
+    end
+  end
 end
