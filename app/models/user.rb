@@ -10,6 +10,11 @@ class User < ActiveRecord::Base
   has_many :loan_requests
   has_many :loan_requests_contributors
   has_many :projects, through: :loan_requests_contributors, source: "loan_request"
+  before_save :format_name
+
+  def format_name
+    write_attribute(:name, name.to_s.titleize)
+  end
 
   def total_contributed
     loan_requests_contributors.sum(:contribution)
