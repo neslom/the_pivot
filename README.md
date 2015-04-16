@@ -6,7 +6,7 @@ Keevahh is a micro-lending platform that allows both lenders and borrowers to in
 
 The project specifications can be found [here](https://github.com/turingschool/lesson_plans/blob/master/ruby_03-professional_rails_applications/the_pivot.markdown)
 
-[Find Us Here on Heroku](https://protected-lowlands-2991.herokuapp.com/)
+[Find Us Here on Heroku](https://lendkeevahh.herokuapp.com/)
 
 ## Code Status
 
