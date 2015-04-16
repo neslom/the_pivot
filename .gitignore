@@ -13,3 +13,4 @@
 /tmp
 
 /coverage/
+/config/local_env.yml
