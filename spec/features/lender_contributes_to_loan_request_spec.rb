@@ -7,13 +7,13 @@ RSpec.feature "lender contributes to loan request" do
                              role: 0)
   }
 
-  let!(:borrower) { User.create(email: "jeff@example.com",
+  let(:borrower) { User.create(email: "jeff@example.com",
                                 password: "password",
                                 name: "jeff",
                                 role: 1)
   }
 
-  let!(:loan_request) { LoanRequest.create(title: "Farm Tools",
+  let(:loan_request) { LoanRequest.create(title: "Farm Tools",
                                            description: "help out with the farm tools",
                                            amount: "100",
                                            requested_by_date: "2015-06-01",
@@ -74,7 +74,7 @@ RSpec.feature "lender contributes to loan request" do
       click_link_or_button "Transfer Funds"
 
       expect(current_path).to eq(cart_path)
-      expect(page).to have_content("#{loan_request.title}", "only needs $#{loan_request.amount}. Please subtract $#{(loan_request.funding_remaining).abs} from your donation.")
+      expect(page).to have_content("only needs $#{loan_request.amount}. Please subtract $#{(loan_request.funding_remaining).abs} from your donation.")
     end
   end
 end
