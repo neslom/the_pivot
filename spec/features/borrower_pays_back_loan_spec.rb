@@ -47,4 +47,27 @@ RSpec.feature "borrower pays back loan" do
     end
     expect(current_path).to eq(portfolio_path)
   end
+
+  xscenario "see minimum payment amount decrease after payment submission" do
+    visit portfolio_path
+
+    find_button("Submit").click
+
+    within("#payment") do
+      expect(page).to have_content(25)
+    end
+  end
+
+  scenario "amount paid back is reflected on the lender portfolio" do
+    visit portfolio_path
+
+    find_button("Submit").click
+
+    click_link_or_button("Log out")
+    visit "/"
+    login_as(lender)
+    visit lender_path(lender)
+
+    expect(page).to have_content("$8")
+  end
 end
