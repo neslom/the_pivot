@@ -31,7 +31,7 @@ class Order < ActiveRecord::Base
   end
 
   def find_borrower
-    cart_item_and_quantity.keys.each do |loan_request|
+    cart_item_and_quantity.keys.map do |loan_request|
       User.find(loan_request.user_id)
     end
   end
