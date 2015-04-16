@@ -2,12 +2,12 @@ class Order < ActiveRecord::Base
   validates :user_id, :cart_items, presence: true
   belongs_to :user
   enum status: %w(ordered paid cancelled completed)
-  validate :over_funded
+  validate :not_over_funded
 
-  def over_funded
-    return if !errors.empty?
+  def not_over_funded
+    return if errors.any?
     find_loan_requests.each do |loan_request|
-      unless loan_request.contributed < loan_request.amount
+      unless (loan_request.contributed + cart_items[loan_request.id.to_s].to_i) < loan_request.amount
         errors.add("#{loan_request.title}", "only needs $#{loan_request.amount}. Please subtract $#{(loan_request.funding_remaining).abs} from your donation.")
       end
     end
