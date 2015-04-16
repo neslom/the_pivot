@@ -12,7 +12,9 @@ class LendersController < ApplicationController
       flash[:notice] = "You've been saved"
       redirect_to lender_path(user)
     else
-      flash[:error] = user.errors.full_messages.to_sentence
+      errors = user.errors.full_messages
+      errors.shift if errors.include?("Password confirmation doesn't match Password")
+      flash[:error] = errors.to_sentence
       redirect_to root_path
     end
   end

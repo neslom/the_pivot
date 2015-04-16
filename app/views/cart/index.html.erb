@@ -13,6 +13,7 @@
   <th colspan="1" class="text-center">Borrower</th>
   <th colspan="1" class="text-center">Repayment Begin Date</th>
   <th colspan="1" class="text-center">Repayment Rate</th>
+  <th colspan="1" class="text-center">Funding Remaining</th>
   <th colspan="1" class="text-center">Your Contribution</th>
   <th colspan="1" class="text-center">+</th>
   <th colspan="1" class="text-center">-</th>
@@ -28,6 +29,7 @@
         <td><%= loan_request.user.name.capitalize %></td>
         <td><%= loan_request.repayment_begin %></td>
         <td><%= loan_request.repayment_rate.capitalize %></td>
+        <td><%= number_to_currency(loan_request.funding_remaining) %></td>
         <td><%= number_to_currency(amount, precision: 2) %></td>
         <div class="add25">
           <td><%= button_to "$25", {controller: "cart", action: "update", loan_request_id: loan_request.id, quantity: "increase" } , method: "put", class: "btn-small btn-success" %></td>
