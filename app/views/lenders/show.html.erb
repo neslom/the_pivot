@@ -2,9 +2,9 @@
     <!-- Default panel contents -->
     <div class="panel-heading"><h1><%= @lender.name %>'s Portfolio</h1></div>
     <div class="panel-body">
-      <h2>Total Donations</h2>
+      <h2>Total Donated</h2>
       <h4><pre><%= number_to_currency(@lender.total_contributed) %></pre></h4>
-      <h3 class="repayed-funds">Repayed Donations</h3>
+      <h3>Received Payments</h3>
       <h4><pre><%= number_to_currency(@lender.purse) %></pre></h4>
     </div>
 <table class="table table-bordered">

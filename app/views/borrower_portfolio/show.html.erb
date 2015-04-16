@@ -4,7 +4,7 @@
   <div class="panel-body">
     <h2>Total Funding Received</h2>
     <h4><pre><%= number_to_currency(@borrower.total_contributions_received) %></pre></h4>
-    <h3 class="repayed-funds">Total Repayed</h3>
+    <h3>Total Funding Repayed</h3>
     <h4><pre><%= number_to_currency(@borrower.purse.abs) %></pre></h4>
   </div>
   <% if @loan_requests.empty? %>
