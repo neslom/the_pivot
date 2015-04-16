@@ -5,7 +5,9 @@ class User < ActiveRecord::Base
   validates :password, :name, :email, presence: true
   validates :email, uniqueness: true
   validates_format_of :email, with: /.+@.+\..+/i
+
   enum role: %w(lender borrower admin)
+
   has_many :orders
   has_many :loan_requests
   has_many :loan_requests_contributors
@@ -25,7 +27,6 @@ class User < ActiveRecord::Base
   end
 
   def contributed_to(loan_request)
-    user_id = self.id
-    LoanRequestsContributor.lender_contribution(user_id, loan_request)
+    LoanRequestsContributor.lender_contribution(self.id, loan_request)
   end
 end
