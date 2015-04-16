@@ -1,9 +1,5 @@
 class SessionsController < ApplicationController
 
-  def new
-    @user = User.new
-  end
-
   def create
     @user = User.find_by(email: params[:session][:email])
     if @user && @user.authenticate(params[:session][:password])
@@ -15,10 +11,6 @@ class SessionsController < ApplicationController
         session[:user_id] = @user.id
         flash[:notice] = "Welcome to Keevahh, #{@user.name}!"
         redirect_to borrower_path(@user)
-      elsif @user.admin?
-        session[:user_id] = @user.id
-        flash[:notice] = "Admin logged in."
-        redirect_to '/admin'
       end
     else
       flash[:notice] = "Invalid Login"
@@ -31,5 +23,4 @@ class SessionsController < ApplicationController
     flash[:notice] = "See you next time!"
     redirect_to root_path
   end
-
 end

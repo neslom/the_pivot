@@ -17,19 +17,4 @@ class OrdersController < ApplicationController
       redirect_to cart_path
     end
   end
-
-  def index
-    if current_user && current_user.user?
-      @orders = current_user.orders
-    elsif current_user.admin?
-      @orders = Order.all
-    else
-      flash[:notice] = "You Must Be Logged In"
-      redirect_to login_path
-    end
-  end
-
-  def show
-    @order = Order.find(params[:id])
-  end
 end
