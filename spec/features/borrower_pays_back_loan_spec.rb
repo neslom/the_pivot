@@ -70,4 +70,13 @@ RSpec.feature "borrower pays back loan" do
 
     expect(page).to have_content("$8")
   end
+
+  scenario "total repayed funds are shown on the portfolio page" do
+    visit portfolio_path
+    find_button("Submit").click
+
+    within(".panel-body") do
+      expect(page).to have_content("$8")
+    end
+  end
 end

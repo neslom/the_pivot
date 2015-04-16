@@ -2,8 +2,10 @@
   <!-- Default panel contents -->
   <div class="panel-heading"><h1><%= @borrower.name %>'s Portfolio</h1></div>
   <div class="panel-body">
-    <h3>Total Funding Received</h3>
+    <h2>Total Funding Received</h2>
     <h4><pre><%= number_to_currency(@borrower.total_contributions_received) %></pre></h4>
+    <h3 class="repayed-funds">Total Repayed</h3>
+    <h4><pre><%= number_to_currency(@borrower.purse.abs) %></pre></h4>
   </div>
   <% if @loan_requests.empty? %>
     <h2>You have no open projects with contributions</h2>

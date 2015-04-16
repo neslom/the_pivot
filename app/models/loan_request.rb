@@ -67,6 +67,7 @@ class LoanRequest < ActiveRecord::Base
     project_contributors.each do |lender|
       repayment = lender.contributed_to(self).first.contribution * repayment_percentage
       lender.increment!(:purse, repayment)
+      borrower.decrement!(:purse, repayment)
     end
   end
 
