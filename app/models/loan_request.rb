@@ -52,9 +52,9 @@ class LoanRequest < ActiveRecord::Base
 
   def minimum_payment
     if repayment_rate == "weekly"
-      contributed / 12
+      (contributed - repayed) / 12
     else
-      contributed / 3
+      (contributed - repayed) / 3
     end
   end
 
@@ -68,6 +68,7 @@ class LoanRequest < ActiveRecord::Base
       repayment = lender.contributed_to(self).first.contribution * repayment_percentage
       lender.increment!(:purse, repayment)
       borrower.decrement!(:purse, repayment)
+      self.increment!(:repayed, repayment)
     end
   end
 

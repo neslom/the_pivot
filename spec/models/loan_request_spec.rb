@@ -128,17 +128,34 @@ RSpec.describe LoanRequest, type: :model do
 
   describe "#minimum_payment" do
     context "when repayment rate is monthly" do
-      it "divides contributed amount by 3 (3 months)" do
+      it "divides contributed amount by 3 (3 months) with no repayments made" do
         expect(loan_request.minimum_payment).to eq(30 / 3)
+      end
+
+      it "divides correctly if a borrower has made a payment" do
+        loan_request.repayed = 10
+        loan_request.save
+
+        x = (30 - 10) / 3
+        expect(loan_request.minimum_payment).to eq(x)
       end
     end
 
     context "when repayment rate is weekly" do
-      it "divides contributed amount by 12 (3 months)" do
+      it "divides contributed amount by 12 (3 months) with no repayments made" do
         loan_request.repayment_rate = "weekly"
         loan_request.save
 
         expect(loan_request.minimum_payment).to eq(30 / 12)
+      end
+
+    it "divides correctly if a borrower has made a payment" do
+        loan_request.repayment_rate = "weekly"
+        loan_request.repayed = 10
+        loan_request.save
+
+        x = (30 - 10) / 12
+        expect(loan_request.minimum_payment).to eq(x)
       end
     end
   end
