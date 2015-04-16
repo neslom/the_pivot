@@ -22,7 +22,7 @@ RSpec.feature "borrower dashboard" do
                                            user_id: borrower.id)
   }
 
-  let(:order) { Order.create(cart_items: { "#{borrower.id}" => "25" }, user_id: lender.id) }
+  let(:order) { Order.create(cart_items: { "#{loan_request.id}" => "25" }, user_id: lender.id) }
 
   let(:category) { Category.create(title: "agriculture", description: "agri stuff") }
 
@@ -52,11 +52,10 @@ RSpec.feature "borrower dashboard" do
     ["Total Funding Received",
      loan_request.updated_formatted,
      loan_request.title,
-     loan_request.categories.first.title.capitalize,
+     loan_request.repayment_due_date,
      "$25.00",
      loan_request.repayment_begin,
-     loan_request.repayment_rate.capitalize,
-     loan_request.list_project_contributors].each do |x|
+     loan_request.repayment_rate.capitalize].each do |x|
        expect(page).to have_content(x)
      end
   end

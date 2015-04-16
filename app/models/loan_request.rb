@@ -38,20 +38,8 @@ class LoanRequest < ActiveRecord::Base
     amount - contributed
   end
 
-  def fund_amount
-    if funding_remaining < contributed
-      raise "cannot contribute more than the project's total funds"
-    end
-  end
-
   def self.projects_with_contributions
     where("contributed > ?", 0)
-  end
-
-  def project_contributors
-    LoanRequestsContributor.where(loan_request_id: self.id).pluck(:user_id).map do |user_id|
-      User.find(user_id)
-    end
   end
 
   def list_project_contributors
@@ -60,5 +48,33 @@ class LoanRequest < ActiveRecord::Base
 
   def progress_percentage
     ((1.00 - (funding_remaining.to_f / amount.to_f)) * 100).to_i
+  end
+
+  def minimum_payment
+    if repayment_rate == "weekly"
+      (contributed - repayed) / 12
+    else
+      (contributed - repayed) / 3
+    end
+  end
+
+  def repayment_due_date
+    (repayment_begin_date + 12.weeks).strftime("%B %d, %Y")
+  end
+
+  def pay!(amount, borrower)
+    repayment_percentage = ( amount / contributed.to_f )
+    project_contributors.each do |lender|
+      repayment = lender.contributed_to(self).first.contribution * repayment_percentage
+      lender.increment!(:purse, repayment)
+      borrower.decrement!(:purse, repayment)
+      self.increment!(:repayed, repayment)
+    end
+  end
+
+  def project_contributors
+    LoanRequestsContributor.where(loan_request_id: self.id).pluck(:user_id).map do |user_id|
+      User.find(user_id)
+    end
   end
 end

@@ -89,4 +89,74 @@ RSpec.describe LoanRequest, type: :model do
 
     expect(loan_request.funding_remaining).to eq(70)
   end
+
+  describe "#funding_remaining" do
+    it "returns difference of loan request's amount and contributed" do
+      expect(loan_request.funding_remaining).to eq(70)
+    end
+  end
+
+  describe ".projects_with_contributions" do
+    it "returns only projects that have been contributed to" do
+      LoanRequest.create(title: "Parm Tools",
+                         description: "help out with the farm tools",
+                         amount: "100",
+                         requested_by_date: "2015-06-01",
+                         repayment_begin_date: "2015-12-01",
+                         repayment_rate: "monthly",
+                         contributed: "0")
+
+      LoanRequest.create(title: "sharp Tools",
+                         description: "help out with the farm tools",
+                         amount: "100",
+                         requested_by_date: "2015-06-01",
+                         repayment_begin_date: "2015-12-01",
+                         repayment_rate: "monthly",
+                         contributed: "30")
+
+      LoanRequest.create(title: "Farm Tools",
+                         description: "help out with the farm tools",
+                         amount: "100",
+                         requested_by_date: "2015-06-01",
+                         repayment_begin_date: "2015-12-01",
+                         repayment_rate: "monthly",
+                         contributed: "30")
+
+      expect(LoanRequest.projects_with_contributions.size).to eq(2)
+    end
+  end
+
+  describe "#minimum_payment" do
+    context "when repayment rate is monthly" do
+      it "divides contributed amount by 3 (3 months) with no repayments made" do
+        expect(loan_request.minimum_payment).to eq(30 / 3)
+      end
+
+      it "divides correctly if a borrower has made a payment" do
+        loan_request.repayed = 10
+        loan_request.save
+
+        x = (30 - 10) / 3
+        expect(loan_request.minimum_payment).to eq(x)
+      end
+    end
+
+    context "when repayment rate is weekly" do
+      it "divides contributed amount by 12 (3 months) with no repayments made" do
+        loan_request.repayment_rate = "weekly"
+        loan_request.save
+
+        expect(loan_request.minimum_payment).to eq(30 / 12)
+      end
+
+    it "divides correctly if a borrower has made a payment" do
+        loan_request.repayment_rate = "weekly"
+        loan_request.repayed = 10
+        loan_request.save
+
+        x = (30 - 10) / 12
+        expect(loan_request.minimum_payment).to eq(x)
+      end
+    end
+  end
 end
