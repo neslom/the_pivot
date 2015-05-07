@@ -18,7 +18,7 @@ The project specifications can be found [here](https://github.com/turingschool/l
 
 Built by: [Markus Olsen](https://github.com/neslom), [Trey Tomlinson](https://github.com/treyx), and [Valentino Espinoza](https://github.com/xvalentino)
 
-## Liscense
+## License
 
 The MIT License (MIT)
 
