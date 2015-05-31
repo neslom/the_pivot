@@ -1,6 +1,8 @@
 ## The Pivot - Keevahh
 
-The Pivot is a 3 week project in Module 3 of the Turing School of Software and Design.
+The Pivot is a 3 week project in Module 3 of the Turing School of Software and Design, focusing on taking an existing code base and 'pivoting' it to serve a new purpose.
+
+I focused on managing the asset pipeline, Git workflow, and ActiveRecord database queries.
 
 Keevahh is a micro-lending platform that allows both lenders and borrowers to interact. Borrowers are able to create a project or loan request and lenders are able to contribute to various projects.
 
